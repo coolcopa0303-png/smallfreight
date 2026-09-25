@@ -18,13 +18,16 @@ export function HelpPage() {
         <p className={s.subtitle}>{t('help.subtitle')}</p>
       </header>
       <div className={s.layout}>
-        <Card className={s.faqCard}>
-          <CardHeader icon={<CircleHelp size={22} />} title={t('help.faq.title')} subtitle={t('help.faq.subtitle')} />
-          <FaqAccordion items={items} defaultOpen={['statuses']} />
-        </Card>
+        {/* Left: FAQ (collapsed by default) + announcements. Right: contact. Balanced so the page fits one screen. */}
+        <div className={s.main}>
+          <Card className={s.faqCard}>
+            <CardHeader icon={<CircleHelp size={22} />} title={t('help.faq.title')} subtitle={t('help.faq.subtitle')} />
+            <FaqAccordion items={items} />
+          </Card>
+          <AnnouncementsCard />
+        </div>
         <div className={s.side}>
           <ContactCard />
-          <AnnouncementsCard />
         </div>
       </div>
     </div>

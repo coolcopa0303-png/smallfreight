@@ -27,6 +27,7 @@
   gap: 16px;
   align-items: start;
 }
+.main,
 .side {
   display: flex;
   flex-direction: column;
@@ -275,14 +276,9 @@
   border-radius: 50%;
   flex: none;
 }
-.kindAlert {
-  color: var(--danger);
-  background: var(--danger-soft);
-}
-.kindInfo {
-  color: var(--brand-primary);
-  background: var(--brand-primary-soft);
-}
+/* Calm palette: all announcement icons neutral gray (matches the dashboard). */
+.kindAlert,
+.kindInfo,
 .kindNotice {
   color: var(--text-secondary);
   background: var(--neutral-soft);
@@ -343,5 +339,23 @@
   .guideRow {
     grid-template-columns: minmax(0, 1fr);
     gap: 6px;
+  }
+}
+
+/* Short desktop screens: tighter rows so the page fits without a scrollbar. */
+@media (min-width: 1024px) and (max-height: 820px) {
+  .faqButton {
+    min-height: 44px;
+    padding: 8px 4px;
+  }
+  .annItem {
+    padding: 8px 0;
+  }
+  .layout {
+    gap: 12px;
+  }
+  .main,
+  .side {
+    gap: 12px;
   }
 }
