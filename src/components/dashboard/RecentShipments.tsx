@@ -8,13 +8,13 @@ import { tabCounts } from '@/adapters/shipmentAdapter'
 import { ButtonLink } from '@/components/ui/Button'
 import { Card, CardHeader, ViewAllLink } from '@/components/ui/Card'
 import { EmptyState, ErrorState, Skeleton } from '@/components/ui/States'
-import { StatusChip } from '@/components/ui/StatusChip'
 import { Tabs } from '@/components/ui/Tabs'
 import { matchesTab, type StatusTab } from '@/domain/statusMap'
 import type { Place, Shipment } from '@/domain/types'
 import { useShipments } from '@/hooks/useData'
 import { useI18n } from '@/i18n/I18nProvider'
 import { fmtIsoDate } from '@/i18n/format'
+import { DashStatusChip } from './DashStatusChip'
 import s from './recent.module.css'
 
 const TABS = ['all', 'inTransit', 'atPort', 'customs', 'delivered'] as const satisfies readonly StatusTab[]
@@ -120,7 +120,7 @@ function Row({ sh, onOpen }: { sh: Shipment; onOpen: () => void }) {
         <PlaceCell place={sh.destination} />
       </td>
       <td className={s['c-status']}>
-        <StatusChip status={sh.status} completed={sh.completed} size="sm" />
+        <DashStatusChip status={sh.status} completed={sh.completed} />
       </td>
       <td className={s['c-eta']}>{fmtIsoDate(sh.eta)}</td>
       <td className={s['c-lastUpdate']}>

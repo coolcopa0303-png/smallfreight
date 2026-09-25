@@ -1,0 +1,40 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--dash-transit);
+  background: var(--dash-transit-soft);
+}
+.ring {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  flex: none;
+}
+.chip[data-status='atPort'] {
+  color: var(--dash-port-text);
+  background: var(--dash-port-soft);
+}
+.chip[data-status='customs'] {
+  color: var(--dash-customs-text);
+  background: var(--dash-customs-soft);
+}
+.chip[data-status='delivered'] {
+  color: var(--dash-delivered-text);
+  background: var(--dash-delivered-soft);
+}
+.chip[data-status='pending'] {
+  color: var(--text-secondary);
+  background: var(--neutral-soft);
+}
+.chip[data-status='exception'] {
+  color: var(--danger-strong);
+  background: var(--danger-soft);
+}

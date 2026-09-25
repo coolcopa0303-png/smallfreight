@@ -1,9 +1,9 @@
 .card {
-  /* Donut + legend palette: brand blue, lighter blue, then grays (reference-v2 01). */
-  --ov-in-transit: var(--brand-primary);
-  --ov-at-port: #6fa8ff;
-  --ov-customs: #b8c4d6;
-  --ov-delivered: #d9dee6;
+  /* Donut + legend use the dashboard's 4-colour status palette (dashboard.module.css). */
+  --ov-in-transit: var(--dash-transit);
+  --ov-at-port: var(--dash-port);
+  --ov-customs: var(--dash-customs);
+  --ov-delivered: var(--dash-delivered);
   --ov-other: #eceff4;
   --ov-track: #f1f4f8;
   padding: 8px 20px 8px;

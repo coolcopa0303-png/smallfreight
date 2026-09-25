@@ -19,7 +19,13 @@
 .icon {
   display: inline-flex;
   padding-top: 2px;
-  color: #3f4a5c;
+  color: var(--dash-transit);
+}
+.icon[data-kind='alert'] {
+  color: var(--dash-customs);
+}
+.icon[data-kind='notice'] {
+  color: var(--dash-port);
 }
 .text {
   min-width: 0;

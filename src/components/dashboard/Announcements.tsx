@@ -27,7 +27,7 @@ export function Announcements() {
       <ul className={s.list}>
         {ANNOUNCEMENTS.slice(0, 3).map((a) => (
           <li key={a.id} className={s.item}>
-            <span className={s.icon} role="img" aria-label={t(`dashboard.announcements.kinds.${a.kind}`)}>
+            <span className={s.icon} data-kind={a.kind} role="img" aria-label={t(`dashboard.announcements.kinds.${a.kind}`)}>
               <KindIcon kind={a.kind} />
             </span>
             <div className={s.text}>

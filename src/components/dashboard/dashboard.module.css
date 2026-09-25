@@ -1,4 +1,16 @@
 .page {
+  /* Dashboard-only status palette (4 colours): in transit / at port / customs / delivered. */
+  --dash-transit: #0b5ff5;
+  --dash-transit-soft: #eaf2ff;
+  --dash-port: #14b8a6;
+  --dash-port-text: #0f8a7d;
+  --dash-port-soft: #e6f7f5;
+  --dash-customs: #f5a524;
+  --dash-customs-text: #b86e00;
+  --dash-customs-soft: #fff4df;
+  --dash-delivered: #22c55e;
+  --dash-delivered-text: #15803d;
+  --dash-delivered-soft: #eafbf1;
   display: flex;
   flex-direction: column;
   gap: 14px;
