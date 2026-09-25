@@ -1,0 +1,23 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  /* Fill the viewport below the header so both cards reach the bottom (reference 06). */
+  min-height: calc(100vh - var(--topbar-height) - var(--page-gutter-y) - 24px);
+}
+.columns {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 43fr) minmax(0, 57fr);
+  gap: 13px;
+  align-items: stretch;
+}
+
+@media (max-width: 1199px) {
+  .page {
+    min-height: 0;
+  }
+  .columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,274 @@
+/* Tracking / Documents / Containers / Charges / Communications tabs */
+.sub {
+  margin: -4px 0 12px 32px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* ---------- tracking ---------- */
+.trackingGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  gap: 15px;
+  align-items: start;
+}
+.events {
+  list-style: none;
+  margin: 0;
+  padding-left: 6px;
+}
+.event {
+  position: relative;
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr);
+  gap: 16px;
+  padding-bottom: 14px;
+}
+.event:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 16px;
+  bottom: -2px;
+  width: 2px;
+  background: var(--border-soft);
+}
+.eventDot {
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 3px solid var(--success);
+  position: relative;
+  z-index: 1;
+}
+.event[data-first] .eventDot {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 4px rgba(var(--brand-primary-rgb), 0.14);
+}
+.eventBody {
+  min-width: 0;
+}
+.eventText {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+.event[data-first] .eventText {
+  color: var(--brand-primary);
+}
+.eventTime {
+  margin-top: 2px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.statusGrid {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.statusCell {
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--bg-muted);
+  border: 1px solid var(--border-soft);
+  min-width: 0;
+}
+.statusCell dt {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.statusCell dd {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+/* ---------- documents ---------- */
+.docList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.doc {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+}
+.docIcon {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--brand-primary-soft);
+  color: var(--brand-primary);
+  flex: none;
+}
+.docText {
+  flex: 1;
+  min-width: 0;
+}
+.docName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+.docMeta {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.docLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--brand-primary);
+  border-radius: 6px;
+}
+.docLink:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- containers ---------- */
+.tableWrap {
+  overflow-x: auto;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+.table th,
+.table td {
+  padding: 11px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-soft);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.table thead th {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-muted);
+}
+.table tbody th {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.lfd {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.lfd[data-level='warning'] {
+  color: var(--warning-strong);
+  font-weight: 600;
+}
+.lfd[data-level='danger'] {
+  color: var(--danger-strong);
+  font-weight: 600;
+}
+.lfdTag {
+  padding: 0 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  line-height: 18px;
+  background: var(--warning-soft);
+}
+.lfd[data-level='danger'] .lfdTag {
+  background: var(--danger-soft);
+}
+
+/* ---------- charges / communications ---------- */
+.supportCard {
+  background: var(--surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 24px;
+}
+.phoneLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-button);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--brand-primary);
+}
+.phoneLink:hover {
+  border-color: var(--brand-primary);
+}
+
+@media (max-width: 1199px) {
+  .trackingGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .statusGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* containers table → stacked cards */
+  .table thead {
+    display: none;
+  }
+  .table,
+  .table tbody,
+  .table tr,
+  .table th,
+  .table td {
+    display: block;
+    width: 100%;
+  }
+  .table tr {
+    border: 1px solid var(--border-soft);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 4px 0;
+  }
+  .table tbody th,
+  .table td {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: 0;
+    padding: 6px 12px;
+    white-space: normal;
+  }
+  .table td::before {
+    content: attr(data-label);
+    color: var(--text-muted);
+    font-size: 12.5px;
+  }
+}

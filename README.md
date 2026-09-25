@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SMALL FREIGHT Customer Portal (new UI)
 
-## Getting Started
+Customer-facing rebuild of smallfreight.senmartintl.com per `../SMALL_FREIGHT_CLAUDE_HANDOFF/CLAUDE_CODE_UI_SPEC.md`
+and the reference designs in `../SMALL_FREIGHT_CLAUDE_HANDOFF/reference/`. Implementation notes, API inventory and
+field mapping: [`docs/IMPLEMENTATION_PLAN.md`](docs/IMPLEMENTATION_PLAN.md).
 
-First, run the development server:
+## Run
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev            # http://localhost:3000 — sample-data mode (no login / backend needed)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Data modes
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Mode | How | What happens |
+|---|---|---|
+| `mock` (default) | nothing to set | In-browser mock of the backend (`src/mocks/`) with anonymized fixtures built from captured API responses. A "Sample data" badge shows in the header. |
+| `live` | `NEXT_PUBLIC_DATA_MODE=live npm run dev` | `/api/*` is proxied to the existing backend (`SMALL_FREIGHT_API_ORIGIN`, default `https://smallfreight.senmartintl.com`) so the session cookie is same-origin. Log in with a real portal account at `/login`. |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Static demo (sample data, any static host)
 
-## Learn More
+```bash
+npm run build:demo     # STATIC_EXPORT=1 next build + scripts/flatten-export.mjs → ./out
+cd out && npx vercel deploy --yes     # or upload ./out to any static host
+```
 
-To learn more about Next.js, take a look at the following resources:
+The backend contract is unchanged — the new UI only reads/writes the existing `/api/...` endpoints.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/app/(portal)/*        pages (Dashboard, Shipments, Shipment Detail, Quotes, HTS, Address Book, My Inquiries, Analytics, Help)
+src/app/login             login
+src/components/ui         design-system primitives (Button, Field, Card, StatusChip, Tabs, Drawer, Toast…)
+src/components/layout     AppShell, Sidebar, GlobalHeader, PageHero
+src/components/<area>     page-level components
+src/domain                raw API types, view models, statusMap.ts (single source of status logic)
+src/adapters              raw API → view model mappers
+src/services              API calls + business services (dutyCalculator, geo)
+src/locales/{en,zh-CN}    i18n namespaces (one JSON per module)
+src/mocks                 mock backend + fixtures (regenerate: node scripts/build-fixtures.mjs)
+```
 
-## Deploy on Vercel
+## Known data gaps (need backend fields)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Shipments have no origin/destination/ETD/shipper/consignee/cargo details — the UI supports them via optional
+  fields (`pol`, `pod`, `etd`, `shipper`, `consignee`, `cargo`) and shows "—" when absent.
+- Drayage quotes: the backend returns SMALL FREIGHT's own price (`ftlPrice`); other carriers render only if returned.
+- Duty calculator: base rates from `/api/hts-items`; HMF/MPF formulas live in `src/services/dutyCalculator.ts`
+  (`FEE_RULES`) and must be confirmed by the customs team; additional duties are user-selected, never auto-applied.
+- Announcements are static (`src/services/announcements.ts`) until a CMS/API exists.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Third-party services used by maps
+
+CARTO / OpenStreetMap tiles, Esri World Imagery, OSRM demo routing, zippopotam.us ZIP coordinates — fine for a
+prototype; switch to a licensed provider in `src/services/geo.ts` / `src/components/map/MapCanvas.tsx` for production.

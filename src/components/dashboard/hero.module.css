@@ -1,0 +1,189 @@
+/* ---------- Tracking search ---------- */
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 740px;
+  height: 44px;
+  margin-top: 18px;
+  padding: 2px 2px 2px 0;
+  border-radius: var(--radius-input);
+  background: var(--surface);
+  box-shadow: 0 2px 10px rgba(var(--navy-rgb), 0.18);
+}
+.search:focus-within {
+  box-shadow: 0 0 0 3px rgba(var(--brand-primary-rgb), 0.45);
+}
+.searchIcon {
+  flex: none;
+  margin: 0 10px 0 16px;
+  color: var(--text-secondary);
+}
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: 15px;
+  color: var(--text-primary);
+}
+.searchInput::placeholder {
+  color: var(--text-muted);
+}
+.searchInput:focus-visible {
+  box-shadow: none;
+}
+.searchBtn {
+  height: 38px;
+  min-width: 112px;
+  font-size: 15px;
+}
+
+/* ---------- Field pills ---------- */
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+.pill {
+  height: 29px;
+  padding: 0 18px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(var(--navy-rgb), 0.45);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.pill:hover {
+  background: rgba(var(--navy-rgb), 0.7);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.pill[aria-pressed='true'] {
+  background: #bcd4ff;
+  border-color: #bcd4ff;
+  color: var(--brand-primary);
+  font-weight: 600;
+}
+
+/* ---------- Glass KPI card ---------- */
+.glass {
+  align-self: stretch;
+  margin: -6px 0;
+  width: 442px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-content: center;
+  row-gap: 30px;
+  column-gap: 20px;
+  padding: 20px 26px;
+  border-radius: var(--radius-large);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(var(--navy-rgb), 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.kpi {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+.kpiIcon {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+.kpiText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.kpiValue {
+  font-size: 22px;
+  line-height: 1.15;
+  font-weight: 700;
+  color: #fff;
+}
+.kpiLabel {
+  margin-top: 2px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.kpiSkel {
+  opacity: 0.25;
+}
+
+@media (max-width: 1439px) {
+  .glass {
+    width: 380px;
+    padding: 18px 20px;
+  }
+}
+@media (max-width: 1199px) {
+  .glass {
+    width: 300px;
+    row-gap: 18px;
+    column-gap: 12px;
+    padding: 16px;
+  }
+  .kpiIcon {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .search {
+    margin-top: 14px;
+    height: 48px;
+  }
+  .searchIcon {
+    display: none;
+  }
+  .searchInput {
+    padding-left: 12px;
+    font-size: 16px;
+  }
+  .searchBtn {
+    min-width: 0;
+    height: 44px;
+  }
+  .pills {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 8px;
+    margin: 12px -16px 0;
+    padding: 0 16px 2px;
+    scrollbar-width: none;
+  }
+  .pill {
+    flex: none;
+    height: 36px;
+  }
+  .glass {
+    flex: 1;
+    width: auto;
+    margin: 4px 0 0;
+    row-gap: 12px;
+    padding: 14px 16px;
+  }
+  .kpiValue {
+    font-size: 20px;
+  }
+  .kpiLabel {
+    font-size: 13px;
+  }
+}

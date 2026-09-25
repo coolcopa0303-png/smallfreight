@@ -1,0 +1,34 @@
+{
+  "inTransit": "运输中",
+  "atPort": "已到港",
+  "customs": "清关中",
+  "outForDelivery": "派送中",
+  "delivered": "已送达",
+  "completed": "已完结",
+  "pending": "待处理",
+  "exception": "异常",
+  "tabs": {
+    "all": "全部",
+    "inTransit": "运输中",
+    "atPort": "已到港",
+    "customs": "清关中",
+    "delivered": "已送达",
+    "pending": "待处理"
+  },
+  "milestone": {
+    "booked": "已立案",
+    "inTransit": "运输中",
+    "atPort": "已到港",
+    "customs": "清关",
+    "outForDelivery": "派送中",
+    "delivered": "已送达"
+  },
+  "release": { "released": "已放行", "notReleased": "未放行", "na": "N/A" },
+  "isf": { "matched": "提交成功，已匹配", "notMatched": "提交成功，未匹配", "na": "N/A" },
+  "alerts": {
+    "lfdSoon": "免费期截止 {{date}}",
+    "lfdPast": "已过免费期（{{date}}）",
+    "isfBillNotOnFile": "ISF 已提交，提单未匹配",
+    "urgent": "加急 — 需要处理"
+  }
+}

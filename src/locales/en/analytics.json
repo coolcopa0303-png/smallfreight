@@ -1,0 +1,46 @@
+{
+  "title": "Analytics",
+  "subtitle": "A snapshot of your shipment volume, progress and service usage.",
+  "error": "We couldn't load your shipment data.",
+  "empty": {
+    "title": "No shipments yet",
+    "body": "Analytics will appear here once your first shipment is on file."
+  },
+  "kpi": {
+    "total": "Total shipments",
+    "totalHint": "All shipments in your account",
+    "active": "Active",
+    "shareOfAll": "{{pct}} of all shipments",
+    "delivered": "Delivered / Completed",
+    "deliveredHint": "{{pct}} of all · {{completed}} customs-only completed",
+    "avgRelease": "Avg. days to customs release",
+    "daysUnit": "days",
+    "sample": "From case open, based on {{count}} shipments",
+    "noSample": "Not enough release data yet"
+  },
+  "eta": {
+    "title": "Shipments by ETA month",
+    "subtitle": "Last 6 months, this month and the next 2 months",
+    "past": "Past months",
+    "current": "This month",
+    "future": "Scheduled (upcoming ETA)",
+    "month": "Month",
+    "count": "Shipments"
+  },
+  "status": {
+    "title": "Status distribution",
+    "subtitle": "Current status of all {{count}} shipments"
+  },
+  "services": {
+    "title": "Service mix",
+    "subtitle": "Share of shipments using each service (a shipment can use several)"
+  },
+  "mode": {
+    "title": "Mode mix",
+    "subtitle": "Load type and transport across all shipments",
+    "loadType": "Load type",
+    "transport": "Transport",
+    "FCL": "FCL (full container)",
+    "LCL": "LCL (less than container)"
+  }
+}

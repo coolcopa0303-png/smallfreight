@@ -1,0 +1,64 @@
+.card {
+  padding: 6px 20px 6px;
+}
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.item {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 12px;
+  padding: 3px 0;
+}
+.item + .item {
+  border-top: 1px solid var(--border-soft);
+}
+.icon {
+  display: inline-flex;
+  padding-top: 2px;
+}
+.alert {
+  color: var(--danger);
+}
+.info {
+  color: var(--brand-primary);
+}
+.notice {
+  color: var(--text-secondary);
+}
+.text {
+  min-width: 0;
+}
+.title {
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.body {
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.date {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  padding-top: 1px;
+}
+
+@media (max-width: 767px) {
+  .title,
+  .body {
+    white-space: normal;
+  }
+}

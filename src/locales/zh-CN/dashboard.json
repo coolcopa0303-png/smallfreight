@@ -1,0 +1,97 @@
+{
+  "hero": {
+    "title": "追踪您的货物",
+    "subtitle": "海运、陆运与清关进度，实时掌握。",
+    "placeholder": "输入提单号、分提单号、柜号、订舱号或参考号码",
+    "searchLabel": "查询单号",
+    "fieldsLabel": "查询类型",
+    "fields": {
+      "all": "全部",
+      "bl": "提单号",
+      "hbl": "分提单号",
+      "container": "柜号",
+      "booking": "订舱号",
+      "po": "PO",
+      "reference": "参考号"
+    }
+  },
+  "kpi": {
+    "label": "货物概况",
+    "active": "进行中货物",
+    "inTransit": "运输中",
+    "atPort": "已到港",
+    "delivered": "已送达"
+  },
+  "ltl": {
+    "title": "LTL 散货报价",
+    "origin": "起运地",
+    "destination": "目的地",
+    "placePlaceholder": "城市、州或邮编",
+    "details": "货运信息",
+    "weight": "重量",
+    "weightUnit": "LBS",
+    "dims": "尺寸（长 × 宽 × 高）",
+    "dimsUnit": "英寸",
+    "submit": "获取 LTL 报价"
+  },
+  "drayage": {
+    "title": "拖车报价",
+    "port": "港口 / 火车站",
+    "selectPort": "选择港口",
+    "portsError": "港口列表暂不可用",
+    "container": "柜型",
+    "containers": {
+      "20": "20' 普柜",
+      "40": "40' 普柜",
+      "40HC": "40' 高柜",
+      "45": "45' 高柜"
+    },
+    "pickupZip": "提货邮编",
+    "deliveryZip": "派送邮编",
+    "zipPlaceholder": "输入邮编",
+    "submit": "获取拖车报价"
+  },
+  "hts": {
+    "title": "HTS 查询",
+    "searchLabel": "搜索 HTS",
+    "placeholder": "输入品名、关键词或 HS 编码",
+    "popular": "热门搜索"
+  },
+  "recent": {
+    "title": "最近货物",
+    "tabsLabel": "按状态筛选最近货物",
+    "tab": "{{label}}（{{count}}）",
+    "cols": {
+      "booking": "订舱号 / 提单号",
+      "type": "类型",
+      "origin": "起运港",
+      "destination": "目的港",
+      "status": "状态",
+      "eta": "预计到港",
+      "lastUpdate": "最近更新",
+      "actions": "操作"
+    },
+    "viewShipment": "查看货物 {{id}}",
+    "empty": "该状态下暂无货物。",
+    "emptyHint": "新货物立案后会显示在这里。",
+    "error": "货物数据加载失败。"
+  },
+  "overview": {
+    "title": "货物概览",
+    "viewDetails": "查看详情",
+    "total": "货物总数",
+    "chartLabel": "共 {{total}} 票：{{parts}}",
+    "legend": {
+      "inTransit": "运输中",
+      "atPort": "已到港",
+      "customs": "清关中",
+      "delivered": "已送达"
+    },
+    "other": "另有 {{count}} 票待处理或异常未计入",
+    "empty": "暂无可统计的货物。"
+  },
+  "announcements": {
+    "title": "公告",
+    "kinds": { "alert": "警示", "info": "更新", "notice": "通知" }
+  }
+}

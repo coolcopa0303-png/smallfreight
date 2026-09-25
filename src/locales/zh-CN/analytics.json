@@ -1,0 +1,46 @@
+{
+  "title": "数据分析",
+  "subtitle": "一览您的货量、运输进度与服务使用情况。",
+  "error": "货物数据加载失败。",
+  "empty": {
+    "title": "暂无货物",
+    "body": "首票货物建档后，这里将显示分析数据。"
+  },
+  "kpi": {
+    "total": "货物总数",
+    "totalHint": "账户下的全部货物",
+    "active": "进行中",
+    "shareOfAll": "占全部货物 {{pct}}",
+    "delivered": "已送达 / 已完成",
+    "deliveredHint": "占全部 {{pct}} · 其中 {{completed}} 票为纯清关已完成",
+    "avgRelease": "平均清关放行天数",
+    "daysUnit": "天",
+    "sample": "自立案起计算，样本 {{count}} 票",
+    "noSample": "放行数据暂不足"
+  },
+  "eta": {
+    "title": "按预计到港月份统计",
+    "subtitle": "过去 6 个月、本月及未来 2 个月",
+    "past": "过去月份",
+    "current": "本月",
+    "future": "计划中（预计到港）",
+    "month": "月份",
+    "count": "货物数"
+  },
+  "status": {
+    "title": "状态分布",
+    "subtitle": "全部 {{count}} 票货物的当前状态"
+  },
+  "services": {
+    "title": "服务构成",
+    "subtitle": "使用各项服务的货物占比（一票货物可包含多项服务）"
+  },
+  "mode": {
+    "title": "运输方式构成",
+    "subtitle": "全部货物的装载类型与运输方式",
+    "loadType": "装载类型",
+    "transport": "运输方式",
+    "FCL": "FCL（整箱）",
+    "LCL": "LCL（拼箱）"
+  }
+}

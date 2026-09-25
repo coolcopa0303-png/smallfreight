@@ -1,0 +1,347 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 2px 2px;
+}
+.title {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+.subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
+  gap: 16px;
+  align-items: start;
+}
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+.faqCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ---------- FAQ accordion ---------- */
+.faq {
+  display: flex;
+  flex-direction: column;
+}
+.faqItem {
+  border-top: 1px solid var(--border-soft);
+}
+.faqItem:last-child {
+  border-bottom: 1px solid var(--border-soft);
+}
+.faqHeading {
+  font-size: 15px;
+  font-weight: 600;
+}
+.faqButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 4px;
+  background: none;
+  border: 0;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-radius: 6px;
+  transition: color var(--dur) var(--ease);
+}
+.faqButton:hover {
+  color: var(--brand-primary);
+}
+.faqChevron {
+  flex: none;
+  color: var(--text-muted);
+  transition: transform var(--dur) var(--ease);
+}
+.faqItem[data-open] .faqChevron {
+  transform: rotate(180deg);
+  color: var(--brand-primary);
+}
+.faqPanel {
+  padding: 0 4px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.faqPanel[hidden] {
+  display: none;
+}
+.faqIntro strong {
+  color: var(--text-primary);
+}
+.faqNote {
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--brand-primary-soft);
+  color: var(--text-primary);
+  font-size: 13px;
+}
+.faqLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+.faqLinks a {
+  color: var(--brand-primary);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.faqLinks a:hover {
+  color: var(--brand-primary-hover);
+}
+.bullets {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* status / LFD guide */
+.guide {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.guideRow {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 10px 14px;
+}
+.guideRow + .guideRow {
+  border-top: 1px solid var(--border-soft);
+}
+.guideRow:nth-child(even) {
+  background: var(--bg-muted);
+}
+.guideRow dt {
+  padding-top: 1px;
+}
+.guideRow dd {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 13px;
+  line-height: 1.55;
+  padding-top: 3px;
+}
+
+/* ---------- Contact ---------- */
+.phone {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  margin-top: 14px;
+  padding: 10px 14px;
+  border: 1px solid var(--border-card);
+  border-radius: 8px;
+  background: var(--bg-muted);
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.phone:hover {
+  border-color: var(--brand-primary);
+  background: var(--brand-primary-soft);
+}
+.phoneIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--brand-primary);
+  color: var(--text-on-dark);
+  flex: none;
+}
+.phoneText {
+  display: flex;
+  flex-direction: column;
+}
+.phoneLabel {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.phoneNumber {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.hours {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.hours svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--text-muted);
+}
+.hours strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.hoursNote {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+.quickLinks {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 12px 0 0;
+  border-top: 1px solid var(--border-soft);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px 12px;
+}
+.quickLinks a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 36px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--brand-primary);
+}
+.quickLinks a:hover {
+  color: var(--brand-primary-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Announcements ---------- */
+.announcements {
+  scroll-margin-top: calc(var(--topbar-height) + 16px);
+}
+.annList {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+}
+.annItem {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+}
+.annItem + .annItem {
+  border-top: 1px solid var(--border-soft);
+}
+.annItem:last-child {
+  padding-bottom: 0;
+}
+.annIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  flex: none;
+}
+.kindAlert {
+  color: var(--danger);
+  background: var(--danger-soft);
+}
+.kindInfo {
+  color: var(--brand-primary);
+  background: var(--brand-primary-soft);
+}
+.kindNotice {
+  color: var(--text-secondary);
+  background: var(--neutral-soft);
+}
+.annBody {
+  flex: 1;
+  min-width: 0;
+}
+.annTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+}
+.annTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.annDate {
+  flex: none;
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.annText {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+@media (max-width: 1199px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 320px);
+  }
+}
+
+@media (max-width: 991px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* Contact first on small screens, then FAQ, then announcements. */
+  .side {
+    display: contents;
+  }
+  .side > :first-child {
+    order: -1;
+  }
+}
+
+@media (max-width: 767px) {
+  .title {
+    font-size: 24px;
+  }
+  .layout {
+    gap: 12px;
+  }
+  .guideRow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+}

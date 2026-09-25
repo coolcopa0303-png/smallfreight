@@ -1,0 +1,34 @@
+{
+  "inTransit": "In Transit",
+  "atPort": "At Port",
+  "customs": "Customs",
+  "outForDelivery": "Out for Delivery",
+  "delivered": "Delivered",
+  "completed": "Completed",
+  "pending": "Pending",
+  "exception": "Exception",
+  "tabs": {
+    "all": "All",
+    "inTransit": "In Transit",
+    "atPort": "At Port",
+    "customs": "Customs",
+    "delivered": "Delivered",
+    "pending": "Pending"
+  },
+  "milestone": {
+    "booked": "Booked",
+    "inTransit": "In Transit",
+    "atPort": "At Port",
+    "customs": "Customs",
+    "outForDelivery": "Out for Delivery",
+    "delivered": "Delivered"
+  },
+  "release": { "released": "Released", "notReleased": "Not Released", "na": "N/A" },
+  "isf": { "matched": "Accepted, Bill on File", "notMatched": "Accepted, Bill not on File", "na": "N/A" },
+  "alerts": {
+    "lfdSoon": "Last free day {{date}}",
+    "lfdPast": "Last free day passed ({{date}})",
+    "isfBillNotOnFile": "ISF accepted — bill not on file",
+    "urgent": "Urgent — action required"
+  }
+}

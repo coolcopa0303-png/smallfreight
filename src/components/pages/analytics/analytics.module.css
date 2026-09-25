@@ -1,0 +1,324 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 2px 2px;
+}
+.title {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+.subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* ---------- KPI tiles ---------- */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.kpi {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  min-width: 0;
+}
+.kpiIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  flex: none;
+}
+.kpi-blue {
+  color: var(--brand-primary);
+  background: var(--brand-primary-soft);
+}
+.kpi-orange {
+  color: var(--warning-strong);
+  background: var(--warning-soft);
+}
+.kpi-green {
+  color: var(--success-strong);
+  background: var(--success-soft);
+}
+.kpi-purple {
+  color: var(--purple);
+  background: var(--purple-soft);
+}
+.kpiBody {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.kpiLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+.kpiValue {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 4px;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+.kpiUnit {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-left: 6px;
+}
+.kpiHint {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ---------- Chart grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+.grid > section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ---------- ETA bar chart ---------- */
+.chartWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.chartBox {
+  width: 100%;
+  min-height: 230px;
+}
+.chartSvg {
+  display: block;
+  overflow: visible;
+}
+.axis {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+.barPast {
+  fill: var(--brand-primary);
+  fill-opacity: 0.45;
+}
+.barCurrent {
+  fill: var(--brand-primary);
+}
+.barFuture {
+  fill: var(--brand-primary-soft);
+  stroke: var(--brand-primary);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+.valueLabel {
+  font-size: 12px;
+  font-weight: 600;
+  fill: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+.valueCurrent {
+  fill: var(--text-primary);
+  font-weight: 700;
+}
+.monthLabel {
+  font-size: 12px;
+  fill: var(--text-muted);
+}
+.monthCurrent {
+  fill: var(--brand-primary);
+  font-weight: 700;
+}
+.yearLabel {
+  font-size: 10px;
+  fill: var(--text-muted);
+}
+.chartLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.chartLegend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  display: inline-block;
+}
+.swatchPast {
+  background: var(--brand-primary);
+  opacity: 0.45;
+}
+.swatchCurrent {
+  background: var(--brand-primary);
+}
+.swatchFuture {
+  background: var(--brand-primary-soft);
+  border: 1.5px dashed var(--brand-primary);
+}
+
+/* ---------- Horizontal bars ---------- */
+.bars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.barRow {
+  display: grid;
+  grid-template-columns: minmax(110px, 150px) minmax(0, 1fr) 44px 44px;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+.barLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.barDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex: none;
+  display: inline-block;
+}
+.barTrack {
+  height: 10px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-muted);
+  box-shadow: inset 0 0 0 1px var(--border-soft);
+  overflow: hidden;
+}
+.barFill {
+  display: block;
+  height: 100%;
+  min-width: 2px;
+  border-radius: var(--radius-pill);
+  transition: width 400ms var(--ease);
+}
+.barCount {
+  text-align: right;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.barPct {
+  text-align: right;
+  color: var(--text-muted);
+}
+
+/* ---------- Split bars (mode / transport) ---------- */
+.splits {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.split {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.splitTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.splitBar {
+  display: flex;
+  gap: 2px;
+  height: 14px;
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+.splitBar > span {
+  display: block;
+  min-width: 4px;
+}
+.splitLegend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.splitLegend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.splitLabel {
+  color: var(--text-primary);
+}
+.splitLegend strong {
+  color: var(--text-primary);
+}
+
+@media (max-width: 1199px) {
+  .kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .title {
+    font-size: 24px;
+  }
+  .kpis {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  .grid {
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .barRow {
+    grid-template-columns: minmax(96px, 120px) minmax(0, 1fr) 36px 38px;
+    gap: 8px;
+  }
+}

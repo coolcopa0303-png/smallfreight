@@ -1,0 +1,136 @@
+{
+  "hero": {
+    "title": "Duty Calculator",
+    "subtitle": "Search HTS codes and calculate estimated duties and landed cost for your shipment."
+  },
+  "calc": {
+    "title": "Calculator",
+    "product": "Product or HTS Code",
+    "productInfo": "Type an HTS code (e.g. 4202.92) or a product keyword. Results come from our HTS database and from past answers by our customs team.",
+    "productPlaceholder": "Enter HTS code or product description",
+    "value": "Shipment Value (USD)",
+    "valueInfo": "Customs (transaction) value of the goods in US dollars. Duties and fees are calculated on this amount.",
+    "valuePlaceholder": "0.00",
+    "origin": "Country of Origin",
+    "mode": "Mode of Transport",
+    "entryDate": "Entry Date",
+    "ladingDate": "Date of Lading",
+    "datesHint": "Dates are saved with the calculation for reference; they do not change the estimate."
+  },
+  "search": {
+    "label": "HTS suggestions",
+    "groupHts": "HTS codes",
+    "groupInquiries": "From past inquiries",
+    "searching": "Searching…",
+    "minChars": "Type at least 2 characters to search",
+    "noResults": "No HTS codes match “{{query}}”.",
+    "noResultsHint": "Try a shorter code or another keyword, or ask our customs team.",
+    "error": "Search is unavailable right now.",
+    "answeredBy": "Answered by {{name}}",
+    "awaiting": "Awaiting answer",
+    "lookingUp": "Looking up answer…",
+    "noAnswer": "This inquiry has no HTS answer yet.",
+    "codeNotFound": "HTS {{code}} is not in the database — showing closest matches.",
+    "clear": "Clear selection",
+    "selected": "Selected HTS {{code}}"
+  },
+  "additional": {
+    "title": "Additional duties from HTS data",
+    "hint": "Apply only to certain origins or products — never added automatically. Select those that apply.",
+    "selectedCount": "{{count}} selected",
+    "rateUnknown": "Rate n/a",
+    "china": "China"
+  },
+  "exclusion": {
+    "title": "Potential Exclusion Codes",
+    "info": "Record exclusion codes (e.g. Chapter 99 numbers) you intend to claim. They are listed in the results for reference; their effect on duties is not computed.",
+    "add": "Add Exclusion Code",
+    "code": "Exclusion code",
+    "codePlaceholder": "e.g. 9903.88.69",
+    "note": "Note",
+    "notePlaceholder": "Optional description",
+    "codeRequired": "Enter an exclusion code",
+    "applied": "Applied",
+    "notApplied": "Not Applied",
+    "toggle": "Mark {{code}} as {{state}}",
+    "remove": "Remove {{code}}",
+    "notComputed": "Exclusions are not deducted from the estimate — confirm eligibility with our customs team."
+  },
+  "actions": {
+    "save": "Save to My Inquiries",
+    "reset": "Reset Form",
+    "calculate": "Calculate Duties",
+    "askLead": "Can't find your product?",
+    "ask": "Ask our customs team"
+  },
+  "validation": {
+    "item": "Select an HTS code from the suggestions",
+    "value": "Enter a shipment value greater than 0"
+  },
+  "toast": {
+    "saved": "Calculation saved to My Inquiries",
+    "saveNeedsInput": "Select an HTS code and enter a value before saving",
+    "reset": "Form reset",
+    "askSent": "Inquiry sent — our customs team will reply in My Inquiries",
+    "exported": "Results exported"
+  },
+  "ask": {
+    "title": "Ask our customs team",
+    "intro": "Describe your product and a licensed broker will classify it. The answer appears under My Inquiries → HTS Inquiries.",
+    "productName": "Product name",
+    "productNameZh": "Chinese product name",
+    "material": "Material",
+    "description": "Description / use",
+    "descriptionPlaceholder": "What is it, what is it made of, how is it used?",
+    "submit": "Send Inquiry",
+    "required": "Product name is required"
+  },
+  "results": {
+    "title": "Results",
+    "updated": "Updated {{date}}",
+    "updatedInfo": "Date the HTS rate data for this code was last updated.",
+    "dutyRate": "Duty Rate",
+    "dutyRateInfo": "Base rate plus the additional duties you selected, as a percentage of shipment value.",
+    "totalDuties": "Total Duties (USD)",
+    "emptyTitle": "No estimate yet",
+    "emptyBody": "Search an HTS code and enter a shipment value to see estimated duties.",
+    "emptyReady": "Ready — click Calculate Duties to see the estimate."
+  },
+  "cost": {
+    "title": "Cost Breakdown",
+    "base": "Base Cost (Shipment Value)",
+    "duties": "Total Duties",
+    "hmf": "Harbor Maintenance Fee (HMF)",
+    "mpf": "Merchandise Processing Fee (MPF)",
+    "landed": "Landed Cost (Estimated)"
+  },
+  "detail": {
+    "title": "Detailed Breakdown",
+    "export": "Export Results",
+    "colCode": "HTS Code",
+    "colDesc": "Description",
+    "colRate": "Duty Rate",
+    "colAmount": "Calculated Amount (USD)",
+    "hmfCode": "HMF",
+    "mpfCode": "MPF",
+    "hmfDesc": "U.S. HMF ({{rate}} of value, ocean only)",
+    "mpfDesc": "U.S. MPF ({{rate}}, min {{min}}, max {{max}})",
+    "specificRate": "Specific rate — not computed",
+    "exclusions": "Exclusion codes (not deducted):",
+    "exclusionApplied": "Exclusion claimed — not deducted",
+    "exclusionNotApplied": "Exclusion not applied"
+  },
+  "warnings": {
+    "nonAdValorem": "The base rate “{{rate}}” is a specific or compound rate (per unit/weight). It can't be calculated from value alone, so totals are not shown — ask our customs team for an exact figure.",
+    "additionalAvailable": "{{count}} additional duty programme(s) available for this code are not included. Select them on the left if they apply."
+  },
+  "pga": {
+    "title": "Partner Government Agency (PGA) requirements"
+  },
+  "disclaimer": "Estimated rates. Final customs assessment may vary.",
+  "source": "Source: HTS data updated {{date}}",
+  "csv": {
+    "filename": "duty-estimate-{{code}}.csv",
+    "summary": "Summary"
+  }
+}

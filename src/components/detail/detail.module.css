@@ -1,0 +1,211 @@
+/* Shipment Detail — page frame, header, actions, tabs (reference/05-shipment-detail.png) */
+.page {
+  padding: 2px 12px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  min-height: 28px;
+  margin-top: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--brand-primary);
+  border-radius: 4px;
+}
+.back:hover {
+  color: var(--brand-primary-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- header ---------- */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px 24px;
+  margin-top: 4px;
+}
+.headMain {
+  min-width: 0;
+}
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.title {
+  font-size: 42px;
+  line-height: 1.12;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+.titleRow > span {
+  height: 32px;
+  padding: 0 14px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 0;
+  margin-top: 2px;
+  font-size: 14.5px;
+  color: var(--text-secondary);
+}
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+.metaValue {
+  color: var(--text-secondary);
+}
+.metaSep {
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  margin: 0 17px;
+  background: var(--text-muted);
+  opacity: 0.6;
+}
+
+/* ---------- actions ---------- */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: -12px;
+  flex: none;
+}
+.actionBtn {
+  height: 43px;
+  font-size: 15px;
+  padding: 0 22px;
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+}
+.trackBtn {
+  min-width: 174px;
+  color: var(--text-on-dark);
+}
+.split {
+  display: inline-flex;
+}
+.splitMain {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  padding-right: 18px;
+}
+.splitToggle {
+  width: 44px;
+  padding: 0;
+  margin-left: -1px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  position: relative;
+}
+.splitToggle::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 1px;
+  background: var(--border);
+}
+
+/* ---------- tabs ---------- */
+.tabs {
+  margin-top: 12px;
+  gap: 8px;
+  border-bottom-color: var(--border-soft);
+}
+.tabs > button {
+  height: 44px;
+  padding: 0 20px;
+  font-size: 15px;
+}
+.tabs > button[aria-selected='true']::after {
+  left: 0;
+  right: 0;
+}
+.panel {
+  margin-top: 14px;
+  min-width: 0;
+}
+.stateCard {
+  margin-top: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1199px) {
+  .header {
+    flex-direction: column;
+  }
+  .actions {
+    margin-top: 0;
+  }
+}
+@media (max-width: 767px) {
+  .page {
+    padding: 0;
+  }
+  .title {
+    font-size: 30px;
+  }
+  .titleRow {
+    gap: 12px;
+  }
+  .meta {
+    font-size: 13px;
+  }
+  .meta {
+    gap: 4px 16px;
+  }
+  .metaSep {
+    display: none;
+  }
+  .actions {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .actions > * {
+    flex: 1 1 auto;
+  }
+  .actionBtn {
+    height: 44px;
+    padding: 0 14px;
+  }
+  .split > :first-child {
+    flex: 1;
+  }
+  .trackBtn {
+    flex-basis: 100%;
+  }
+  .tabs > button {
+    padding: 0 12px;
+    font-size: 14px;
+  }
+}
+
+@media print {
+  .actions,
+  .back {
+    display: none;
+  }
+}

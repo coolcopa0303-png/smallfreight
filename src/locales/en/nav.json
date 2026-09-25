@@ -1,0 +1,17 @@
+{
+  "dashboard": "Dashboard",
+  "shipmentTracking": "Shipment Tracking",
+  "getQuote": "Get a Quote",
+  "ltlQuote": "LTL Quote",
+  "drayageQuote": "Drayage Quote",
+  "htsSearch": "HTS Search",
+  "addressBook": "Address Book",
+  "myShipments": "My Shipments",
+  "myInquiries": "My Inquiries",
+  "analytics": "Analytics",
+  "help": "Help & Support",
+  "home": "Home",
+  "menu": "Menu",
+  "notifications": "Notifications",
+  "account": "Account"
+}

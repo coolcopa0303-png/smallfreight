@@ -1,0 +1,61 @@
+{
+  "title": "地址簿",
+  "subtitle": "保存常用的提货和送货地址，在询价和订舱时直接选用。",
+  "addAddress": "添加地址",
+  "addTitle": "添加地址",
+  "editTitle": "编辑地址",
+  "searchPlaceholder": "搜索公司、姓名、城市、邮政编码或邮箱",
+  "searchLabel": "搜索地址",
+  "count": "共 {{count}} 个地址",
+  "countFiltered": "{{count}} / {{total}} 个地址",
+  "extShort": "分机 {{ext}}",
+  "loadError": "无法加载地址簿。",
+  "sectionAddress": "地址",
+  "sectionContact": "联系人",
+  "requiredNote": "* 为必填项。公司名称和联系人姓名至少填写一项。",
+  "zipHint": "输入 5 位邮政编码可自动填写城市和州。",
+  "zipFilled": "已根据邮政编码填写城市和州。",
+  "zipNotFound": "未找到该邮政编码，请手动填写城市和州。",
+  "fields": {
+    "company": "公司名称",
+    "street": "地址1",
+    "street2": "地址2",
+    "zip": "邮政编码",
+    "city": "城市",
+    "state": "州",
+    "country": "国家",
+    "firstName": "名字",
+    "lastName": "姓氏",
+    "phone": "电话",
+    "phoneExt": "分机号",
+    "email": "邮箱"
+  },
+  "labels": {
+    "address": "地址"
+  },
+  "errors": {
+    "required": "此项为必填项。",
+    "nameOrCompany": "请填写公司名称或联系人姓名。",
+    "zipUs": "美国邮政编码须为 5 位数字。",
+    "email": "请输入有效的邮箱地址。",
+    "phone": "请输入有效的电话号码（7–15 位数字）。",
+    "phoneExt": "分机号只能包含数字。"
+  },
+  "empty": {
+    "title": "还没有保存的地址",
+    "body": "在这里保存的地址可在询价或订舱时直接选用。",
+    "action": "添加第一个地址"
+  },
+  "noResults": {
+    "title": "没有与“{{query}}”匹配的地址",
+    "body": "请尝试其他公司、姓名、城市、邮政编码或邮箱。",
+    "clear": "清除搜索"
+  },
+  "deleteTitle": "删除地址？",
+  "deleteBody": "将从地址簿中删除“{{name}}”，此操作无法撤销。",
+  "toast": {
+    "created": "地址已添加",
+    "updated": "地址已更新",
+    "deleted": "地址已删除"
+  }
+}

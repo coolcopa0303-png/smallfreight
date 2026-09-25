@@ -1,0 +1,25 @@
+{
+  "signedInAs": "Signed in as",
+  "changePassword": "Change Password",
+  "oldPassword": "Old Password",
+  "newPassword": "New Password",
+  "confirmPassword": "Confirm Password",
+  "passwordUpdated": "Password updated",
+  "passwordNotMatch": "Passwords do not match",
+  "logout": "Logout",
+  "login": {
+    "title": "Sign in to SMALL FREIGHT",
+    "subtitle": "Track shipments, get quotes and check duties in one place.",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Login",
+    "invalid": "Invalid email or password",
+    "demo": "Sample-data mode: any email and password will sign you in."
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "You're all caught up.",
+    "markAllRead": "Mark all as read",
+    "tracked": "Tracked shipment update"
+  }
+}

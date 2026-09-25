@@ -1,0 +1,143 @@
+/* ---------- FlagLocation ---------- */
+.place {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.placeText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.placeCity {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.placeSub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.unknown {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ---------- ShipmentProgress (list) ---------- */
+.progress {
+  --node: 18px;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  width: 100%;
+  min-width: 330px;
+}
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+/* connector to the next node */
+.step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: calc(var(--node) / 2 - 1px);
+  left: calc(50% + var(--node) / 2 + 1px);
+  right: calc(-50% + var(--node) / 2 + 1px);
+  height: 2px;
+  background: #d5dde8;
+}
+.step[data-link='done']::after {
+  background: var(--brand-primary);
+}
+.progress[data-delivered='true'] .step[data-link='done']::after {
+  background: var(--success);
+}
+.node {
+  width: var(--node);
+  height: var(--node);
+  border-radius: 50%;
+  border: 1.5px solid #c3cddb;
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex: none;
+}
+.node[data-state='done'],
+.node[data-state='current'] {
+  border-color: var(--brand-primary);
+  background: var(--brand-primary);
+}
+.progress[data-delivered='true'] .node[data-state='done'] {
+  border-color: var(--success);
+  background: var(--success);
+}
+.stepLabel {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  text-align: center;
+}
+.compact .stepLabel {
+  display: none;
+}
+
+/* ---------- Map ---------- */
+.map {
+  position: relative;
+  isolation: isolate; /* keep Leaflet panes/controls below drawers & modals */
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: #e8eef5;
+}
+.mapSkeleton {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 13px;
+  background:
+    linear-gradient(90deg, #e9eef5 25%, #f2f5f9 50%, #e9eef5 75%) 0 0 / 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+.mapLabel {
+  background: #fff;
+  border: 0;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(16, 31, 61, 0.18);
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+.mapLabel::before {
+  display: none;
+}
+.mapLabelDark {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+  padding: 0;
+}
+.mapLabelDark::before {
+  display: none;
+}

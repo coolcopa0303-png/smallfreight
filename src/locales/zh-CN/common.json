@@ -1,0 +1,94 @@
+{
+  "brand": {
+    "small": "SMALL",
+    "freight": "FREIGHT",
+    "tagline": "连接您的世界"
+  },
+  "search": {
+    "global": "输入订舱号 / 提单号 / 柜号 / PO / 参考号码 ...",
+    "submit": "搜索"
+  },
+  "actions": {
+    "viewAll": "查看全部",
+    "viewDetails": "查看详情",
+    "view": "查看",
+    "tryAgain": "重试",
+    "copy": "复制",
+    "copied": "已复制",
+    "close": "关闭",
+    "cancel": "取消",
+    "save": "保存",
+    "edit": "编辑",
+    "delete": "删除",
+    "add": "添加",
+    "reset": "重置",
+    "apply": "筛选",
+    "export": "导出",
+    "reload": "刷新",
+    "back": "返回",
+    "next": "下一页",
+    "previous": "上一页",
+    "more": "更多",
+    "moreFilters": "更多筛选",
+    "clear": "清除",
+    "submit": "提交",
+    "select": "选择"
+  },
+  "states": {
+    "loading": "加载中…",
+    "empty": "暂无数据",
+    "error": "出错了。",
+    "notAvailable": "N/A",
+    "none": "—"
+  },
+  "toast": {
+    "copySuccess": "已复制 {{value}}",
+    "saveSuccess": "已保存",
+    "apiError": "请求失败：{{message}}"
+  },
+  "pagination": {
+    "range": "第 {{from}}–{{to}} 条，共 {{total}} 条",
+    "rowsPerPage": "每页行数"
+  },
+  "units": {
+    "days": "{{count}} 天",
+    "day": "1 天",
+    "daysRange": "{{min}}–{{max}} 天",
+    "miles": "{{count}} 英里"
+  },
+  "time": {
+    "inDays": "{{count}} 天后",
+    "inOneDay": "1 天后",
+    "today": "今天",
+    "daysAgo": "{{count}} 天前",
+    "overdueDays": "已逾期 {{count}} 天"
+  },
+  "sampleData": "样例数据",
+  "sampleDataHint": "当前为脱敏样例数据；设置 NEXT_PUBLIC_DATA_MODE=live 可接入真实货物。",
+  "required": "必填",
+  "optional": "选填",
+  "language": {
+    "label": "语言",
+    "en": "English",
+    "zh-CN": "中文"
+  },
+  "mode": {
+    "ocean": "海运",
+    "truck": "陆运",
+    "air": "空运",
+    "rail": "铁路"
+  },
+  "service": {
+    "isf": "反恐申报",
+    "customsEntry": "清关",
+    "trucking": "拖车",
+    "freight": "海运",
+    "warehouse": "仓储",
+    "arrivalNotice": "到港通知",
+    "other": "其他"
+  },
+  "notFound": {
+    "title": "页面不存在",
+    "body": "您访问的页面不存在或已移动。"
+  }
+}

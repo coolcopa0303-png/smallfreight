@@ -1,0 +1,126 @@
+/* Horizontal milestone timeline (reference: green done, blue current, dotted grey upcoming) */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 14px 12px 12px;
+  overflow-x: auto;
+}
+.track {
+  --node: 32px;
+  --current: 44px;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(120px, 1fr));
+  min-width: 760px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 0;
+  padding: 0 6px;
+}
+/* connector from this node's centre to the next node's centre */
+.step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: calc(var(--current) / 2 - 1.5px);
+  left: 50%;
+  right: -50%;
+  height: 3px;
+  background: var(--success);
+}
+.step[data-link='current']::after {
+  background: linear-gradient(90deg, var(--success) 0 30%, var(--brand-primary) 30% 100%);
+}
+.step[data-link='upcoming']::after {
+  height: 0;
+  background: none;
+  border-top: 2.5px dotted #b9c6d8;
+  top: calc(var(--current) / 2 - 1px);
+}
+.step[data-state='current'][data-link='upcoming']::after {
+  border-top-color: rgba(var(--brand-primary-rgb), 0.55);
+}
+
+.node {
+  position: relative;
+  z-index: 1;
+  width: var(--node);
+  height: var(--node);
+  margin: calc((var(--current) - var(--node)) / 2) 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  background: var(--surface);
+  border: 1.5px solid #c3cddb;
+  color: #7d8ca3;
+  box-shadow: 0 0 0 5px var(--surface);
+}
+.step[data-state='done'] .node {
+  background: var(--success);
+  border-color: var(--success);
+  color: var(--text-on-dark);
+}
+.step[data-state='current'] .node {
+  width: var(--current);
+  height: var(--current);
+  margin: 0;
+  background: var(--brand-primary);
+  border: 0;
+  color: var(--text-on-dark);
+  box-shadow: 0 0 0 4px rgba(var(--brand-primary-rgb), 0.16), 0 0 0 8px var(--surface);
+}
+
+.label {
+  margin-top: 3px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+.step[data-state='current'] .label {
+  margin-top: 2px;
+}
+.sub {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.25;
+}
+.date {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.25;
+  font-variant-numeric: tabular-nums;
+}
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .track {
+    grid-template-columns: repeat(6, 124px);
+    min-width: 0;
+  }
+  .label {
+    font-size: 13px;
+  }
+  .date,
+  .sub {
+    font-size: 12px;
+  }
+}

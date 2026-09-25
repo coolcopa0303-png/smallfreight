@@ -1,0 +1,136 @@
+{
+  "hero": {
+    "title": "关税计算器",
+    "subtitle": "查询 HTS 税号，估算货物的关税与落地成本。"
+  },
+  "calc": {
+    "title": "计算条件",
+    "product": "产品或 HTS 税号",
+    "productInfo": "输入 HTS 税号（如 4202.92）或产品关键词。结果来自税号数据库及我们报关团队的历史答复。",
+    "productPlaceholder": "输入税号或产品描述",
+    "value": "货值（美元）",
+    "valueInfo": "货物的海关申报（成交）价值，单位美元。关税与各项费用均按此金额计算。",
+    "valuePlaceholder": "0.00",
+    "origin": "原产国",
+    "mode": "运输方式",
+    "entryDate": "报关日期",
+    "ladingDate": "装船日期",
+    "datesHint": "日期仅随计算结果一并保存备查，不影响估算金额。"
+  },
+  "search": {
+    "label": "税号建议",
+    "groupHts": "HTS 税号",
+    "groupInquiries": "相关历史查询",
+    "searching": "搜索中…",
+    "minChars": "请至少输入 2 个字符",
+    "noResults": "没有与“{{query}}”匹配的税号。",
+    "noResultsHint": "请尝试更短的税号或其他关键词，或直接咨询我们的报关团队。",
+    "error": "暂时无法搜索。",
+    "answeredBy": "回答者：{{name}}",
+    "awaiting": "等待答复",
+    "lookingUp": "正在读取答复…",
+    "noAnswer": "该查询尚未给出税号答复。",
+    "codeNotFound": "税号 {{code}} 不在数据库中，已显示相近结果。",
+    "clear": "清除所选税号",
+    "selected": "已选择税号 {{code}}"
+  },
+  "additional": {
+    "title": "HTS 数据中的额外税率",
+    "hint": "仅适用于特定原产国或产品，不会自动计入，请勾选适用项。",
+    "selectedCount": "已选 {{count}} 项",
+    "rateUnknown": "税率未知",
+    "china": "中国"
+  },
+  "exclusion": {
+    "title": "可能适用的豁免编码",
+    "info": "记录您打算申请的豁免编码（如第 99 章编号）。它们会在结果中列出供参考，但不会从关税中扣减。",
+    "add": "添加豁免编码",
+    "code": "豁免编码",
+    "codePlaceholder": "例如 9903.88.69",
+    "note": "备注",
+    "notePlaceholder": "可选说明",
+    "codeRequired": "请输入豁免编码",
+    "applied": "已适用",
+    "notApplied": "未适用",
+    "toggle": "将 {{code}} 标记为{{state}}",
+    "remove": "移除 {{code}}",
+    "notComputed": "豁免不会从估算中扣减，请与报关团队确认是否符合条件。"
+  },
+  "actions": {
+    "save": "保存到我的查询",
+    "reset": "重置",
+    "calculate": "计算关税",
+    "askLead": "找不到您的产品？",
+    "ask": "咨询报关团队"
+  },
+  "validation": {
+    "item": "请从建议列表中选择一个税号",
+    "value": "请输入大于 0 的货值"
+  },
+  "toast": {
+    "saved": "计算结果已保存到“我的查询”",
+    "saveNeedsInput": "保存前请先选择税号并填写货值",
+    "reset": "已重置",
+    "askSent": "查询已提交，报关团队将在“我的查询”中答复",
+    "exported": "结果已导出"
+  },
+  "ask": {
+    "title": "咨询报关团队",
+    "intro": "描述您的产品，持证报关员将为您归类。答复会显示在“我的查询 → HTS 查询”中。",
+    "productName": "产品名称",
+    "productNameZh": "中文品名",
+    "material": "材质",
+    "description": "描述 / 用途",
+    "descriptionPlaceholder": "产品是什么、由什么材料制成、用途是什么？",
+    "submit": "提交查询",
+    "required": "请填写产品名称"
+  },
+  "results": {
+    "title": "计算结果",
+    "updated": "更新于 {{date}}",
+    "updatedInfo": "该税号税率数据的最近更新时间。",
+    "dutyRate": "综合税率",
+    "dutyRateInfo": "基础税率加上您勾选的额外税率，按货值百分比计算。",
+    "totalDuties": "关税合计（美元）",
+    "emptyTitle": "暂无估算结果",
+    "emptyBody": "搜索 HTS 税号并填写货值，即可查看预估关税。",
+    "emptyReady": "已准备就绪，点击“计算关税”查看估算结果。"
+  },
+  "cost": {
+    "title": "费用明细",
+    "base": "货物价值",
+    "duties": "关税合计",
+    "hmf": "港口维护费（HMF）",
+    "mpf": "商品处理费（MPF）",
+    "landed": "预估落地成本"
+  },
+  "detail": {
+    "title": "详细拆分",
+    "export": "导出结果",
+    "colCode": "税号",
+    "colDesc": "描述",
+    "colRate": "税率",
+    "colAmount": "计算金额（美元）",
+    "hmfCode": "HMF",
+    "mpfCode": "MPF",
+    "hmfDesc": "美国 HMF（货值的 {{rate}}，仅限海运）",
+    "mpfDesc": "美国 MPF（{{rate}}，最低 {{min}}，最高 {{max}}）",
+    "specificRate": "从量税率，未计算",
+    "exclusions": "豁免编码（未扣减）：",
+    "exclusionApplied": "已申请豁免，未扣减",
+    "exclusionNotApplied": "豁免未适用"
+  },
+  "warnings": {
+    "nonAdValorem": "基础税率“{{rate}}”为从量或复合税率（按数量/重量计），无法仅凭货值计算，因此不显示合计金额。如需准确数字，请咨询报关团队。",
+    "additionalAvailable": "该税号还有 {{count}} 项额外税率未计入，如适用请在左侧勾选。"
+  },
+  "pga": {
+    "title": "海关合作机构（PGA）要求"
+  },
+  "disclaimer": "以上为预估税率，最终以海关核定为准。",
+  "source": "数据来源：HTS 数据更新于 {{date}}",
+  "csv": {
+    "filename": "duty-estimate-{{code}}.csv",
+    "summary": "汇总"
+  }
+}

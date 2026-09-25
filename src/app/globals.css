@@ -1,40 +1,103 @@
+/* SMALL FREIGHT Customer Portal — Design Tokens (CLAUDE_CODE_UI_SPEC §3) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand */
+  --brand-primary: #0b5ff5;
+  --brand-primary-hover: #084cd0;
+  --brand-primary-active: #073fae;
+  --brand-primary-soft: #eaf2ff;
+  --brand-primary-rgb: 11, 95, 245;
+  --logo-blue: #0b52e1;
+
+  --navy-950: #071b33;
+  --navy-900: #0a2747;
+  --navy-800: #10365e;
+  --navy-rgb: 7, 27, 51;
+
+  /* Surfaces */
+  --bg-page: #f4f7fb;
+  --bg-muted: #f8fafd;
+  --surface: #ffffff;
+  --border: #dde5ef;
+  --border-card: #e2e9f2;
+  --border-soft: #e8eef5;
+
+  /* Text */
+  --text-primary: #101f3d;
+  --text-secondary: #4c5f7a;
+  --text-muted: #77869b;
+  --text-on-dark: #ffffff;
+  --text-on-dark-muted: #b7c5d9;
+  --text-rgb: 16, 31, 61;
+
+  /* Status */
+  --success: #12b76a;
+  --success-strong: #0b8a4f;
+  --success-soft: #eafbf3;
+  --warning: #f59e0b;
+  --warning-strong: #b86e00;
+  --warning-soft: #fff4df;
+  --danger: #e5484d;
+  --danger-strong: #c42d33;
+  --danger-soft: #fff0f1;
+  --purple: #7c3aed;
+  --purple-soft: #f1eafe;
+  --neutral: #8a97aa;
+  --neutral-soft: #eef2f7;
+
+  /* Layout */
+  --sidebar-width: 228px;
+  --topbar-height: 56px;
+  --page-gutter-x: 18px;
+  --page-gutter-y: 14px;
+
+  /* Radius */
+  --radius-input: 7px;
+  --radius-button: 7px;
+  --radius-card: 9px;
+  --radius-large: 10px;
+  --radius-pill: 999px;
+
+  /* Elevation */
+  --shadow-card: 0 1px 2px rgba(16, 31, 61, 0.04);
+  --shadow-hover: 0 4px 14px rgba(16, 31, 61, 0.08);
+  --shadow-pop: 0 12px 32px rgba(16, 31, 61, 0.14), 0 2px 6px rgba(16, 31, 61, 0.06);
+  --focus-ring: 0 0 0 3px rgba(11, 95, 245, 0.28);
+
+  /* Type */
+  --font-sans: var(--font-inter), "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-mono: var(--font-roboto-mono), "SFMono-Regular", Consolas, monospace;
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur: 150ms;
+  --dur-drawer: 200ms;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html {
-  height: 100%;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.45;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+html[lang="zh-CN"] body {
+  letter-spacing: 0.01em;
 }
 
 a {
@@ -42,8 +105,126 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum";
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+::selection {
+  background: rgba(var(--brand-primary-rgb), 0.18);
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
   }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Leaflet overrides — brand-coloured, compact controls */
+.leaflet-container {
+  font-family: var(--font-sans);
+  background: #e8eef5;
+}
+.leaflet-bar a {
+  color: var(--text-primary);
+}
+.leaflet-control-attribution {
+  font-size: 10px;
+}
+.sf-sat-tiles {
+  filter: brightness(0.62) saturate(0.85) hue-rotate(-8deg);
+}
+/* Map labels — scoped under .leaflet-container to outrank leaflet.css tooltip defaults */
+.leaflet-container .leaflet-tooltip.sf-map-label {
+  background: #fff;
+  border: 0;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(16, 31, 61, 0.18);
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: pre;
+}
+.leaflet-container .leaflet-tooltip.sf-map-label-dark {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: pre;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.75);
+}
+.leaflet-container .leaflet-tooltip.sf-map-label::before,
+.leaflet-container .leaflet-tooltip.sf-map-label-dark::before {
+  display: none;
 }

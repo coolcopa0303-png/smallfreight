@@ -1,0 +1,383 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 18px 22px 16px;
+}
+.head {
+  gap: 14px;
+}
+.head h2 {
+  font-size: 22px;
+}
+.askLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 0 4px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--brand-primary);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: right;
+}
+.askLink:hover {
+  color: var(--brand-primary-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.askLead {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+.productField label,
+.grid2 label {
+  font-size: 15px;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 20px;
+}
+.flagSelect select {
+  padding-left: 12px;
+}
+.modeIcon {
+  color: var(--brand-primary);
+}
+.date input {
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+.date input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+.datesHint {
+  align-self: end;
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  padding-bottom: 4px;
+}
+.datesHint svg {
+  flex: none;
+  margin-top: 2px;
+}
+
+.muted {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+.errorText {
+  font-size: 12px;
+  color: var(--danger-strong);
+}
+.info {
+  display: inline-flex;
+  color: var(--text-muted);
+  cursor: help;
+}
+
+/* ---------- Sections (additional duties / exclusions) ---------- */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.sectionLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+  padding: 0;
+}
+.countTag {
+  margin-left: 4px;
+  padding: 1px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--brand-primary-soft);
+  color: var(--brand-primary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.addBox {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.addBox > legend {
+  margin-bottom: 4px;
+}
+.addList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.addRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  min-height: 34px;
+  padding: 4px 12px 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-input);
+  background: var(--surface);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.addRow:hover {
+  border-color: #bfcbdc;
+  background: var(--bg-muted);
+}
+.addRow[data-checked='true'] {
+  border-color: var(--brand-primary);
+  background: var(--brand-primary-soft);
+}
+.addRow:focus-within {
+  box-shadow: var(--focus-ring);
+}
+.addRow input {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--brand-primary);
+  cursor: pointer;
+}
+.addRate {
+  flex: none;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+.addLabel {
+  min-width: 0;
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- Exclusion rows (reference: coloured left bar + code chip + status tag + ×) ---------- */
+.exList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.exRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 38px;
+  padding: 3px 6px 3px 16px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-input);
+  background: var(--surface);
+  overflow: hidden;
+}
+.exRow::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--warning);
+}
+.exRow[data-applied='true']::before {
+  background: var(--brand-primary);
+}
+.exCode {
+  flex: none;
+  padding: 4px 10px;
+  border-radius: 5px;
+  background: var(--neutral-soft);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 500;
+}
+.exRow[data-applied='true'] .exCode {
+  background: var(--brand-primary-soft);
+  color: var(--brand-primary);
+}
+.exNote {
+  min-width: 0;
+  flex: 0 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.exState {
+  flex: none;
+  height: 26px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 5px;
+  background: var(--danger-soft);
+  color: var(--danger-strong);
+  font-size: 13px;
+  font-weight: 500;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+.exState:hover {
+  filter: brightness(0.97);
+}
+.exState[aria-pressed='true'] {
+  background: var(--success-soft);
+  color: var(--success-strong);
+}
+.exRemove {
+  flex: none;
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+}
+.exRemove:hover {
+  background: var(--neutral-soft);
+  color: var(--danger-strong);
+}
+.addBar {
+  display: flex;
+  align-items: center;
+  gap: 8px 14px;
+}
+.addBar p {
+  line-height: 1.35;
+}
+.addBtn {
+  flex: none;
+  height: 36px;
+  font-weight: 500;
+}
+.exForm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-input);
+  background: var(--bg-muted);
+}
+.exFormFields {
+  flex: 1 1 320px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 8px;
+}
+.exFormFields > div {
+  height: 36px;
+}
+.exFormActions {
+  display: flex;
+  gap: 4px;
+}
+
+/* ---------- Bottom actions ---------- */
+.actions {
+  margin-top: auto;
+  display: flex;
+  gap: 14px;
+}
+.actions > button {
+  flex: 1 1 auto;
+  padding: 0 14px;
+  font-weight: 500;
+}
+.actions > .calcBtn {
+  flex-grow: 1.6;
+  font-weight: 600;
+}
+
+/* ---------- Ask modal ---------- */
+.askForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.textarea {
+  width: 100%;
+  min-height: 96px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-input);
+  background: var(--surface);
+  font-size: 14px;
+  resize: vertical;
+  outline: 0;
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.textarea:focus-visible {
+  border-color: var(--brand-primary);
+  box-shadow: var(--focus-ring);
+}
+
+@media (max-width: 1439px) {
+  .askLead {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .card {
+    padding: 16px;
+    gap: 16px;
+  }
+  .head h2 {
+    font-size: 19px;
+  }
+  .grid2 {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  .datesHint {
+    padding-bottom: 0;
+  }
+  .actions {
+    flex-direction: column;
+  }
+  .actions > :last-child {
+    order: -1;
+  }
+  .exRemove,
+  .addBtn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  .exFormFields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .addBar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .addRow {
+    min-height: 44px;
+  }
+}

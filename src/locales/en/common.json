@@ -1,0 +1,94 @@
+{
+  "brand": {
+    "small": "SMALL",
+    "freight": "FREIGHT",
+    "tagline": "Connecting your world"
+  },
+  "search": {
+    "global": "Search by Booking / B/L / Container / PO / Reference Number ...",
+    "submit": "Search"
+  },
+  "actions": {
+    "viewAll": "View All",
+    "viewDetails": "View Details",
+    "view": "View",
+    "tryAgain": "Try Again",
+    "copy": "Copy",
+    "copied": "Copied",
+    "close": "Close",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "add": "Add",
+    "reset": "Reset",
+    "apply": "Apply",
+    "export": "Export",
+    "reload": "Reload",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "more": "More",
+    "moreFilters": "More Filters",
+    "clear": "Clear",
+    "submit": "Submit",
+    "select": "Select"
+  },
+  "states": {
+    "loading": "Loading…",
+    "empty": "No data",
+    "error": "Something went wrong.",
+    "notAvailable": "N/A",
+    "none": "—"
+  },
+  "toast": {
+    "copySuccess": "{{value}} copied to clipboard",
+    "saveSuccess": "Saved",
+    "apiError": "Request failed: {{message}}"
+  },
+  "pagination": {
+    "range": "{{from}}–{{to}} of {{total}}",
+    "rowsPerPage": "Rows per page"
+  },
+  "units": {
+    "days": "{{count}} days",
+    "day": "1 day",
+    "daysRange": "{{min}}–{{max}} days",
+    "miles": "{{count}} miles"
+  },
+  "time": {
+    "inDays": "in {{count}} days",
+    "inOneDay": "in 1 day",
+    "today": "Today",
+    "daysAgo": "{{count}} days ago",
+    "overdueDays": "{{count}} days overdue"
+  },
+  "sampleData": "Sample data",
+  "sampleDataHint": "Anonymized sample data — connect NEXT_PUBLIC_DATA_MODE=live for real shipments.",
+  "required": "Required",
+  "optional": "Optional",
+  "language": {
+    "label": "Language",
+    "en": "English",
+    "zh-CN": "中文"
+  },
+  "mode": {
+    "ocean": "Ocean",
+    "truck": "Truck",
+    "air": "Air",
+    "rail": "Rail"
+  },
+  "service": {
+    "isf": "ISF",
+    "customsEntry": "Customs Entry",
+    "trucking": "Trucking",
+    "freight": "Ocean Freight",
+    "warehouse": "Warehouse",
+    "arrivalNotice": "Arrival Notice",
+    "other": "Other"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "The page you're looking for doesn't exist or has moved."
+  }
+}

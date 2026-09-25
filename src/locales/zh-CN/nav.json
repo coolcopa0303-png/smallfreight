@@ -1,0 +1,17 @@
+{
+  "dashboard": "首页",
+  "shipmentTracking": "货物追踪",
+  "getQuote": "获取报价",
+  "ltlQuote": "LTL 散货报价",
+  "drayageQuote": "拖车报价",
+  "htsSearch": "HTS 查询",
+  "addressBook": "地址簿",
+  "myShipments": "我的货物",
+  "myInquiries": "我的查询",
+  "analytics": "数据分析",
+  "help": "帮助与支持",
+  "home": "首页",
+  "menu": "菜单",
+  "notifications": "通知",
+  "account": "账户"
+}

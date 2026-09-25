@@ -1,0 +1,139 @@
+/* Carrier brand colours (no design tokens exist for third-party brands). */
+.mark {
+  --saia-red: #d6202b;
+  --abf-green: #00843d;
+  --abf-gold: #f2b705;
+  --xpo-red: #e4002b;
+  --estes-red: #d9261c;
+  --estes-yellow: #ffd100;
+  --uber-black: #000000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  line-height: 1;
+  user-select: none;
+}
+.md {
+  width: 96px;
+  height: 52px;
+  font-size: 34px;
+}
+.sm {
+  height: 36px;
+  font-size: 26px;
+}
+.muted {
+  filter: grayscale(1);
+  opacity: 0.45;
+}
+
+.saia {
+  color: var(--saia-red);
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -0.06em;
+  transform: skewX(-6deg);
+  text-shadow: 0 2px 0 rgba(214, 32, 43, 0.15);
+}
+.abf {
+  position: relative;
+  flex-direction: column;
+  align-items: flex-end;
+  color: var(--abf-green);
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -0.05em;
+}
+.abf small {
+  font-size: 0.3em;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin-top: -2px;
+  padding-top: 2px;
+  border-top: 2px solid var(--abf-gold);
+  color: var(--abf-green);
+}
+.sm.abf small {
+  display: none;
+}
+.xpo {
+  color: var(--xpo-red);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+.estesWrap {
+  justify-content: flex-start;
+}
+.md .estes {
+  width: 50px;
+  height: 50px;
+  font-size: 32px;
+}
+.estes {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--estes-red);
+  border: 3px solid var(--uber-black);
+  box-shadow: inset 0 0 0 2px var(--estes-yellow);
+  color: var(--estes-yellow);
+  font-size: 23px;
+  font-weight: 900;
+  font-style: italic;
+}
+.md.estesWrap {
+  justify-content: flex-start;
+  padding-left: 2px;
+}
+.uber {
+  display: inline-block;
+  color: var(--uber-black);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+  text-align: left;
+}
+.md.uber {
+  font-size: 27px;
+  height: auto;
+}
+.sm.uber br {
+  display: none;
+}
+.sm.uber {
+  font-size: 23px;
+  line-height: 1;
+}
+.sf {
+  justify-content: flex-start;
+  color: var(--navy-900);
+}
+.sfLogo {
+  width: 64px;
+  height: auto;
+}
+.sm .sfLogo {
+  width: 42px;
+}
+
+@media (max-width: 767px) {
+  .md {
+    width: 72px;
+    font-size: 27px;
+  }
+  .md.uber {
+    font-size: 21px;
+  }
+  .md .estes {
+    width: 44px;
+    height: 44px;
+    font-size: 27px;
+  }
+  .md .sfLogo {
+    width: 56px;
+  }
+}

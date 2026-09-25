@@ -1,0 +1,183 @@
+{
+  "back": "Back to My Shipments",
+  "meta": {
+    "label": "Shipment identifiers",
+    "booking": "Booking",
+    "bl": "B/L",
+    "reference": "Reference"
+  },
+  "actions": {
+    "share": "Share",
+    "download": "Download",
+    "downloadOptions": "More download options",
+    "csv": "Shipment summary (CSV)",
+    "print": "Print",
+    "track": "Track Updates",
+    "tracking": "Tracking Updates",
+    "linkCopied": "Shipment link copied to clipboard",
+    "trackOn": "You'll get updates for {{sm}}",
+    "trackOff": "Stopped tracking updates for {{sm}}",
+    "csvReady": "Shipment summary downloaded"
+  },
+  "tabs": {
+    "label": "Shipment sections",
+    "overview": "Overview",
+    "tracking": "Tracking",
+    "documents": "Documents",
+    "containers": "Containers ({{count}})",
+    "charges": "Charges",
+    "communications": "Communications"
+  },
+  "route": {
+    "label": "Route",
+    "origin": "Origin",
+    "destination": "Destination",
+    "unknownOrigin": "Origin not available",
+    "unknownDestination": "Destination not available",
+    "etd": "ETD",
+    "eta": "ETA",
+    "mapLabel": "Route map from {{from}} to {{to}}",
+    "noMapTitle": "Route map unavailable",
+    "noMap": "Route details will appear once origin and destination are available."
+  },
+  "status": {
+    "title": "Current Status",
+    "viewTracking": "View Tracking Details",
+    "lastUpdated": "Last Updated",
+    "noUpdates": "No updates yet",
+    "estimatedArrival": "Estimated Arrival",
+    "arrival": "Arrival",
+    "daysRemaining": "{{count}} days remaining",
+    "dayRemaining": "1 day remaining",
+    "arrivingToday": "Arriving today",
+    "arrived": "Arrived",
+    "overdue": "{{count}} days past ETA",
+    "sub": {
+      "pending": "Booking received — awaiting departure",
+      "inTransitOcean": "Ocean freight in progress",
+      "inTransitTruck": "Truck freight in progress",
+      "atPort": "Arrived at port, released for pickup",
+      "customs": "Arrived — customs clearance in progress",
+      "outForDelivery": "Picked up and on the way to you",
+      "delivered": "Shipment delivered",
+      "completed": "Customs clearance completed",
+      "exception": "Needs attention — contact your account team"
+    }
+  },
+  "timeline": {
+    "label": "Shipment milestones",
+    "departed": "Departed {{city}}",
+    "departing": "Departing {{city}}",
+    "arrived": "Arrived {{city}}",
+    "arriving": "Arriving {{city}}",
+    "customsReleased": "Customs Released",
+    "customsClearance": "Customs Clearance",
+    "oceanFreight": "Ocean Freight",
+    "truckFreight": "Truck Freight",
+    "eta": "(ETA)",
+    "pending": "Pending",
+    "stateDone": "completed",
+    "stateCurrent": "current step",
+    "stateUpcoming": "upcoming"
+  },
+  "details": {
+    "title": "Shipment Details",
+    "shipmentNumber": "Shipment Number",
+    "bookingNumber": "Booking Number",
+    "bl": "Bill of Lading",
+    "hbl": "House B/L",
+    "serviceType": "Service Type",
+    "containers": "Container",
+    "reference": "Reference Number",
+    "isf": "ISF No.",
+    "shipper": "Shipper",
+    "consignee": "Consignee",
+    "deliverTo": "Deliver To"
+  },
+  "cargo": {
+    "title": "Cargo Information",
+    "description": "Cargo Description",
+    "hsCode": "HS Code",
+    "packages": "Total Packages",
+    "weight": "Total Weight",
+    "volume": "Total Volume",
+    "containerType": "Container Type",
+    "seal": "Seal Number",
+    "dangerous": "Dangerous Goods",
+    "yes": "Yes",
+    "no": "No",
+    "kgs": "{{value}} KGS",
+    "cbm": "{{value}} CBM"
+  },
+  "dates": {
+    "title": "Key Dates",
+    "booked": "Booking Confirmed",
+    "isfFiled": "ISF Filed",
+    "departed": "Departed",
+    "departure": "Departure (ETD)",
+    "arrived": "Arrived",
+    "arrival": "Arrival (ETA)",
+    "customsReleased": "Customs Released",
+    "lfd": "Last Free Day",
+    "lfdWarning": "Due soon",
+    "lfdDanger": "Past due",
+    "pickup": "Container Pickup",
+    "delivered": "Delivered",
+    "emptyReturn": "Empty Return"
+  },
+  "tracking": {
+    "eventsTitle": "Tracking History",
+    "eventsSub": "Latest updates first, as reported by our operations team",
+    "noEvents": "No tracking updates yet",
+    "noEventsBody": "Updates will appear here as soon as your shipment moves.",
+    "statusTitle": "Clearance & Release",
+    "isf": "ISF Status",
+    "pga": "PGA Status",
+    "customsRelease": "Customs Release",
+    "freightRelease": "Freight Release",
+    "appointment": "Delivery Appointment",
+    "deliverTo": "Deliver To"
+  },
+  "documents": {
+    "title": "Documents",
+    "empty": "No documents yet",
+    "emptyBody": "Arrival notices, customs entries and delivery orders will appear here once they are uploaded.",
+    "error": "We couldn't load the documents.",
+    "open": "Open",
+    "uploaded": "Uploaded {{date}}"
+  },
+  "containers": {
+    "title": "Containers",
+    "number": "Container No.",
+    "lfd": "Last Free Day",
+    "pickup": "Pickup",
+    "delivered": "Delivered",
+    "emptyReturn": "Empty Return",
+    "emptyNotification": "Empty Notification",
+    "empty": "No containers on this shipment",
+    "emptyBody": "LCL / loose cargo shipments are tracked by B/L instead of container."
+  },
+  "charges": {
+    "title": "Charges will appear here",
+    "body": "Invoices and freight charges for this shipment aren't available online yet. For a statement, call us at {{phone}}."
+  },
+  "communications": {
+    "title": "No messages yet",
+    "body": "Messages with our operations team about this shipment will appear here. Need help now? Call {{phone}}."
+  },
+  "notFound": {
+    "title": "Shipment not found",
+    "body": "We couldn't find shipment {{id}} in your account."
+  },
+  "error": "We couldn't load this shipment.",
+  "csv": {
+    "field": "Field",
+    "value": "Value",
+    "status": "Status",
+    "origin": "Origin",
+    "destination": "Destination",
+    "etd": "ETD",
+    "eta": "ETA",
+    "lastEvent": "Latest Update"
+  }
+}

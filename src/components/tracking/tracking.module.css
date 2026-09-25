@@ -1,0 +1,400 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ---------- Header ---------- */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px 0 0 18px;
+}
+.titles {
+  min-width: 0;
+}
+.title {
+  font-size: 38px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+}
+.subtitle {
+  margin-top: 4px;
+  font-size: 19px;
+  color: var(--text-secondary);
+}
+.searchBox {
+  position: relative;
+  flex: 0 1 492px;
+  min-width: 260px;
+  margin-top: 38px;
+  margin-right: 10px;
+}
+.header .search {
+  height: 48px;
+  border-radius: var(--radius-card);
+}
+.header .search input {
+  font-size: 14px;
+}
+.fieldChip {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--brand-primary-soft);
+  color: var(--brand-primary);
+  font-size: 12px;
+  font-weight: 500;
+}
+.fieldChip:hover {
+  background: #dce9ff;
+}
+
+.tabs {
+  margin: 18px 0 0 18px;
+}
+
+/* ---------- List ---------- */
+.listWrap {
+  margin-top: 18px;
+  scroll-margin-top: calc(var(--topbar-height) + 12px);
+}
+.row,
+.colHead {
+  display: grid;
+  grid-template-columns:
+    [ship] minmax(116px, 128px) [mode] 48px [route] minmax(220px, 262px) [prog] minmax(400px, 1fr)
+    [status] 116px [eta] 100px [upd] 100px [act] 98px;
+  column-gap: 14px;
+  align-items: center;
+  padding: 0 16px;
+}
+.colHead {
+  height: 44px;
+  border-radius: var(--radius-card);
+  background: #eef2f8;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.h-shipment {
+  grid-column: ship / route;
+}
+.h-route {
+  grid-column: route;
+}
+.h-progress {
+  grid-column: prog;
+}
+.h-status,
+.h-actions {
+  text-align: center;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.row {
+  min-height: 80px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  transition: box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.row:hover {
+  box-shadow: var(--shadow-hover);
+  border-color: #cfdbea;
+}
+.row > div {
+  min-width: 0;
+}
+
+/* shipment ids */
+.ids {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.sm {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+.idLine {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  max-width: 100%;
+}
+.mode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.modeCaption {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* route */
+.cRoute {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+/* copy icon hangs into the gutter so it doesn't steal width from the id text */
+.ids button {
+  margin-right: -26px;
+}
+.cProgress > ol > li > span:last-child {
+  max-width: calc(100% + 4px);
+  font-size: 11px;
+  line-height: 1.2;
+  white-space: normal; /* long labels ("Out for Delivery") wrap instead of colliding */
+}
+.cStatus > span:first-child {
+  height: 30px;
+  padding: 0 12px;
+  font-size: 14px;
+}
+.routeArrow {
+  color: var(--text-primary);
+}
+
+.cStatus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.alert {
+  display: inline-flex;
+  flex: none;
+  border-radius: 50%;
+  cursor: help;
+}
+.alert[data-level='warning'] {
+  color: var(--warning);
+}
+.alert[data-level='danger'] {
+  color: var(--danger);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.primary {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+.secondary {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cAction {
+  text-align: center;
+}
+.view {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 0 4px;
+  border-radius: 6px;
+  color: var(--brand-primary);
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.view:hover {
+  color: var(--brand-primary-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
+/* ---------- 1200–1439: drop Last Update, narrower route ---------- */
+@media (max-width: 1439px) {
+  .row,
+  .colHead {
+    grid-template-columns:
+      [ship] minmax(110px, 128px) [mode] 48px [route] minmax(200px, 236px) [prog] minmax(360px, 1fr)
+      [status] 118px [eta] 100px [act] 36px;
+    column-gap: 12px;
+  }
+  .cUpdate,
+  .h-lastUpdate,
+  .h-actions {
+    display: none;
+  }
+  .viewText {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+}
+
+/* ---------- <1200: stacked cards ---------- */
+@media (max-width: 1199px) {
+  .colHead {
+    display: none;
+  }
+  .header {
+    padding-left: 0;
+  }
+  .tabs {
+    margin-left: 0;
+  }
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-areas:
+      'ship mode status'
+      'route route route'
+      'prog prog prog'
+      'eta upd act';
+    row-gap: 12px;
+    padding: 14px 16px;
+  }
+  .cShip {
+    grid-area: ship;
+  }
+  .cMode {
+    grid-area: mode;
+  }
+  .cRoute {
+    grid-area: route;
+    grid-template-columns: minmax(0, max-content) 20px minmax(0, max-content);
+  }
+  .cProgress {
+    grid-area: prog;
+    overflow-x: auto;
+  }
+  .cStatus {
+    grid-area: status;
+    justify-content: flex-end;
+  }
+  .cEta {
+    grid-area: eta;
+  }
+  .cUpdate {
+    grid-area: upd;
+    display: block;
+  }
+  .cAction {
+    grid-area: act;
+    align-self: end;
+  }
+  .mode {
+    flex-direction: row;
+  }
+}
+@media (max-width: 767px) {
+  .header {
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 0;
+  }
+  .title {
+    font-size: 26px;
+  }
+  .subtitle {
+    font-size: 14px;
+  }
+  .searchBox {
+    flex: none;
+    width: 100%;
+    min-width: 0;
+    margin-top: 0;
+  }
+  .fieldChip {
+    position: static;
+    margin-top: 8px;
+    height: 32px;
+  }
+  .header .search input {
+    font-size: 16px;
+  }
+  .tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin: 14px -12px 0;
+    padding: 0 12px 2px;
+    scrollbar-width: none;
+  }
+  .tabs button {
+    flex: none;
+    height: 40px;
+    padding: 0 14px;
+    font-size: 14px;
+  }
+  .listWrap {
+    margin-top: 12px;
+  }
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      'ship status'
+      'route route'
+      'prog prog'
+      'eta act';
+    row-gap: 10px;
+    padding: 12px 14px;
+  }
+  .cMode,
+  .cUpdate {
+    display: none;
+  }
+  .cRoute {
+    grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr);
+  }
+  .cProgress > ol {
+    min-width: 0;
+  }
+  /* compact progress on phones: nodes only (labels are in the list's aria-label) */
+  .cProgress > ol > li > span:last-child {
+    display: none;
+  }
+  .view {
+    min-height: 44px;
+  }
+  .footer {
+    justify-content: center;
+  }
+}

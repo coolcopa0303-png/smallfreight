@@ -1,0 +1,61 @@
+{
+  "title": "Address Book",
+  "subtitle": "Save pickup and delivery addresses to reuse them in quotes and bookings.",
+  "addAddress": "Add Address",
+  "addTitle": "Add Address",
+  "editTitle": "Edit Address",
+  "searchPlaceholder": "Search company, name, city, ZIP or email",
+  "searchLabel": "Search addresses",
+  "count": "{{count}} addresses",
+  "countFiltered": "{{count}} of {{total}} addresses",
+  "extShort": "ext. {{ext}}",
+  "loadError": "Couldn't load your address book.",
+  "sectionAddress": "Address",
+  "sectionContact": "Contact",
+  "requiredNote": "* Required. Enter a company name or a contact name.",
+  "zipHint": "Enter a 5-digit ZIP to fill city and state.",
+  "zipFilled": "City and state filled from ZIP.",
+  "zipNotFound": "ZIP not found — enter city and state manually.",
+  "fields": {
+    "company": "Company Name",
+    "street": "Street Line 1",
+    "street2": "Street Line 2",
+    "zip": "ZIP Code",
+    "city": "City",
+    "state": "State",
+    "country": "Country",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone": "Phone",
+    "phoneExt": "Phone Ext",
+    "email": "Email"
+  },
+  "labels": {
+    "address": "Address"
+  },
+  "errors": {
+    "required": "This field is required.",
+    "nameOrCompany": "Enter a company name or a first/last name.",
+    "zipUs": "US ZIP code must be 5 digits.",
+    "email": "Enter a valid email address.",
+    "phone": "Enter a valid phone number (7–15 digits).",
+    "phoneExt": "Extension must be digits only."
+  },
+  "empty": {
+    "title": "No saved addresses yet",
+    "body": "Addresses you save here can be picked when you request quotes or book shipments.",
+    "action": "Add your first address"
+  },
+  "noResults": {
+    "title": "No addresses match “{{query}}”",
+    "body": "Try a different company, name, city, ZIP or email.",
+    "clear": "Clear search"
+  },
+  "deleteTitle": "Delete address?",
+  "deleteBody": "“{{name}}” will be removed from your address book. This can't be undone.",
+  "toast": {
+    "created": "Address added",
+    "updated": "Address updated",
+    "deleted": "Address deleted"
+  }
+}

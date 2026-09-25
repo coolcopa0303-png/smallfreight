@@ -1,0 +1,141 @@
+/* Bottom info cards: Shipment Details / Cargo Information / Key Dates */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 12px 18px 12px;
+  min-width: 0;
+}
+.title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.icon {
+  display: inline-flex;
+  color: var(--brand-primary);
+}
+
+/* label / value rows */
+.list {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.row {
+  display: grid;
+  grid-template-columns: minmax(110px, 46%) minmax(0, 1fr);
+  gap: 12px;
+  align-items: baseline;
+  min-height: 21.5px;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.label {
+  color: var(--text-muted);
+}
+.value {
+  margin: 0;
+  color: var(--text-primary);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.mono {
+  font-family: var(--font-mono);
+}
+.muted {
+  color: var(--text-muted);
+}
+
+/* key dates */
+.dates {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+.dateRow {
+  --dot: var(--neutral);
+  position: relative;
+  display: grid;
+  grid-template-columns: 12px minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: baseline;
+  min-height: 23.5px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+/* dotted rail between dots */
+.dateRow:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 16px;
+  bottom: -7px;
+  border-left: 1.5px dotted #c6d1df;
+}
+.dateRow[data-state='done'] {
+  --dot: var(--success);
+}
+.dateRow[data-state='current'] {
+  --dot: var(--brand-primary);
+  color: var(--brand-primary);
+}
+.dot {
+  position: relative;
+  z-index: 1;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 3px solid var(--dot);
+  align-self: center;
+}
+.dateRow[data-state='upcoming'] .dot {
+  border: 0;
+  background: #b7c2d2;
+  transform: scale(0.85);
+}
+.dateLabel {
+  min-width: 0;
+}
+.dateRow[data-lfd='warning'] .dateLabel,
+.dateRow[data-lfd='warning'] .dateValue {
+  color: var(--warning-strong);
+  font-weight: 600;
+}
+.dateRow[data-lfd='danger'] .dateLabel,
+.dateRow[data-lfd='danger'] .dateValue {
+  color: var(--danger-strong);
+  font-weight: 600;
+}
+.lfdTag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 18px;
+  vertical-align: 1px;
+  background: var(--warning-soft);
+}
+.dateRow[data-lfd='danger'] .lfdTag {
+  background: var(--danger-soft);
+}
+.dateValue {
+  display: inline-grid;
+  grid-template-columns: 104px 40px;
+  gap: 10px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.dateTime {
+  text-align: left;
+}

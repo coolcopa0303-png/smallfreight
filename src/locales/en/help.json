@@ -1,0 +1,70 @@
+{
+  "title": "Help & Support",
+  "subtitle": "Answers to common questions, service updates and how to reach our team.",
+  "contact": {
+    "title": "Contact us",
+    "subtitle": "Talk to our operations and customs team",
+    "phone": "Call customer service",
+    "callAria": "Call customer service at {{phone}}",
+    "hoursLabel": "General hours:",
+    "hours": "Mon–Fri, 9:00 AM – 6:00 PM ET",
+    "hoursNote": "Holiday hours may differ — see announcements.",
+    "linksLabel": "Quick links",
+    "askCustoms": "Ask our customs team"
+  },
+  "announcements": {
+    "title": "Announcements",
+    "kind": { "alert": "Alert", "info": "Information", "notice": "Notice" }
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "subtitle": "Tracking, deadlines, quotes and duty estimates",
+    "statuses": {
+      "q": "What do the tracking statuses mean?",
+      "intro": "Each shipment shows one status, based on the latest milestone we have on file.",
+      "pending": "Your case has been opened; we're waiting for departure or filing details.",
+      "inTransit": "The cargo has departed or the ISF has been filed, and it has not arrived yet.",
+      "customs": "The cargo has arrived and is waiting for customs release.",
+      "atPort": "The cargo has arrived and customs has released it — it's waiting for pickup.",
+      "outForDelivery": "The container has been picked up and is on its way to the delivery address.",
+      "delivered": "The cargo has been delivered, or the empty container has been returned.",
+      "completed": "Customs-brokerage-only file: customs has released the cargo after arrival and our work is complete.",
+      "exception": "The shipment is marked urgent — action is required. Please check the details or contact us."
+    },
+    "lfd": {
+      "q": "What is the Last Free Day (LFD) and how is it flagged?",
+      "intro": "The Last Free Day is the final day a container can stay at the terminal without demurrage or storage charges. We highlight it by how close it is:",
+      "normal": { "label": "More than 2 days", "text": "Normal — enough time to schedule pickup." },
+      "warning": { "label": "0–2 days left", "text": "Warning — pickup should be arranged now." },
+      "overdue": { "label": "Past LFD", "text": "Overdue — demurrage or storage charges may be accruing." },
+      "tip": "Tip: pick up before the LFD to avoid demurrage and storage fees."
+    },
+    "quotes": {
+      "q": "How do quotes work?",
+      "ltl": "Enter origin, destination, weight, dimensions and any accessorials to get instant rates from multiple carriers.",
+      "drayage": "Choose the port or rail ramp, the delivery ZIP and the container type to see drayage pricing.",
+      "points": {
+        "1": "Rates are based on current market conditions and may change until you book.",
+        "2": "If a carrier shows \"Rate not available\", use Request Rate or contact us and we'll quote it manually."
+      }
+    },
+    "hts": {
+      "q": "How accurate are HTS duty estimates?",
+      "intro": "HTS Search shows estimated duty rates to help you plan. The final assessment is made by U.S. Customs and may differ.",
+      "points": {
+        "1": "Additional duties (such as Section 301) apply only when you select them — please review which ones apply to your goods.",
+        "2": "Exclusions and exemptions are not calculated in the estimate.",
+        "3": "Not sure about a classification? Ask our customs team from the HTS page."
+      },
+      "link": "Go to HTS Search"
+    },
+    "addressBook": {
+      "q": "Can I save addresses I use often?",
+      "a": "Yes. Save shippers, consignees and delivery locations in your Address Book and reuse them when requesting quotes."
+    },
+    "language": {
+      "q": "How do I switch the portal language?",
+      "a": "Use the language button in the top bar to switch between English and Chinese. Your choice is remembered on this browser."
+    }
+  }
+}

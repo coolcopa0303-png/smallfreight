@@ -1,0 +1,369 @@
+/* Quote forms (LTL reference 03 / Drayage reference 04) */
+.formCard {
+  padding: 12px 22px 12px;
+}
+.formTitle {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+.formTitleIcon {
+  color: var(--brand-primary);
+}
+
+/* Column widths measured from the 1672px reference (content 1360px). */
+.ltlRow1,
+.ltlRow2 {
+  display: grid;
+  gap: 10px 18px;
+  align-items: start;
+}
+.ltlRow1 {
+  grid-template-columns: 371fr 358fr 310fr 262fr;
+}
+.ltlRow2 {
+  grid-template-columns: 371fr 254fr 414fr 262fr;
+  margin-top: 8px;
+}
+.submitCell {
+  padding-top: 26px;
+}
+.submitBtn {
+  height: 44px;
+  font-size: 16px;
+}
+
+.drayRow {
+  display: grid;
+  grid-template-columns: 287fr 263fr 259fr 225fr 236fr;
+  gap: 10px 22px;
+  align-items: start;
+}
+
+/* Date: hide the native indicator; the whole field opens the picker. */
+.date input {
+  cursor: pointer;
+}
+.date input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.unitToggle {
+  height: 100%;
+  border: 0;
+  background: transparent;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text-primary);
+  padding: 0 4px;
+  min-width: 36px;
+  border-radius: 4px;
+}
+.unitToggle:hover {
+  color: var(--brand-primary);
+}
+
+.iconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-right: -6px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+}
+.iconBtn:hover {
+  background: var(--brand-primary-soft);
+  color: var(--brand-primary);
+}
+.trailingText {
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+.inlineSpinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  border-top-color: var(--brand-primary);
+  animation: spin 0.7s linear infinite;
+}
+
+/* ---------- More options disclosure ---------- */
+.more {
+  margin-top: 8px;
+  border-top: 1px solid var(--border-soft);
+  padding-top: 4px;
+}
+.moreHead {
+  display: flex;
+  align-items: center;
+  gap: 4px 8px;
+  min-width: 0;
+}
+.classNote {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-align: right;
+}
+.classNote svg {
+  flex: none;
+  color: var(--brand-primary);
+}
+.moreToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+  min-height: 32px;
+  border: 0;
+  background: transparent;
+  padding: 2px 4px;
+  margin-left: -4px;
+  border-radius: 6px;
+  color: var(--brand-primary);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+}
+.moreToggle:hover {
+  background: var(--bg-muted);
+}
+.chev {
+  transition: transform var(--dur) var(--ease);
+}
+.chev[data-open] {
+  transform: rotate(180deg);
+}
+.moreSummary {
+  min-width: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.moreSummary[data-error] {
+  color: var(--danger-strong);
+}
+.morePanel {
+  padding: 8px 0 6px;
+  animation: fadeIn var(--dur) var(--ease);
+}
+.moreGrid {
+  display: grid;
+  grid-template-columns: 1.3fr 0.8fr 1.4fr;
+  gap: 12px 18px;
+  align-items: start;
+}
+.drayMoreGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1.4fr 1.6fr;
+  gap: 12px 18px;
+  align-items: start;
+}
+.dims {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 82px;
+  gap: 6px;
+}
+.unitSelect select {
+  padding-left: 10px;
+}
+.accs {
+  border: 0;
+  padding: 0;
+  margin: 14px 0 0;
+  min-width: 0;
+}
+.accLegend {
+  padding: 0;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.accGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px 18px;
+}
+.linkBtn {
+  margin-top: 8px;
+  border: 0;
+  background: transparent;
+  padding: 4px 0;
+  color: var(--brand-primary);
+  font-size: 13px;
+  font-weight: 600;
+}
+.linkBtn:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.segment {
+  display: inline-flex;
+  height: 42px;
+  padding: 3px;
+  gap: 3px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-input);
+  background: var(--bg-muted);
+}
+.segment label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 0 14px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.segment input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.segment label:has(input:checked) {
+  background: var(--surface);
+  color: var(--brand-primary);
+  box-shadow: 0 1px 2px rgba(var(--text-rgb), 0.1);
+}
+.segment label:has(input:focus-visible) {
+  box-shadow: var(--focus-ring);
+}
+.checkCell {
+  padding-top: 36px;
+}
+
+/* ---------- Address picker ---------- */
+.pickList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+  max-height: 52vh;
+  overflow: auto;
+}
+.pickItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  min-height: 54px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-card);
+  border-radius: 8px;
+  background: var(--surface);
+  text-align: left;
+  transition: border-color var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease);
+}
+.pickItem:hover {
+  border-color: var(--brand-primary);
+  background: var(--brand-primary-soft);
+}
+.pickIcon {
+  margin-top: 2px;
+  color: var(--brand-primary);
+  flex: none;
+}
+.pickText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.pickText strong {
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1199px) {
+  .ltlRow1 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .ltlRow2 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .submitCell {
+    padding-top: 0;
+    grid-column: 1 / -1;
+  }
+  .drayRow {
+    grid-template-columns: 1fr 1fr;
+  }
+  .drayRow .submitCell {
+    grid-column: 1 / -1;
+  }
+  .moreGrid,
+  .drayMoreGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .accGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .checkCell {
+    padding-top: 0;
+  }
+}
+@media (max-width: 767px) {
+  .formCard {
+    padding: 12px 14px;
+  }
+  .ltlRow1,
+  .ltlRow2,
+  .drayRow,
+  .moreGrid,
+  .drayMoreGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .accGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .accGrid label {
+    min-height: 44px;
+  }
+  .moreHead {
+    flex-wrap: wrap;
+  }
+  .moreToggle {
+    min-height: 44px;
+  }
+  .moreSummary {
+    flex-basis: 100%;
+    white-space: normal;
+  }
+  .classNote {
+    margin-left: 0;
+    text-align: left;
+    align-items: flex-start;
+  }
+  .dims {
+    grid-template-columns: 1fr 1fr 1fr 72px;
+  }
+}
+.checkRow {
+  margin-top: 10px;
+}
