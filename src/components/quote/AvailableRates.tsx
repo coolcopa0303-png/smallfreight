@@ -8,7 +8,6 @@ import { useToast } from '@/components/ui/Toast'
 import type { QuoteResult, RateOption } from '@/domain/types'
 import { useI18n } from '@/i18n/I18nProvider'
 import { CompactRateCard } from './CompactRateCard'
-import { RateCard } from './RateCard'
 import { RateDetailsDrawer } from './RateDetailsDrawer'
 import { RequestRateModal, SelectedQuoteModal } from './RateModals'
 import { sortRates, type QuoteKind, type QuoteStatus, type SortKey, type SummaryRow } from './quoteUtils'
@@ -82,8 +81,8 @@ export function AvailableRates({ kind, status, result, error, onRetry, summary, 
         </div>
       )}
       {status === 'loading' && (
-        <div className={kind === 'ltl' ? s.grid : s.miniGrid}>
-          {Array.from({ length: 6 }, (_, i) => (kind === 'ltl' ? <RateSkeleton key={i} /> : <MiniSkeleton key={i} />))}
+        <div className={s.miniGrid}>
+          {Array.from({ length: 6 }, (_, i) => <MiniSkeleton key={i} />)}
         </div>
       )}
       {status === 'error' && (
@@ -97,14 +96,11 @@ export function AvailableRates({ kind, status, result, error, onRetry, summary, 
         </div>
       )}
       {status === 'done' && rates.length > 0 && (
-        <div className={kind === 'ltl' ? s.grid : s.miniGrid}>
-          {rates.map((r) =>
-            kind === 'ltl' ? (
-              <RateCard key={r.id} rate={r} selected={r.id === selectedId} onSelect={() => select(r)} onDetails={() => setDetails(r)} onRequest={() => setRequest(r)} />
-            ) : (
-              <CompactRateCard key={r.id} rate={r} selected={r.id === selectedId} onSelect={() => select(r)} onDetails={() => setDetails(r)} onRequest={() => setRequest(r)} />
-            ),
-          )}
+        // Compact cards, one row, for both LTL and drayage (user request: small cards like reference-v2 04).
+        <div className={s.miniGrid}>
+          {rates.map((r) => (
+            <CompactRateCard key={r.id} rate={r} selected={r.id === selectedId} onSelect={() => select(r)} onDetails={() => setDetails(r)} onRequest={() => setRequest(r)} />
+          ))}
         </div>
       )}
 
@@ -112,20 +108,6 @@ export function AvailableRates({ kind, status, result, error, onRetry, summary, 
       <SelectedQuoteModal rate={confirm} kind={kind} quotationNumber={result?.quotationNumber} onClose={() => setConfirm(undefined)} />
       <RequestRateModal rate={request} quotationNumber={result?.quotationNumber} summary={summary} onClose={() => setRequest(undefined)} />
     </section>
-  )
-}
-
-function RateSkeleton() {
-  return (
-    <div className={s.card} aria-hidden>
-      <div className={s.cardTop}>
-        <Skeleton width={90} height={44} radius={8} />
-        <div className={s.carrier}><Skeleton width={90} height={14} /><Skeleton width={70} height={11} style={{ marginTop: 6 }} /></div>
-        <div className={s.price}><Skeleton width={84} height={22} /><Skeleton width={60} height={11} style={{ marginTop: 6 }} /></div>
-      </div>
-      <div className={s.facts}>{[0, 1, 2].map((i) => <Skeleton key={i} height={30} />)}</div>
-      <div className={s.actions}><Skeleton width="55%" height={30} radius={7} /><Skeleton width={90} height={14} /></div>
-    </div>
   )
 }
 

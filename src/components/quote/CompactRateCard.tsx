@@ -9,7 +9,7 @@ import { CarrierWordmark } from './CarrierWordmark'
 import { daysLabel, moneyDigits } from './quoteUtils'
 import s from './rates.module.css'
 
-/** Drayage rate card (reference 04): compact, equal-width, six across; outlined actions, selection = blue border. */
+/** Rate card for LTL and drayage (reference-v2 04): compact, equal-width, six across; outlined actions, selection = blue border. */
 export function CompactRateCard({ rate, selected, onSelect, onDetails, onRequest }: {
   rate: RateOption
   selected: boolean

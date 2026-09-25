@@ -83,170 +83,7 @@
   max-width: none;
 }
 
-/* ---------- LTL rate card: 3 × 2 ---------- */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px 15px;
-}
-.card {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-width: 0;
-  padding: 10px 26px 10px 24px;
-  background: var(--surface);
-  border: 1px solid var(--border-card);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
-  transition: box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
-}
-.card:hover {
-  box-shadow: var(--shadow-hover);
-}
-.card[data-selected] {
-  border-color: var(--brand-primary);
-}
-.cardTop {
-  display: grid;
-  grid-template-columns: 96px minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 12px;
-}
-.carrier {
-  min-width: 0;
-  padding-left: 8px;
-}
-.carrierName {
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.25;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.tagline {
-  font-size: 13px;
-  color: var(--text-secondary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.price {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  text-align: right;
-}
-.price strong {
-  color: var(--navy-900);
-  font-size: 21px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-}
-.price span {
-  font-size: 13px;
-  color: var(--text-secondary);
-}
-.priceNa {
-  color: var(--text-muted);
-}
-.facts {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.facts li {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 0;
-}
-.facts li > svg {
-  color: var(--text-muted);
-  flex: none;
-}
-.facts b,
-.naRow b {
-  display: block;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.2;
-  white-space: nowrap;
-}
-.facts small,
-.naRow small {
-  display: block;
-  font-size: 12px;
-  color: var(--text-secondary);
-  line-height: 1.2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.dot,
-.naDot {
-  width: 8px;
-  height: 8px;
-  margin: 0 6px;
-  border-radius: 50%;
-  background: var(--success);
-  flex: none;
-}
-.naDot {
-  background: var(--neutral);
-}
-.naRow {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 30px;
-}
-.naRow small {
-  white-space: normal;
-}
-.actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-.selectBtn {
-  width: 55%;
-  height: 28px;
-  font-size: 14px;
-  font-weight: 500;
-}
-.detailsLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 28px;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  margin-right: 2px;
-  color: var(--brand-primary);
-  font-size: 14px;
-  font-weight: 500;
-  white-space: nowrap;
-}
-.detailsLink:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-.detailsLink svg {
-  transition: transform var(--dur-fast) var(--ease);
-}
-.detailsLink:hover svg {
-  transform: translateX(2px);
-}
-
-/* ---------- Drayage compact card: up to 6 across ---------- */
+/* ---------- Rate card (LTL + drayage): compact, six in one row ---------- */
 .miniGrid {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -370,27 +207,60 @@
   color: var(--text-secondary);
 }
 
-@media (max-width: 1439px) and (min-width: 1200px) {
-  .card {
-    padding: 10px 16px;
-  }
-  .cardTop {
-    grid-template-columns: 80px minmax(0, 1fr) auto;
-  }
+/* Narrower desktops (incl. the collapsed icon sidebar, ~1024–1439px): keep one row, tighten the card. */
+@media (min-width: 1024px) and (max-width: 1439px) {
   .miniGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .mini {
+    min-height: 0;
+    padding: 12px 10px 10px;
+  }
+  .miniHead {
+    gap: 6px;
+    min-height: 30px;
+    padding-right: 20px;
+  }
+  .miniName {
+    font-size: 12.5px;
+  }
+  .miniInfo {
+    top: 4px;
+    right: 4px;
+  }
+  .miniPrice {
+    gap: 5px;
+    margin-top: 8px;
+  }
+  .miniPrice strong {
+    font-size: 18px;
+  }
+  .miniPrice span {
+    font-size: 12px;
+  }
+  .miniFacts {
+    gap: 4px;
+    margin: 8px 0 10px;
+    font-size: 12px;
+  }
+  .miniFacts li {
+    gap: 6px;
+  }
+  .miniBtn {
+    height: 34px;
+    font-size: 13.5px;
+  }
+  .feesLink {
+    margin-left: 21px;
   }
 }
-@media (max-width: 1199px) {
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+/* Tablet (768–1023px): two rows of three. */
+@media (min-width: 768px) and (max-width: 1023px) {
   .miniGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 @media (max-width: 767px) {
-  .grid,
   .miniGrid {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -405,18 +275,6 @@
   .sortSelect {
     flex: 1;
     height: 44px;
-  }
-  .card {
-    padding: 12px 14px;
-  }
-  .cardTop {
-    grid-template-columns: 72px minmax(0, 1fr) auto;
-  }
-  .selectBtn {
-    height: 44px;
-  }
-  .detailsLink {
-    min-height: 44px;
   }
   .miniBtn {
     height: 44px;
