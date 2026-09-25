@@ -1,5 +1,6 @@
 'use client'
 
+import { Info } from 'lucide-react'
 import { useId } from 'react'
 import type { AdditionalDuty } from '@/domain/types'
 import { useI18n } from '@/i18n/I18nProvider'
@@ -19,9 +20,12 @@ export function AdditionalDuties({ items, selected, onToggle }: { items: Additio
     <fieldset className={s.addBox} aria-describedby={hintId}>
       <legend id={headId} className={s.sectionLabel}>
         {t('hts.additional.title')}
+        <span className={s.info} title={t('hts.additional.hint')} aria-hidden>
+          <Info size={14} />
+        </span>
         {selected.length > 0 && <span className={s.countTag}>{t('hts.additional.selectedCount', { count: selected.length })}</span>}
       </legend>
-      <p id={hintId} className={s.muted}>{t('hts.additional.hint')}</p>
+      <p id={hintId} className="sr-only">{t('hts.additional.hint')}</p>
       <div className={s.addList}>
         {items.map((a) => (
           <label key={a.id} className={s.addRow} data-checked={selected.includes(a.id) || undefined}>

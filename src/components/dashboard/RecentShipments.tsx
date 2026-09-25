@@ -10,13 +10,12 @@ import { Card, CardHeader, ViewAllLink } from '@/components/ui/Card'
 import { EmptyState, ErrorState, Skeleton } from '@/components/ui/States'
 import { StatusChip } from '@/components/ui/StatusChip'
 import { Tabs } from '@/components/ui/Tabs'
-import { matchesTab, STATUS_META, type StatusTab } from '@/domain/statusMap'
+import { matchesTab, type StatusTab } from '@/domain/statusMap'
 import type { Place, Shipment } from '@/domain/types'
 import { useShipments } from '@/hooks/useData'
 import { useI18n } from '@/i18n/I18nProvider'
 import { fmtIsoDate } from '@/i18n/format'
 import s from './recent.module.css'
-import { TONE_COLOR } from './tone'
 
 const TABS = ['all', 'inTransit', 'atPort', 'customs', 'delivered'] as const satisfies readonly StatusTab[]
 type RecentTab = (typeof TABS)[number]
@@ -108,11 +107,9 @@ export function RecentShipments() {
 
 function Row({ sh, onOpen }: { sh: Shipment; onOpen: () => void }) {
   const { t } = useI18n()
-  const tone = STATUS_META[sh.status].tone
   return (
     <tr className={s.row} onClick={onOpen}>
       <td className={s['c-booking']}>
-        <span className={s.accent} style={{ background: TONE_COLOR[tone] }} aria-hidden />
         <span className={`${s.id} mono`}>{sh.smNumber}</span>
       </td>
       <td className={s['c-type']}>{sh.mode}</td>

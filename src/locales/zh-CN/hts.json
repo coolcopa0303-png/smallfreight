@@ -32,7 +32,8 @@
     "noAnswer": "该查询尚未给出税号答复。",
     "codeNotFound": "税号 {{code}} 不在数据库中，已显示相近结果。",
     "clear": "清除所选税号",
-    "selected": "已选择税号 {{code}}"
+    "selected": "已选择税号 {{code}}",
+    "searchFor": "搜索"
   },
   "additional": {
     "title": "HTS 数据中的额外税率",
@@ -54,7 +55,10 @@
     "notApplied": "未适用",
     "toggle": "将 {{code}} 标记为{{state}}",
     "remove": "移除 {{code}}",
-    "notComputed": "豁免不会从估算中扣减，请与报关团队确认是否符合条件。"
+    "notComputed": "豁免不会从估算中扣减，请与报关团队确认是否符合条件。",
+    "placeholder": "添加豁免编码（可选）",
+    "clearAll": "移除全部豁免编码",
+    "toggleHint": "点击编码可切换“已适用 / 未适用”。"
   },
   "actions": {
     "save": "保存到我的查询",
@@ -106,7 +110,7 @@
   },
   "detail": {
     "title": "详细拆分",
-    "export": "导出结果",
+    "export": "导出",
     "colCode": "税号",
     "colDesc": "描述",
     "colRate": "税率",

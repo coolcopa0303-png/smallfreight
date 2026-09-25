@@ -1,6 +1,6 @@
 'use client'
 
-import { Download, FileText } from 'lucide-react'
+import { Download } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { useI18n } from '@/i18n/I18nProvider'
 import { fmtMoney } from '@/i18n/format'
@@ -35,7 +35,6 @@ export function DetailedBreakdown({ result, onExport }: { result: DutyResult; on
     <section className={`${s.panel} ${s.detail}`} aria-labelledby="hts-detail-title">
       <div className={s.detailHead}>
         <h3 id="hts-detail-title" className={s.panelTitle}>
-          <FileText size={24} aria-hidden className={s.panelIcon} />
           {t('hts.detail.title')}
         </h3>
         <Button variant="secondary" size="sm" leading={<Download size={16} />} onClick={onExport} className={s.exportBtn}>
@@ -65,7 +64,11 @@ export function DetailedBreakdown({ result, onExport }: { result: DutyResult; on
                 <tr key={`${l.kind}-${l.code}-${i}`} data-kind={l.kind}>
                   <th scope="row" className="tnum">{l.kind === 'fee' ? <abbr title={t(l.code === 'HMF' ? 'hts.cost.hmf' : 'hts.cost.mpf')}>{code}</abbr> : code}</th>
                   <td>
-                    <span className={s.clamp} title={desc}>{desc}</span>
+                    {l.kind === 'additional' ? (
+                      <span className={s.dutyChip} title={desc}>{desc}</span>
+                    ) : (
+                      <span className={s.clamp} title={desc}>{desc}</span>
+                    )}
                   </td>
                   <td className={`${s.num} tnum`}>{l.ratePct === undefined ? '—' : fmtRate(l.ratePct)}</td>
                   <td className={`${s.num} ${s.amount} tnum`}>
@@ -83,7 +86,7 @@ export function DetailedBreakdown({ result, onExport }: { result: DutyResult; on
           {exclusions.map((l, i) => (
             <span key={`${l.code}-${i}`} className={s.exChip} data-applied={l.note === 'applied' || undefined} title={l.description || undefined}>
               <span className="tnum">{l.code}</span>
-              <span className={s.exChipState}>{l.note === 'applied' ? t('hts.exclusion.applied') : t('hts.exclusion.notApplied')}</span>
+              <span className={s.exChipState}>· {l.note === 'applied' ? t('hts.exclusion.applied') : t('hts.exclusion.notApplied')}</span>
             </span>
           ))}
         </div>

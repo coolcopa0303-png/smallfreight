@@ -15,13 +15,6 @@
       "reference": "Reference"
     }
   },
-  "kpi": {
-    "label": "Shipment summary",
-    "active": "Active Shipments",
-    "inTransit": "In Transit",
-    "atPort": "At Port",
-    "delivered": "Delivered"
-  },
   "ltl": {
     "title": "LTL Quotes",
     "origin": "Origin",
@@ -43,8 +36,8 @@
     "containers": {
       "20": "20' Standard",
       "40": "40' Standard",
-      "40HC": "40' High Cube",
-      "45": "45' High Cube"
+      "45": "45' High Cube",
+      "40HC": "40' High Cube"
     },
     "pickupZip": "Pickup ZIP",
     "deliveryZip": "Delivery ZIP",
@@ -92,6 +85,10 @@
   },
   "announcements": {
     "title": "Announcements",
-    "kinds": { "alert": "Alert", "info": "Update", "notice": "Notice" }
+    "kinds": {
+      "alert": "Alert",
+      "info": "Update",
+      "notice": "Notice"
+    }
   }
 }

@@ -1,23 +1,76 @@
+/* Dashboard hero (reference-v2 01): light blue-gray banner, port photo faded in on the right ~45%. */
+.hero {
+  --hero-bg-from: #eaf1fa;
+  --hero-bg-to: #f6f9fd;
+  --hero-title: var(--navy-900);
+  --hero-pill-on-bg: #dbe8fd;
+  --hero-h: 218px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: var(--hero-h);
+  border-radius: var(--radius-large);
+  border: 1px solid var(--border-soft);
+  background: linear-gradient(90deg, var(--hero-bg-from) 0%, var(--hero-bg-to) 100%);
+}
+/* Monochrome photo (grayscale + pale-blue wash, reference-v2 01), masked so it fades from nothing (left) into the light background. */
+.photo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 60%;
+  z-index: -1;
+  background: url('/images/hero-port.webp') 70% 52% / cover no-repeat;
+  /* grayscale → sepia → hue-rotate gives a single pale-blue tone (the filter also applies to ::after, so tint here) */
+  filter: grayscale(1) sepia(0.45) hue-rotate(178deg) saturate(1.7) brightness(1.28) contrast(0.78);
+  opacity: 0.9;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.25) 22%, rgba(0, 0, 0, 0.8) 52%, #000 75%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.25) 22%, rgba(0, 0, 0, 0.8) 52%, #000 75%);
+}
+.copy {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  padding: 22px 24px 22px 38px;
+}
+.title {
+  font-size: 36px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--hero-title);
+}
+.subtitle {
+  margin-top: 4px;
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+
 /* ---------- Tracking search ---------- */
 .search {
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 740px;
+  max-width: 718px;
   height: 44px;
-  margin-top: 18px;
-  padding: 2px 2px 2px 0;
+  margin-top: 16px;
+  padding: 3px 3px 3px 0;
+  border: 1px solid var(--border);
   border-radius: var(--radius-input);
   background: var(--surface);
-  box-shadow: 0 2px 10px rgba(var(--navy-rgb), 0.18);
+  box-shadow: 0 1px 3px rgba(var(--text-rgb), 0.05);
 }
 .search:focus-within {
-  box-shadow: 0 0 0 3px rgba(var(--brand-primary-rgb), 0.45);
+  border-color: var(--brand-primary);
+  box-shadow: var(--focus-ring);
 }
 .searchIcon {
   flex: none;
-  margin: 0 10px 0 16px;
+  margin: 0 12px 0 16px;
   color: var(--text-secondary);
 }
 .searchInput {
@@ -37,8 +90,8 @@
   box-shadow: none;
 }
 .searchBtn {
-  height: 38px;
-  min-width: 112px;
+  height: 36px;
+  min-width: 120px;
   font-size: 15px;
 }
 
@@ -47,105 +100,58 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 16px;
+  margin-top: 12px;
 }
 .pill {
-  height: 29px;
+  height: 30px;
   padding: 0 18px;
   border-radius: var(--radius-pill);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  background: rgba(var(--navy-rgb), 0.45);
-  color: #fff;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-primary);
   font-size: 13px;
   font-weight: 500;
   transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .pill:hover {
-  background: rgba(var(--navy-rgb), 0.7);
-  border-color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(var(--brand-primary-rgb), 0.4);
+  color: var(--brand-primary);
 }
 .pill[aria-pressed='true'] {
-  background: #bcd4ff;
-  border-color: #bcd4ff;
+  background: var(--hero-pill-on-bg);
+  border-color: var(--hero-pill-on-bg);
   color: var(--brand-primary);
   font-weight: 600;
 }
 
-/* ---------- Glass KPI card ---------- */
-.glass {
-  align-self: stretch;
-  margin: -6px 0;
-  width: 442px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-content: center;
-  row-gap: 30px;
-  column-gap: 20px;
-  padding: 20px 26px;
-  border-radius: var(--radius-large);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(var(--navy-rgb), 0.55);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-.kpi {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  min-width: 0;
-}
-.kpiIcon {
-  flex: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
-}
-.kpiText {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-.kpiValue {
-  font-size: 22px;
-  line-height: 1.15;
-  font-weight: 700;
-  color: #fff;
-}
-.kpiLabel {
-  margin-top: 2px;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.9);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.kpiSkel {
-  opacity: 0.25;
-}
-
-@media (max-width: 1439px) {
-  .glass {
-    width: 380px;
-    padding: 18px 20px;
-  }
-}
 @media (max-width: 1199px) {
-  .glass {
-    width: 300px;
-    row-gap: 18px;
-    column-gap: 12px;
-    padding: 16px;
+  .copy {
+    padding: 20px 24px;
   }
-  .kpiIcon {
-    display: none;
+  .title {
+    font-size: 30px;
+  }
+  .subtitle {
+    font-size: 15px;
   }
 }
 @media (max-width: 767px) {
+  .hero {
+    min-height: 0;
+  }
+  .photo {
+    width: 100%;
+    opacity: 0.35;
+  }
+  .copy {
+    padding: 18px 16px;
+  }
+  .title {
+    font-size: 24px;
+  }
+  .subtitle {
+    font-size: 14px;
+  }
   .search {
     margin-top: 14px;
     height: 48px;
@@ -159,7 +165,7 @@
   }
   .searchBtn {
     min-width: 0;
-    height: 44px;
+    height: 40px;
   }
   .pills {
     flex-wrap: nowrap;
@@ -173,29 +179,30 @@
     flex: none;
     height: 36px;
   }
-  .glass {
-    flex: 1;
-    width: auto;
-    margin: 4px 0 0;
-    row-gap: 12px;
-    padding: 14px 16px;
-  }
-  .kpiValue {
-    font-size: 20px;
-  }
-  .kpiLabel {
-    font-size: 13px;
-  }
 }
 
-/* ---------- Short viewports (< 941px tall, ≥ 1024px wide) ---------- */
+/* ---------- Short viewports (< 941px tall, ≥ 1024px wide): fit the dashboard on one screen ---------- */
 @media (min-width: 1024px) and (max-height: 940px) {
+  .hero {
+    min-height: 184px;
+  }
+  .copy {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  .title {
+    font-size: 32px;
+  }
+  .subtitle {
+    margin-top: 4px;
+    font-size: 16px;
+  }
   .search {
     height: 42px;
     margin-top: 12px;
   }
   .searchBtn {
-    height: 36px;
+    height: 34px;
   }
   .pills {
     gap: 10px;
@@ -204,34 +211,38 @@
   .pill {
     height: 28px;
   }
-  .glass {
-    margin: -2px 0;
-    row-gap: 16px;
-    padding-top: 14px;
-    padding-bottom: 14px;
-  }
 }
 @media (min-width: 1024px) and (max-height: 820px) {
+  .hero {
+    min-height: 172px;
+  }
+  .copy {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .title {
+    font-size: 30px;
+  }
+  .subtitle {
+    margin-top: 2px;
+    font-size: 15px;
+  }
   .search {
     height: 40px;
     margin-top: 10px;
   }
   .searchBtn {
-    height: 34px;
+    height: 32px;
   }
   .pills {
     margin-top: 10px;
   }
-  .glass {
-    row-gap: 12px;
-  }
-  .kpiIcon {
-    width: 40px;
-    height: 40px;
-  }
 }
 /* Narrower desktop/rail widths: tighter pills so all seven stay on one line. */
 @media (min-width: 1024px) and (max-width: 1439px) and (max-height: 940px) {
+  .title {
+    font-size: 30px;
+  }
   .pills {
     gap: 8px;
   }
@@ -240,18 +251,30 @@
   }
 }
 @media (min-width: 1024px) and (max-height: 780px) {
+  .hero {
+    min-height: 96px;
+  }
+  .copy {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .title {
+    font-size: 28px;
+  }
+  .subtitle {
+    font-size: 14px;
+  }
   .search {
     height: 38px;
     margin-top: 8px;
   }
   .searchBtn {
-    height: 32px;
+    height: 30px;
   }
   .pills {
     margin-top: 8px;
   }
-  .glass {
-    padding-top: 10px;
-    padding-bottom: 10px;
+  .pill {
+    height: 26px;
   }
 }

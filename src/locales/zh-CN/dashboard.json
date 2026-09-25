@@ -15,13 +15,6 @@
       "reference": "参考号"
     }
   },
-  "kpi": {
-    "label": "货物概况",
-    "active": "进行中货物",
-    "inTransit": "运输中",
-    "atPort": "已到港",
-    "delivered": "已送达"
-  },
   "ltl": {
     "title": "LTL 散货报价",
     "origin": "起运地",
@@ -43,8 +36,8 @@
     "containers": {
       "20": "20' 普柜",
       "40": "40' 普柜",
-      "40HC": "40' 高柜",
-      "45": "45' 高柜"
+      "45": "45' 高柜",
+      "40HC": "40' 高柜"
     },
     "pickupZip": "提货邮编",
     "deliveryZip": "派送邮编",
@@ -92,6 +85,10 @@
   },
   "announcements": {
     "title": "公告",
-    "kinds": { "alert": "警示", "info": "更新", "notice": "通知" }
+    "kinds": {
+      "alert": "警示",
+      "info": "更新",
+      "notice": "通知"
+    }
   }
 }

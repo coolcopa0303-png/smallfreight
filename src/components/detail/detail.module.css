@@ -211,7 +211,7 @@
 }
 
 /* ---------- Short viewports (< 941px tall, ≥ 1024px wide): compact header so the overview fits one screen ---------- */
-@media (min-width: 1024px) and (max-height: 940px) {
+@media (min-width: 1024px) and (max-height: 1080px) {
   .back {
     min-height: 24px;
     margin-top: 0;
@@ -300,7 +300,7 @@
   }
 }
 /* Narrower desktop/rail widths: long values wrap more in the info cards, so the header gives back a little more. */
-@media (min-width: 1024px) and (max-width: 1439px) and (max-height: 940px) {
+@media (min-width: 1024px) and (max-width: 1439px) and (max-height: 1080px) {
   .title {
     font-size: 32px;
   }
@@ -314,7 +314,7 @@
   }
 }
 /* Icon-rail widths (1024–1199): keep the actions beside the title instead of on their own row. */
-@media (min-width: 1024px) and (max-width: 1199px) and (max-height: 940px) {
+@media (min-width: 1024px) and (max-width: 1199px) and (max-height: 1080px) {
   .actions {
     gap: 8px;
   }

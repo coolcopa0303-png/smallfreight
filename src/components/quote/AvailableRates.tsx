@@ -1,6 +1,6 @@
 'use client'
 
-import { ListChecks, Truck } from 'lucide-react'
+import { List, Truck } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { Select } from '@/components/ui/Field'
 import { EmptyState, ErrorState, Skeleton } from '@/components/ui/States'
@@ -36,7 +36,6 @@ export function AvailableRates({ kind, status, result, error, onRetry, summary, 
   const available = rates.filter((r) => r.available).length
   // Selection belongs to one quotation; a new quote resets it without an effect.
   const selectedId = selected && selected.quotation === result?.quotationId ? selected.id : undefined
-  const highlighted = selectedId ?? rates.find((r) => r.available)?.id
 
   const select = (r: RateOption) => {
     setSelected({ quotation: result?.quotationId, id: r.id })
@@ -50,7 +49,7 @@ export function AvailableRates({ kind, status, result, error, onRetry, summary, 
     { value: 'transit', label: t('quotes.rates.sort.transit') },
     { value: 'carrier', label: t('quotes.rates.sort.carrier') },
   ]
-  const Icon = kind === 'ltl' ? ListChecks : Truck
+  const Icon = kind === 'ltl' ? List : Truck
   const title = kind === 'drayage' && status === 'done' ? t('quotes.rates.titleCount', { count: rates.length }) : t('quotes.rates.title')
   const sub =
     kind === 'ltl'
@@ -103,7 +102,7 @@ export function AvailableRates({ kind, status, result, error, onRetry, summary, 
             kind === 'ltl' ? (
               <RateCard key={r.id} rate={r} selected={r.id === selectedId} onSelect={() => select(r)} onDetails={() => setDetails(r)} onRequest={() => setRequest(r)} />
             ) : (
-              <CompactRateCard key={r.id} rate={r} highlighted={r.id === highlighted} onSelect={() => select(r)} onDetails={() => setDetails(r)} onRequest={() => setRequest(r)} />
+              <CompactRateCard key={r.id} rate={r} selected={r.id === selectedId} onSelect={() => select(r)} onDetails={() => setDetails(r)} onRequest={() => setRequest(r)} />
             ),
           )}
         </div>

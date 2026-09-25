@@ -1,6 +1,6 @@
 'use client'
 
-import { ClipboardList, Info } from 'lucide-react'
+import { Info, Map as MapIcon } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { Card } from '@/components/ui/Card'
 import { Skeleton } from '@/components/ui/States'
@@ -10,7 +10,6 @@ import s from './route.module.css'
 export interface PlaceRow {
   label: string
   labelIcon?: ReactNode
-  valueIcon?: ReactNode
   value?: string
   sub?: string
   loading?: boolean
@@ -28,7 +27,7 @@ export interface MetricRow {
 export function RouteDetails({ places, metrics, stacked, children, className }: {
   places: PlaceRow[]
   metrics: MetricRow[]
-  /** Drayage: label column left, icon + value + small sub-line right. */
+  /** Drayage: icon + label column left, value + small sub-line right (left-aligned). */
   stacked?: boolean
   children?: ReactNode
   className?: string
@@ -37,7 +36,7 @@ export function RouteDetails({ places, metrics, stacked, children, className }: 
   return (
     <Card className={[s.details, className].filter(Boolean).join(' ')} aria-labelledby="route-details-title">
       <h2 id="route-details-title" className={s.detailsTitle}>
-        <ClipboardList size={20} className={s.detailsIcon} aria-hidden />
+        <MapIcon size={22} className={s.detailsIcon} aria-hidden />
         {t('quotes.route.title')}
       </h2>
       <dl className={stacked ? s.placesStacked : s.places}>
@@ -48,7 +47,6 @@ export function RouteDetails({ places, metrics, stacked, children, className }: 
               {p.label}
             </dt>
             <dd className={s.placeValue}>
-              {p.valueIcon && <span className={s.valueIcon} aria-hidden>{p.valueIcon}</span>}
               {p.loading ? (
                 <Skeleton width={120} height={14} />
               ) : (
@@ -72,7 +70,7 @@ export function RouteDetails({ places, metrics, stacked, children, className }: 
               {m.loading ? <Skeleton width={70} height={14} /> : (m.value ?? '—')}
               {m.info && (
                 <span className={s.info} title={m.info} tabIndex={0} aria-label={m.info} role="img">
-                  <Info size={17} />
+                  <Info size={15} />
                 </span>
               )}
             </dd>

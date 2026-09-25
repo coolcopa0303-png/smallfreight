@@ -131,22 +131,29 @@
   border-radius: 0 0 8px 8px;
   height: 100%;
 }
-/* Two-line port labels ("City\nPort"): second line lighter. */
+/* Two-line port labels ("City\nPort") in small white boxes: city bold, port regular. */
 .mapBox :global(.leaflet-tooltip) {
   white-space: pre;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.92);
   border: 0;
-  box-shadow: none;
-  padding: 0;
-  color: var(--text-on-dark);
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.75);
-  line-height: 1.45;
-  font-size: 13.5px;
-  font-weight: 500;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(16, 31, 61, 0.14);
+  padding: 4px 9px 5px;
+  color: var(--text-primary);
+  text-shadow: none;
+  line-height: 1.4;
+  font-size: 12.5px;
+  font-weight: 400;
+}
+.mapBox :global(.leaflet-tooltip-bottom) {
+  margin-top: 12px;
 }
 .mapBox :global(.leaflet-tooltip)::first-line {
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13.5px;
+}
+.mapBox :global(.leaflet-marker-icon svg) {
+  filter: drop-shadow(0 1px 2px rgba(16, 31, 61, 0.25));
 }
 .noMap {
   flex: 1 0 204px;
@@ -387,7 +394,7 @@
 }
 
 /* ---------- Short viewports (< 941px tall, ≥ 1024px wide): compact overview so it fits one screen ---------- */
-@media (min-width: 1024px) and (max-height: 940px) {
+@media (min-width: 1024px) and (max-height: 1080px) {
   .overview {
     gap: 8px;
   }
@@ -433,6 +440,17 @@
   .noMap {
     height: 160px;
     flex-basis: 160px;
+  }
+  .mapBox :global(.leaflet-tooltip) {
+    padding: 2px 7px 3px;
+    font-size: 11.5px;
+    line-height: 1.35;
+  }
+  .mapBox :global(.leaflet-tooltip)::first-line {
+    font-size: 12.5px;
+  }
+  .mapBox :global(.leaflet-tooltip-bottom) {
+    margin-top: 10px;
   }
   .statusCard {
     padding: 8px 16px 10px;
@@ -511,7 +529,7 @@
   }
 }
 /* Icon-rail widths (1024–1199): keep route + status side by side and the three info cards in one row. */
-@media (min-width: 1024px) and (max-width: 1199px) and (max-height: 940px) {
+@media (min-width: 1024px) and (max-width: 1199px) and (max-height: 1080px) {
   .topGrid {
     grid-template-columns: minmax(0, 1fr) 340px;
   }
@@ -531,7 +549,7 @@
   }
 }
 /* Narrower desktop/rail widths: give Key Dates a little more room. */
-@media (min-width: 1024px) and (max-width: 1439px) and (max-height: 940px) {
+@media (min-width: 1024px) and (max-width: 1439px) and (max-height: 1080px) {
   .infoGrid {
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr) minmax(0, 1.1fr);
   }
@@ -568,5 +586,14 @@
   .infoBoxPlain {
     margin-top: 5px;
     padding-top: 5px;
+  }
+}
+
+/* 941–1080px tall: compact rows still apply, but give the spare height to the map (reference-v2 05 proportions). */
+@media (min-width: 1200px) and (min-height: 941px) and (max-height: 1080px) {
+  .mapBox,
+  .noMap {
+    height: 250px;
+    flex-basis: 250px;
   }
 }

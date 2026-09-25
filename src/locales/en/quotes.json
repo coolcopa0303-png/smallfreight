@@ -5,9 +5,6 @@
     "shipmentDetails": "Shipment Details"
   },
   "dray": {
-    "breadcrumb": "Breadcrumb",
-    "home": "Dashboard",
-    "crumb": "Drayage Quote",
     "title": "Get a Drayage Quote",
     "subtitle": "Reliable drayage from port to warehouse, rails to distribution, and more.",
     "port": "Port",
@@ -176,8 +173,8 @@
   "container": {
     "20": "20' Standard",
     "40": "40' Standard",
-    "40hc": "40' High Cube",
-    "45": "45' High Cube"
+    "45": "45' High Cube",
+    "40hc": "40' High Cube"
   },
   "fees": {
     "chassis": "Chassis (per day)",

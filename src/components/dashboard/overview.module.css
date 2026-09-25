@@ -1,4 +1,11 @@
 .card {
+  /* Donut + legend palette: brand blue, lighter blue, then grays (reference-v2 01). */
+  --ov-in-transit: var(--brand-primary);
+  --ov-at-port: #6fa8ff;
+  --ov-customs: #b8c4d6;
+  --ov-delivered: #d9dee6;
+  --ov-other: #eceff4;
+  --ov-track: #f1f4f8;
   padding: 8px 20px 8px;
 }
 .body {

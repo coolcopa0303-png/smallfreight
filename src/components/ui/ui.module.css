@@ -324,6 +324,13 @@
   background: currentColor;
   flex: none;
 }
+.chipRing {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  flex: none;
+}
 .tone-blue {
   color: #0b5ff5;
   background: #eaf2ff;

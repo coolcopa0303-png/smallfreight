@@ -8,53 +8,21 @@
   gap: 16px;
 }
 
-/* ---------- Drayage page header (reference 04) ---------- */
-.crumbs {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 10px 0 0 8px;
-  padding: 0;
-  list-style: none;
-  font-size: 14px;
-  font-weight: 500;
-}
-.crumbs a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 5px;
-  color: var(--navy-900);
-}
-.crumbs a:hover {
-  color: var(--brand-primary);
-}
-.crumbSep {
-  display: inline-flex;
-  color: var(--text-muted);
-}
+/* ---------- Plain page header (references 03 / 04): no hero, no breadcrumb ---------- */
 .pageHead {
-  margin: -2px 0 2px 8px;
+  margin: 6px 0 2px 8px;
 }
 .pageTitle {
-  font-size: 34px;
+  font-size: 35px;
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.25;
+  color: var(--navy-900);
 }
 .pageSub {
   font-size: 18px;
   color: var(--text-secondary);
   margin-top: 2px;
-}
-
-.anchor {
-  color: var(--brand-primary);
-}
-.pin {
-  color: var(--danger);
 }
 
 .fallback {
@@ -70,7 +38,6 @@
   .pageSub {
     font-size: 15px;
   }
-  .crumbs,
   .pageHead {
     margin-left: 2px;
   }
@@ -82,11 +49,11 @@
   .pageDray {
     gap: 12px;
   }
-  .crumbs {
+  .pageHead {
     margin-top: 2px;
   }
   .pageTitle {
-    font-size: 30px;
+    font-size: 32px;
   }
   .pageSub {
     font-size: 16px;
@@ -96,6 +63,9 @@
   .page,
   .pageDray {
     gap: 10px;
+  }
+  .pageHead {
+    margin-top: 0;
   }
   .pageTitle {
     font-size: 28px;

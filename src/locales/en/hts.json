@@ -32,7 +32,8 @@
     "noAnswer": "This inquiry has no HTS answer yet.",
     "codeNotFound": "HTS {{code}} is not in the database — showing closest matches.",
     "clear": "Clear selection",
-    "selected": "Selected HTS {{code}}"
+    "selected": "Selected HTS {{code}}",
+    "searchFor": "Search for"
   },
   "additional": {
     "title": "Additional duties from HTS data",
@@ -54,7 +55,10 @@
     "notApplied": "Not Applied",
     "toggle": "Mark {{code}} as {{state}}",
     "remove": "Remove {{code}}",
-    "notComputed": "Exclusions are not deducted from the estimate — confirm eligibility with our customs team."
+    "notComputed": "Exclusions are not deducted from the estimate — confirm eligibility with our customs team.",
+    "placeholder": "Add exclusion codes (optional)",
+    "clearAll": "Remove all exclusion codes",
+    "toggleHint": "Click a code to mark it Applied / Not Applied."
   },
   "actions": {
     "save": "Save to My Inquiries",
@@ -106,7 +110,7 @@
   },
   "detail": {
     "title": "Detailed Breakdown",
-    "export": "Export Results",
+    "export": "Export",
     "colCode": "HTS Code",
     "colDesc": "Description",
     "colRate": "Duty Rate",

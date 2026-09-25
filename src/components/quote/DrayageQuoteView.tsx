@@ -1,7 +1,6 @@
 'use client'
 
-import { Anchor, ArrowRightLeft, ChevronRight, Clock, House, MapPin, Truck } from 'lucide-react'
-import Link from 'next/link'
+import { Anchor, ArrowRightLeft, Clock, MapPin, Truck } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { useCallback, useMemo, useState } from 'react'
 import useSWR from 'swr'
@@ -72,19 +71,10 @@ export function DrayageQuoteView() {
 
   return (
     <div className={`${s.page} ${s.pageDray}`}>
-      <div>
-        <nav aria-label={t('quotes.dray.breadcrumb')}>
-          <ol className={s.crumbs}>
-            <li><Link href="/dashboard" aria-label={t('quotes.dray.home')}><House size={18} fill="currentColor" /></Link></li>
-            <li className={s.crumbSep} aria-hidden><ChevronRight size={16} /></li>
-            <li aria-current="page">{t('quotes.dray.crumb')}</li>
-          </ol>
-        </nav>
-        <header className={s.pageHead}>
-          <h1 className={s.pageTitle}>{t('quotes.dray.title')}</h1>
-          <p className={s.pageSub}>{t('quotes.dray.subtitle')}</p>
-        </header>
-      </div>
+      <header className={s.pageHead}>
+        <h1 className={s.pageTitle}>{t('quotes.dray.title')}</h1>
+        <p className={s.pageSub}>{t('quotes.dray.subtitle')}</p>
+      </header>
       <DrayageQuoteForm
         ports={ports.data}
         portsState={ports.error ? 'error' : ports.data ? 'ready' : 'loading'}
@@ -108,8 +98,8 @@ export function DrayageQuoteView() {
         <RouteDetails
           stacked
           places={[
-            { label: t('quotes.route.originPort'), valueIcon: <Anchor size={18} className={s.anchor} />, value: port ? shortTerminal(port) : undefined, sub: port?.location, loading: !ports.data && !ports.error },
-            { label: t('quotes.route.deliveryDest'), valueIcon: <MapPin size={18} className={s.pin} fill="currentColor" stroke="white" />, value: dest ? formatLocation(dest) : undefined, loading: zip.status === 'loading' },
+            { label: t('quotes.route.originPort'), labelIcon: <Anchor size={18} />, value: port ? shortTerminal(port) : undefined, sub: port?.location, loading: !ports.data && !ports.error },
+            { label: t('quotes.route.deliveryDest'), labelIcon: <MapPin size={18} />, value: dest ? formatLocation(dest) : undefined, loading: zip.status === 'loading' },
           ]}
           metrics={[
             { icon: <ArrowRightLeft size={18} />, label: t('quotes.route.totalMiles'), value: miles, loading: routing },

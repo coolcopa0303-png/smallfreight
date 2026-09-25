@@ -9,10 +9,10 @@ import { CarrierWordmark } from './CarrierWordmark'
 import { daysLabel, moneyDigits } from './quoteUtils'
 import s from './rates.module.css'
 
-/** Drayage rate card (reference 04): compact, equal-width, six across. */
-export function CompactRateCard({ rate, highlighted, onSelect, onDetails, onRequest }: {
+/** Drayage rate card (reference 04): compact, equal-width, six across; outlined actions, selection = blue border. */
+export function CompactRateCard({ rate, selected, onSelect, onDetails, onRequest }: {
   rate: RateOption
-  highlighted: boolean
+  selected: boolean
   onSelect: () => void
   onDetails: () => void
   onRequest: () => void
@@ -21,7 +21,7 @@ export function CompactRateCard({ rate, highlighted, onSelect, onDetails, onRequ
   const titleId = `rate-${rate.id}`
   const ok = rate.available
   return (
-    <article className={s.mini} data-selected={highlighted || undefined} data-unavailable={!ok || undefined} aria-labelledby={titleId}>
+    <article className={s.mini} data-selected={selected || undefined} data-unavailable={!ok || undefined} aria-labelledby={titleId}>
       <div className={s.miniHead}>
         <CarrierWordmark carrier={rate.carrier} size="sm" />
         {rate.carrier !== 'uber' && <h3 id={titleId} className={s.miniName}>{rate.carrierName}</h3>}
@@ -40,8 +40,8 @@ export function CompactRateCard({ rate, highlighted, onSelect, onDetails, onRequ
             <span>USD</span>
           </p>
           <ul className={s.miniFacts}>
-            <li><Clock size={15} aria-hidden />{daysLabel(t, rate.transitDaysMin, rate.transitDaysMax, true)}</li>
             <li><CalendarDays size={15} aria-hidden />{rate.validDays ? t('quotes.rates.validFor', { count: rate.validDays }) : '—'}</li>
+            <li><Clock size={15} aria-hidden />{daysLabel(t, rate.transitDaysMin, rate.transitDaysMax, true)}</li>
             <li><Truck size={15} aria-hidden />{t(`quotes.service.${rate.serviceType}Short`)}</li>
           </ul>
           {rate.breakdown?.length ? (
@@ -49,8 +49,8 @@ export function CompactRateCard({ rate, highlighted, onSelect, onDetails, onRequ
               {t('quotes.rates.terminalFeesNote')}
             </button>
           ) : null}
-          <Button variant={highlighted ? 'primary' : 'secondary'} block className={s.miniBtn} onClick={onSelect}>
-            {t('quotes.rates.select')}
+          <Button variant="secondary" block className={s.miniBtn} onClick={onSelect} aria-pressed={selected}>
+            {selected ? t('quotes.rates.selected') : t('quotes.rates.select')}
           </Button>
         </>
       ) : (

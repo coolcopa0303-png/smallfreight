@@ -1,9 +1,9 @@
 'use client'
 
-import { Bookmark, Calculator, CalendarDays, Info, MessageSquarePlus, Plane, RotateCw, Ship, TrainFront, Truck } from 'lucide-react'
+import { Bookmark, CalendarDays, Info, MessageSquarePlus, Plane, Ship, TrainFront, Truck } from 'lucide-react'
 import { useId, useMemo, type MouseEvent } from 'react'
 import { Button } from '@/components/ui/Button'
-import { Card, CardHeader } from '@/components/ui/Card'
+import { Card } from '@/components/ui/Card'
 import { Field, Input, Select } from '@/components/ui/Field'
 import { Flag } from '@/components/ui/misc'
 import { useI18n } from '@/i18n/I18nProvider'
@@ -55,17 +55,16 @@ export function CalculatorCard({ api, initialQuery, onSave, onAsk, onCalculate }
 
   return (
     <Card className={s.card}>
-      <CardHeader
-        icon={<Calculator size={28} strokeWidth={1.8} />}
-        title={t('hts.calc.title')}
-        className={s.head}
-        action={
+      <header className={s.head}>
+        <div className={s.titleRow}>
+          <h1 className={s.title}>{t('hts.hero.title')}</h1>
           <button type="button" className={s.askLink} onClick={onAsk}>
-            <MessageSquarePlus size={15} aria-hidden />
+            <MessageSquarePlus size={14} aria-hidden />
             <span className={s.askLead}>{t('hts.actions.askLead')}</span> {t('hts.actions.ask')}
           </button>
-        }
-      />
+        </div>
+        <p className={s.subtitle}>{t('hts.hero.subtitle')}</p>
+      </header>
 
       <Field label={t('hts.calc.product')} info={t('hts.calc.productInfo')} htmlFor={ids.product} error={errors.item && t(errors.item)} className={s.productField}>
         <HtsSearchInput key={api.resetKey} id={ids.product} value={form.item} onChange={api.setItem} initialQuery={api.resetKey === 0 ? initialQuery : undefined} invalid={!!errors.item} />
@@ -115,13 +114,13 @@ export function CalculatorCard({ api, initialQuery, onSave, onAsk, onCalculate }
       <ExclusionCodes items={form.exclusions} onAdd={api.addExclusion} onToggle={api.toggleExclusion} onRemove={api.removeExclusion} />
 
       <div className={s.actions}>
-        <Button variant="secondary" size="lg" leading={<Bookmark size={18} />} onClick={onSave}>
+        <Button variant="secondary" size="lg" leading={<Bookmark size={18} />} onClick={onSave} className={s.saveBtn}>
           {t('hts.actions.save')}
         </Button>
-        <Button variant="neutral" size="lg" leading={<RotateCw size={17} />} onClick={api.reset}>
+        <Button variant="secondary" size="lg" onClick={api.reset} className={s.resetBtn}>
           {t('hts.actions.reset')}
         </Button>
-        <Button size="lg" leading={<Calculator size={18} />} onClick={onCalculate} className={s.calcBtn}>
+        <Button size="lg" onClick={onCalculate} className={s.calcBtn}>
           {t('hts.actions.calculate')}
         </Button>
       </div>

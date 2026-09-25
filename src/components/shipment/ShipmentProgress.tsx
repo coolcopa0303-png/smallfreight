@@ -5,7 +5,7 @@ import type { Milestone } from '@/domain/types'
 import { useI18n } from '@/i18n/I18nProvider'
 import s from './shipment.module.css'
 
-/** Six-step tracking progress used in list rows (reference 02). All-green when delivered. */
+/** Six-step tracking progress used in list rows (reference 02). Calm palette: reached steps are brand blue, including delivered shipments. */
 export function ShipmentProgress({ milestones, delivered, compact }: { milestones: Milestone[]; delivered: boolean; compact?: boolean }) {
   const { t } = useI18n()
   const label = milestones.map((m) => `${t(`status.milestone.${m.key}`)}: ${m.state === 'upcoming' ? '—' : '✓'}`).join(', ')

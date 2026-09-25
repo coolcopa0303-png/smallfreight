@@ -1,28 +1,53 @@
+/* Duty calculator form card (reference-v2 06): calm white card, navy text, brand blue only for focus/selection. */
 .card {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  padding: 18px 22px 16px;
+  gap: 14px;
+  padding: 22px 24px 22px;
 }
 .head {
-  gap: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 4px;
 }
-.head h2 {
-  font-size: 22px;
+.titleRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.title {
+  flex: none;
+  white-space: nowrap;
+  font-size: 34px;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+.subtitle {
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--text-secondary);
 }
 .askLink {
+  flex: none;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  min-height: 32px;
-  padding: 0 4px;
+  gap: 5px;
+  min-height: 28px;
+  padding: 0 2px;
   border: 0;
   border-radius: 6px;
   background: transparent;
   color: var(--brand-primary);
-  font-size: 13px;
-  font-weight: 600;
-  text-align: right;
+  font-size: 12.5px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.askLink svg {
+  color: var(--text-muted);
 }
 .askLink:hover {
   color: var(--brand-primary-hover);
@@ -36,12 +61,13 @@
 .productField label,
 .grid2 label {
   font-size: 15px;
+  font-weight: 500;
 }
 
 .grid2 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px 20px;
+  gap: 14px 26px;
 }
 .flagSelect select {
   padding-left: 12px;
@@ -85,9 +111,10 @@
 
 /* ---------- Sections (additional duties / exclusions) ---------- */
 .section {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 .sectionLabel {
   display: inline-flex;
@@ -99,13 +126,10 @@
   padding: 0;
 }
 .countTag {
-  margin-left: 4px;
-  padding: 1px 8px;
-  border-radius: var(--radius-pill);
-  background: var(--brand-primary-soft);
-  color: var(--brand-primary);
+  margin-left: 2px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
+  color: var(--text-muted);
 }
 
 .addBox {
@@ -118,184 +142,236 @@
   gap: 6px;
 }
 .addBox > legend {
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 .addList {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px 8px;
 }
+/* Quiet checkbox chips: light border, brand tint only when selected. */
 .addRow {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   max-width: 100%;
-  min-height: 34px;
-  padding: 4px 12px 4px 10px;
+  min-height: 32px;
+  padding: 3px 11px 3px 9px;
   border: 1px solid var(--border);
-  border-radius: var(--radius-input);
+  border-radius: 6px;
   background: var(--surface);
   font-size: 13px;
+  color: var(--text-secondary);
   cursor: pointer;
   transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
 }
 .addRow:hover {
   border-color: #bfcbdc;
-  background: var(--bg-muted);
 }
 .addRow[data-checked='true'] {
-  border-color: var(--brand-primary);
+  border-color: rgba(var(--brand-primary-rgb), 0.45);
   background: var(--brand-primary-soft);
+  color: var(--brand-primary);
 }
 .addRow:focus-within {
   box-shadow: var(--focus-ring);
 }
 .addRow input {
   flex: none;
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   margin: 0;
   accent-color: var(--brand-primary);
   cursor: pointer;
 }
 .addRate {
   flex: none;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-primary);
   font-variant-numeric: tabular-nums;
 }
+.addRow[data-checked='true'] .addRate {
+  color: var(--brand-primary);
+}
 .addLabel {
   min-width: 0;
-  color: var(--text-secondary);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-/* ---------- Exclusion rows (reference: coloured left bar + code chip + status tag + ×) ---------- */
+/* ---------- Exclusion codes: one multi-select-style field with removable chips ---------- */
+.exField {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 5px 6px 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-input);
+  background: var(--surface);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.exField:hover {
+  border-color: #bfcbdc;
+}
+.exField[data-open='true'] {
+  border-color: var(--brand-primary);
+  box-shadow: var(--focus-ring);
+}
 .exList {
+  flex: 1;
+  min-width: 0;
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 6px;
 }
-.exRow {
-  position: relative;
-  display: flex;
+.exItem {
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  min-height: 38px;
-  padding: 3px 6px 3px 16px;
-  border: 1px solid var(--border-card);
-  border-radius: var(--radius-input);
-  background: var(--surface);
-  overflow: hidden;
+  gap: 6px;
+  min-width: 0;
+  max-width: 100%;
 }
-.exRow::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: var(--warning);
-}
-.exRow[data-applied='true']::before {
-  background: var(--brand-primary);
-}
-.exCode {
+/* Gray code chip with its own ×; brand tint when marked applied. */
+.exCodeChip {
   flex: none;
-  padding: 4px 10px;
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
   border-radius: 5px;
   background: var(--neutral-soft);
+  transition: background-color var(--dur-fast) var(--ease);
+}
+.exCodeChip[data-applied='true'] {
+  background: var(--brand-primary-soft);
+}
+.exChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+  padding: 0 4px 0 10px;
+  border: 0;
+  border-radius: 5px 0 0 5px;
+  background: transparent;
   color: var(--text-primary);
   font-size: 14px;
   font-weight: 500;
+  cursor: pointer;
 }
-.exRow[data-applied='true'] .exCode {
-  background: var(--brand-primary-soft);
+.exChip:hover {
+  text-decoration: underline;
+  text-decoration-color: #b9c6d8;
+  text-underline-offset: 3px;
+}
+.exChip[aria-pressed='true'] {
   color: var(--brand-primary);
 }
-.exNote {
+.exNoteChip {
   min-width: 0;
   flex: 0 1 auto;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  border-radius: 5px;
+  background: var(--brand-primary-soft);
+  color: var(--brand-primary);
+  font-size: 13px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 13px;
-  color: var(--text-secondary);
 }
-.exState {
+.exChipX,
+.exTool {
   flex: none;
-  height: 26px;
-  padding: 0 10px;
-  border: 0;
-  border-radius: 5px;
-  background: var(--danger-soft);
-  color: var(--danger-strong);
-  font-size: 13px;
-  font-weight: 500;
-  transition: background-color var(--dur-fast) var(--ease);
-}
-.exState:hover {
-  filter: brightness(0.97);
-}
-.exState[aria-pressed='true'] {
-  background: var(--success-soft);
-  color: var(--success-strong);
-}
-.exRemove {
-  flex: none;
-  margin-left: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
   border: 0;
   border-radius: 6px;
   background: transparent;
   color: var(--text-secondary);
 }
-.exRemove:hover {
+.exChipX {
+  width: 24px;
+  height: 24px;
+  margin-right: 3px;
+  color: var(--text-muted);
+}
+.exTool {
+  width: 30px;
+  height: 30px;
+}
+.exChipX:hover,
+.exTool:hover {
   background: var(--neutral-soft);
-  color: var(--danger-strong);
+  color: var(--text-primary);
 }
-.addBar {
-  display: flex;
-  align-items: center;
-  gap: 8px 14px;
-}
-.addBar p {
-  line-height: 1.35;
-}
-.addBtn {
+.exTools {
   flex: none;
-  height: 36px;
-  font-weight: 500;
-}
-.exForm {
+  margin-left: auto;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
+  gap: 2px;
+}
+.exChevron {
+  transition: transform var(--dur) var(--ease);
+}
+.exTool[aria-expanded='true'] .exChevron {
+  transform: rotate(180deg);
+}
+.exPlaceholder {
+  flex: 1;
+  min-width: 0;
+  height: 30px;
+  padding: 0 2px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  font-size: 14px;
+  color: #9aa8bb;
+  cursor: pointer;
+}
+/* Add panel opens upward over the fields above (the field sits near the card bottom) so it never grows the page. */
+.exPanel {
+  position: absolute;
+  z-index: 40;
+  left: 0;
+  right: 0;
+  bottom: 50px;
+  display: flex;
+  flex-direction: column;
   gap: 8px;
-  padding: 10px;
-  border: 1px dashed var(--border);
-  border-radius: var(--radius-input);
-  background: var(--bg-muted);
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-pop);
+  animation: fadeIn var(--dur) var(--ease);
 }
 .exFormFields {
-  flex: 1 1 320px;
   display: grid;
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
   gap: 8px;
 }
 .exFormFields > div {
-  height: 36px;
+  height: 38px;
+}
+.exPanelFoot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.exPanelFoot p {
+  flex: 1;
+  line-height: 1.35;
 }
 .exFormActions {
+  flex: none;
   display: flex;
   gap: 4px;
 }
@@ -305,14 +381,23 @@
   margin-top: auto;
   display: flex;
   gap: 14px;
+  padding-top: 4px;
 }
 .actions > button {
   flex: 1 1 auto;
-  padding: 0 14px;
+  padding: 0 18px;
   font-weight: 500;
 }
+.actions > .saveBtn {
+  flex-grow: 0;
+}
+.actions > .resetBtn {
+  flex-grow: 0;
+  margin-left: auto;
+  min-width: 128px;
+}
 .actions > .calcBtn {
-  flex-grow: 1.6;
+  flex: 0 1 176px;
   font-weight: 600;
 }
 
@@ -343,13 +428,31 @@
   .askLead {
     display: none;
   }
+  .actions {
+    gap: 10px;
+  }
+  .actions > button {
+    padding: 0 14px;
+  }
+  .actions > .resetBtn {
+    min-width: 0;
+  }
 }
-/* Narrow calculator column (two-column layout below 1440px wide): let the three buttons wrap so
-   "Calculate Duties" drops to its own full-width row instead of overflowing the card. */
+/* Narrow calculator column (two-column layout below 1440px wide): Save + Reset share a row and
+   "Calculate Duties" takes its own full-width row instead of overflowing the card. */
 @media (min-width: 768px) and (max-width: 1439px) {
   .actions {
     flex-wrap: wrap;
     row-gap: 10px;
+  }
+  .actions > .saveBtn,
+  .actions > .resetBtn {
+    flex: 1 1 0;
+    margin-left: 0;
+    white-space: nowrap;
+  }
+  .actions > .calcBtn {
+    flex: 1 0 100%;
   }
 }
 @media (max-width: 767px) {
@@ -357,8 +460,11 @@
     padding: 16px;
     gap: 16px;
   }
-  .head h2 {
-    font-size: 19px;
+  .title {
+    font-size: 26px;
+  }
+  .titleRow {
+    flex-wrap: wrap;
   }
   .grid2 {
     grid-template-columns: minmax(0, 1fr);
@@ -370,36 +476,82 @@
   .actions {
     flex-direction: column;
   }
+  .actions > button,
+  .actions > .calcBtn {
+    flex: none;
+    margin-left: 0;
+  }
   .actions > :last-child {
     order: -1;
   }
-  .exRemove,
-  .addBtn {
+  .exChipX,
+  .exTool {
     min-height: 44px;
     min-width: 44px;
   }
   .exFormFields {
     grid-template-columns: minmax(0, 1fr);
   }
-  .addBar {
+  .exPanelFoot {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
   }
   .addRow {
     min-height: 44px;
   }
 }
 
-/* Short, narrow viewports (icon-rail widths, ≤ 780px tall): tighter calculator spacing. */
-@media (min-width: 1024px) and (max-width: 1199px) and (max-height: 780px) {
+/* Short desktop viewports (< 941px tall): tighter vertical rhythm so the form fits one screen. */
+@media (min-width: 1024px) and (max-height: 940px) {
   .card {
-    gap: 10px;
-    padding: 10px 18px;
+    gap: 11px;
+    padding: 16px 22px 16px;
+  }
+  .head {
+    margin-bottom: 2px;
+    gap: 2px;
+  }
+  .title {
+    font-size: 30px;
+  }
+  .subtitle {
+    font-size: 14px;
   }
   .grid2 {
     row-gap: 10px;
   }
+  .addBox > legend {
+    margin-bottom: 4px;
+  }
+  .addRow {
+    min-height: 30px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+  .exField {
+    min-height: 42px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  .exCodeChip,
+  .exNoteChip {
+    height: 28px;
+    line-height: 28px;
+  }
   .actions {
+    padding-top: 2px;
+  }
+}
+@media (min-width: 1024px) and (max-height: 820px) {
+  .card {
+    gap: 9px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .title {
+    font-size: 27px;
+  }
+  .grid2 {
     row-gap: 8px;
   }
 }

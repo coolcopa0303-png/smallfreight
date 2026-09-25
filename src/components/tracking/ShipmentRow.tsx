@@ -42,7 +42,8 @@ export function ShipmentRow({ sh }: { sh: Shipment }) {
         <FlagLocation place={sh.destination} />
       </div>
       <div className={s.cProgress}>
-        <ShipmentProgress milestones={sh.milestones} delivered={sh.status === 'delivered'} />
+        {/* Calm list: reached steps stay brand blue for delivered rows too (no all-green rows). */}
+        <ShipmentProgress milestones={sh.milestones} delivered={false} />
       </div>
       <div className={s.cStatus}>
         <StatusChip status={sh.status} completed={sh.completed} />

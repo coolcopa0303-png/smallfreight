@@ -12,7 +12,6 @@ export function Sidebar() {
   const pathname = usePathname()
   return (
     <aside className={s.sidebar} aria-label={t('nav.menu')}>
-      <div className={s.sidebarArt} aria-hidden />
       <Link href="/dashboard" className={s.logo} aria-label="SMALL FREIGHT — Dashboard">
         <LogoMark className={s.logoMark} />
         <span className={s.logoText}>
@@ -48,7 +47,6 @@ export function Sidebar() {
           )
         })}
       </nav>
-      <p className={s.tagline}>{t('common.brand.tagline')}</p>
     </aside>
   )
 }

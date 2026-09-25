@@ -15,7 +15,7 @@
   justify-content: center;
   width: 34px;
   height: 32px;
-  border: 2.5px solid var(--brand-primary);
+  border: 2px solid var(--brand-primary);
   border-radius: 6px;
   color: var(--brand-primary);
   flex: none;
@@ -29,6 +29,7 @@
   min-width: 0;
 }
 .title {
+  color: var(--navy-900);
   font-size: 17px;
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -105,10 +106,6 @@
 }
 .card[data-selected] {
   border-color: var(--brand-primary);
-  box-shadow: 0 0 0 1px var(--brand-primary), var(--shadow-hover);
-}
-.card[data-unavailable] {
-  background: var(--bg-muted);
 }
 .cardTop {
   display: grid;
@@ -142,6 +139,7 @@
   text-align: right;
 }
 .price strong {
+  color: var(--navy-900);
   font-size: 21px;
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -169,7 +167,7 @@
   min-width: 0;
 }
 .facts li > svg {
-  color: var(--text-secondary);
+  color: var(--text-muted);
   flex: none;
 }
 .facts b,
@@ -192,9 +190,9 @@
 }
 .dot,
 .naDot {
-  width: 10px;
-  height: 10px;
-  margin: 0 5px;
+  width: 8px;
+  height: 8px;
+  margin: 0 6px;
   border-radius: 50%;
   background: var(--success);
   flex: none;
@@ -272,7 +270,6 @@
 }
 .mini[data-selected] {
   border-color: var(--brand-primary);
-  box-shadow: 0 0 0 1px var(--brand-primary), var(--shadow-hover);
 }
 .miniHead {
   display: flex;
@@ -304,8 +301,8 @@
   color: var(--text-muted);
 }
 .miniInfo:hover {
-  background: var(--brand-primary-soft);
-  color: var(--brand-primary);
+  background: var(--bg-muted);
+  color: var(--text-primary);
 }
 .miniPrice {
   display: flex;
@@ -314,6 +311,7 @@
   margin-top: 12px;
 }
 .miniPrice strong {
+  color: var(--navy-900);
   font-size: 22px;
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -339,7 +337,7 @@
   white-space: nowrap;
 }
 .miniFacts svg {
-  color: var(--text-primary);
+  color: var(--text-muted);
   flex: none;
 }
 .feesLink {
@@ -361,6 +359,7 @@
   font-weight: 500;
 }
 .miniNaTitle {
+  color: var(--navy-900);
   margin-top: 14px;
   font-size: 19px;
   font-weight: 700;

@@ -3,7 +3,6 @@
 import { ArrowRightLeft, Clock, MapPin, Truck } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { useMemo } from 'react'
-import { PageHero } from '@/components/layout/PageHero'
 import type { MapMarker } from '@/components/map/RouteMap'
 import { useI18n } from '@/i18n/I18nProvider'
 import { fmtNumber } from '@/i18n/format'
@@ -42,7 +41,10 @@ export function LtlQuoteView() {
 
   return (
     <div className={s.page}>
-      <PageHero image="truck" height={120} compactHeight={104} position="center 40%" title={t('quotes.ltl.title')} subtitle={t('quotes.ltl.subtitle')} />
+      <header className={s.pageHead}>
+        <h1 className={s.pageTitle}>{t('quotes.ltl.title')}</h1>
+        <p className={s.pageSub}>{t('quotes.ltl.subtitle')}</p>
+      </header>
       <LtlQuoteForm
         origin={origin}
         destination={destination}
@@ -60,8 +62,8 @@ export function LtlQuoteView() {
         />
         <RouteDetails
           places={[
-            { label: t('quotes.form.origin'), labelIcon: <MapPin size={17} />, valueIcon: <MapPin size={17} />, value: o ? formatLocation(o) : undefined, loading: origin.status === 'loading' },
-            { label: t('quotes.form.destination'), labelIcon: <MapPin size={17} />, valueIcon: <MapPin size={17} />, value: d ? formatLocation(d) : undefined, loading: destination.status === 'loading' },
+            { label: t('quotes.form.origin'), labelIcon: <MapPin size={18} />, value: o ? formatLocation(o) : undefined, loading: origin.status === 'loading' },
+            { label: t('quotes.form.destination'), labelIcon: <MapPin size={18} />, value: d ? formatLocation(d) : undefined, loading: destination.status === 'loading' },
           ]}
           metrics={[
             { icon: <ArrowRightLeft size={18} />, label: t('quotes.route.totalMiles'), value: miles, loading: routing },

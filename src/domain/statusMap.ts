@@ -7,13 +7,13 @@ export const MILESTONE_ORDER: MilestoneKey[] = ['booked', 'inTransit', 'atPort',
 
 export type StatusTone = 'blue' | 'orange' | 'purple' | 'green' | 'gray' | 'red'
 
-/** Chip colours (spec §4.5) + i18n keys. */
+/** Chip colours + i18n keys. Calm palette (reference-v2): active states share brand blue, finished/pending are gray, only exceptions are red. */
 export const STATUS_META: Record<ShipmentStatus, { tone: StatusTone; labelKey: string }> = {
   inTransit: { tone: 'blue', labelKey: 'status.inTransit' },
-  atPort: { tone: 'orange', labelKey: 'status.atPort' },
-  customs: { tone: 'purple', labelKey: 'status.customs' },
+  atPort: { tone: 'blue', labelKey: 'status.atPort' },
+  customs: { tone: 'blue', labelKey: 'status.customs' },
   outForDelivery: { tone: 'blue', labelKey: 'status.outForDelivery' },
-  delivered: { tone: 'green', labelKey: 'status.delivered' },
+  delivered: { tone: 'gray', labelKey: 'status.delivered' },
   pending: { tone: 'gray', labelKey: 'status.pending' },
   exception: { tone: 'red', labelKey: 'status.exception' },
 }

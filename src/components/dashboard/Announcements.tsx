@@ -1,6 +1,6 @@
 'use client'
 
-import { CircleAlert, FileText, Info, Megaphone } from 'lucide-react'
+import { CalendarDays, FileText, Info, Megaphone } from 'lucide-react'
 import { Card, CardHeader, ViewAllLink } from '@/components/ui/Card'
 import { useI18n } from '@/i18n/I18nProvider'
 import { fmtDate } from '@/i18n/format'
@@ -8,9 +8,10 @@ import { ANNOUNCEMENTS, type Announcement } from '@/services/announcements'
 import s from './announcements.module.css'
 
 function KindIcon({ kind }: { kind: Announcement['kind'] }) {
-  if (kind === 'alert') return <CircleAlert size={22} className={s.alert} fill="currentColor" stroke="var(--surface)" strokeWidth={2.2} />
-  if (kind === 'info') return <Info size={22} className={s.info} fill="currentColor" stroke="var(--surface)" strokeWidth={2.2} />
-  return <FileText size={22} className={s.notice} strokeWidth={1.8} />
+  // Neutral line icons (reference-v2 01): alert → info circle, info → document, notice → calendar.
+  if (kind === 'alert') return <Info size={22} fill="currentColor" stroke="var(--surface)" strokeWidth={2.2} />
+  if (kind === 'info') return <FileText size={22} strokeWidth={1.8} />
+  return <CalendarDays size={22} strokeWidth={1.8} />
 }
 
 /** Static announcements until a CMS endpoint exists (spec §5.4, right-bottom). */

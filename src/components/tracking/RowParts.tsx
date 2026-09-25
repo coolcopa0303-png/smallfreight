@@ -36,7 +36,7 @@ export function ModeBadge({ sh }: { sh: Shipment }) {
   const truck = sh.transport === 'truck'
   return (
     <div className={s.mode}>
-      <Badge tone={truck ? 'green' : 'blue'}>{truck ? t('shipments.tracking.drayage') : sh.mode}</Badge>
+      <Badge tone={truck ? 'gray' : 'blue'}>{truck ? t('shipments.tracking.drayage') : sh.mode}</Badge>
       <span className={s.modeCaption}>{t(`common.mode.${sh.transport}`)}</span>
     </div>
   )

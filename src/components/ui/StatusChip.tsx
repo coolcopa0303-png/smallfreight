@@ -1,5 +1,6 @@
 'use client'
 
+import { CircleCheck } from 'lucide-react'
 import { STATUS_META, type StatusTone } from '@/domain/statusMap'
 import type { ShipmentStatus } from '@/domain/types'
 import { useI18n } from '@/i18n/I18nProvider'
@@ -17,7 +18,8 @@ export function StatusChip({ status, completed, size = 'md', variant = 'dot' }: 
   const label = completed ? t('status.completed') : t(meta.labelKey)
   return (
     <span className={[s.chip, size === 'sm' && s.chipSm, s[`tone-${meta.tone}`]].filter(Boolean).join(' ')}>
-      {variant === 'dot' && <span className={s.chipDot} aria-hidden />}
+      {variant === 'dot' &&
+        (status === 'delivered' ? <CircleCheck size={14} strokeWidth={2.2} aria-hidden /> : <span className={s.chipRing} aria-hidden />)}
       {label}
     </span>
   )

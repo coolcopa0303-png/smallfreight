@@ -1,4 +1,4 @@
-import { BarChart3, Boxes, FileText, Home, LifeBuoy, MessageSquareText, Search, Truck, BookUser, type LucideIcon } from 'lucide-react'
+import { BarChart3, BookUser, CircleHelp, FileText, Home, MessageSquareText, Package, Search, Truck, type LucideIcon } from 'lucide-react'
 
 export interface NavEntry {
   href: string
@@ -25,10 +25,10 @@ export const NAV: NavEntry[] = [
   },
   { href: '/hts', labelKey: 'nav.htsSearch', icon: Search },
   { href: '/address-book', labelKey: 'nav.addressBook', icon: BookUser },
-  { href: '/my-shipments', labelKey: 'nav.myShipments', icon: Boxes },
+  { href: '/my-shipments', labelKey: 'nav.myShipments', icon: Package },
   { href: '/my-inquiries', labelKey: 'nav.myInquiries', icon: MessageSquareText },
   { href: '/analytics', labelKey: 'nav.analytics', icon: BarChart3 },
-  { href: '/help', labelKey: 'nav.help', icon: LifeBuoy },
+  { href: '/help', labelKey: 'nav.help', icon: CircleHelp },
 ]
 
 /** Shipment detail belongs to "My Shipments" (reference 05); list pages own their own prefix. */

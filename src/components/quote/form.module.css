@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
+  color: var(--navy-900);
   font-size: 19px;
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -80,8 +81,8 @@
   color: var(--text-secondary);
 }
 .iconBtn:hover {
-  background: var(--brand-primary-soft);
-  color: var(--brand-primary);
+  background: var(--bg-muted);
+  color: var(--text-primary);
 }
 .trailingText {
   font-weight: 500;
@@ -102,9 +103,7 @@
 
 /* ---------- More options disclosure ---------- */
 .more {
-  margin-top: 8px;
-  border-top: 1px solid var(--border-soft);
-  padding-top: 4px;
+  margin-top: 4px;
 }
 .moreHead {
   display: flex;
@@ -118,31 +117,32 @@
   gap: 6px;
   margin-left: auto;
   font-size: 12px;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   text-align: right;
 }
 .classNote svg {
   flex: none;
-  color: var(--brand-primary);
+  color: var(--text-muted);
 }
 .moreToggle {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   flex: none;
-  min-height: 32px;
+  min-height: 28px;
   border: 0;
   background: transparent;
   padding: 2px 4px;
   margin-left: -4px;
   border-radius: 6px;
   color: var(--brand-primary);
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 12.5px;
+  font-weight: 500;
   text-align: left;
 }
 .moreToggle:hover {
-  background: var(--bg-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 .chev {
   transition: transform var(--dur) var(--ease);
@@ -152,7 +152,7 @@
 }
 .moreSummary {
   min-width: 0;
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text-muted);
   font-weight: 400;
   white-space: nowrap;
@@ -279,7 +279,7 @@
 }
 .pickItem:hover {
   border-color: var(--brand-primary);
-  background: var(--brand-primary-soft);
+  background: var(--surface);
 }
 .pickIcon {
   margin-top: 2px;
@@ -382,8 +382,7 @@
     margin-top: 6px;
   }
   .more {
-    margin-top: 6px;
-    padding-top: 2px;
+    margin-top: 2px;
   }
 }
 /* Icon-rail widths (1024–1199): keep the one-row desktop form instead of the stacked tablet grid. */

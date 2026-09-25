@@ -151,7 +151,7 @@
   font-size: 12.5px;
 }
 .isf[data-state='matched'] {
-  color: var(--success-strong);
+  color: var(--text-primary);
 }
 .isf[data-state='notMatched'] {
   color: var(--danger-strong);
@@ -160,7 +160,7 @@
 .pga {
   font-size: 12.5px;
   font-weight: 500;
-  color: var(--warning-strong);
+  color: var(--text-secondary);
 }
 .release {
   display: inline-flex;
@@ -175,11 +175,19 @@
   border-radius: 50%;
   background: currentColor;
 }
+/* Neutral release states (calm palette): released = dark text + filled dot, not released = gray + hollow dot. */
 .release[data-state='released'] {
-  color: var(--success-strong);
+  color: var(--text-primary);
+}
+.release[data-state='released'] .releaseDot {
+  background: var(--text-secondary);
 }
 .release[data-state='notReleased'] {
-  color: var(--warning-strong);
+  color: var(--text-secondary);
+}
+.release[data-state='notReleased'] .releaseDot {
+  background: transparent;
+  border: 1.5px solid var(--neutral);
 }
 .statusCell {
   display: inline-flex;

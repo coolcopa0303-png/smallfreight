@@ -55,7 +55,10 @@
 }
 .svc .ctl > span:last-child:not(:first-child) {
   font-size: 12px;
-  padding: 0 10px;
+  font-weight: 500;
+  padding: 0 12px;
+  background: var(--surface);
+  color: var(--text-primary);
 }
 .cta {
   height: 34px;

@@ -5,17 +5,24 @@ import { useMemo } from 'react'
 import { countByStatus } from '@/adapters/shipmentAdapter'
 import { Card, CardHeader, ViewAllLink } from '@/components/ui/Card'
 import { ErrorState, Skeleton } from '@/components/ui/States'
-import { STATUS_META } from '@/domain/statusMap'
 import { useShipments } from '@/hooks/useData'
 import { useI18n } from '@/i18n/I18nProvider'
 import { fmtNumber } from '@/i18n/format'
 import s from './overview.module.css'
-import { TONE_COLOR } from './tone'
 
-const R = 57
-const STROKE = 20
+const R = 54
+const STROKE = 24
 const C = 2 * Math.PI * R
 const GAP = 2
+
+/** Calm blue/gray donut palette (reference-v2 01) — values are the CSS variables on `.card` in overview.module.css. */
+const SLICE_COLOR = {
+  inTransit: 'var(--ov-in-transit)',
+  atPort: 'var(--ov-at-port)',
+  customs: 'var(--ov-customs)',
+  delivered: 'var(--ov-delivered)',
+  other: 'var(--ov-other)',
+} as const
 
 interface Slice {
   key: string
@@ -33,7 +40,7 @@ function Donut({ slices, total, centerLabel }: { slices: Slice[]; total: number;
   return (
     <div className={s.donut}>
       <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} aria-hidden>
-        <circle cx={c} cy={c} r={R} fill="none" stroke="var(--neutral-soft)" strokeWidth={STROKE} />
+        <circle cx={c} cy={c} r={R} fill="none" stroke="var(--ov-track)" strokeWidth={STROKE} />
         {total > 0 &&
           visible.map((x) => {
             const len = (x.count / total) * C
@@ -64,7 +71,7 @@ function Donut({ slices, total, centerLabel }: { slices: Slice[]; total: number;
   )
 }
 
-/** Status mix donut — same colours as the status chips (spec §5.4, right-top). No map here. */
+/** Status mix donut in calm blue/gray shades (spec §5.4, right-top; reference-v2 01). No map here. */
 export function ShipmentOverview() {
   const { t, lang } = useI18n()
   const { data, error, isLoading, mutate } = useShipments()
@@ -72,10 +79,10 @@ export function ShipmentOverview() {
 
   const slices: Slice[] = c
     ? [
-        { key: 'inTransit', label: t('dashboard.overview.legend.inTransit'), count: c.inTransit + c.outForDelivery, color: TONE_COLOR[STATUS_META.inTransit.tone] },
-        { key: 'atPort', label: t('dashboard.overview.legend.atPort'), count: c.atPort, color: TONE_COLOR[STATUS_META.atPort.tone] },
-        { key: 'customs', label: t('dashboard.overview.legend.customs'), count: c.customs, color: TONE_COLOR[STATUS_META.customs.tone] },
-        { key: 'delivered', label: t('dashboard.overview.legend.delivered'), count: c.delivered, color: TONE_COLOR[STATUS_META.delivered.tone] },
+        { key: 'inTransit', label: t('dashboard.overview.legend.inTransit'), count: c.inTransit + c.outForDelivery, color: SLICE_COLOR.inTransit },
+        { key: 'atPort', label: t('dashboard.overview.legend.atPort'), count: c.atPort, color: SLICE_COLOR.atPort },
+        { key: 'customs', label: t('dashboard.overview.legend.customs'), count: c.customs, color: SLICE_COLOR.customs },
+        { key: 'delivered', label: t('dashboard.overview.legend.delivered'), count: c.delivered, color: SLICE_COLOR.delivered },
       ]
     : []
   const other = c ? c.pending + c.exception : 0
@@ -104,7 +111,7 @@ export function ShipmentOverview() {
         </div>
       ) : (
         <div className={s.body} role="img" aria-label={chartLabel}>
-          <Donut slices={[...slices, { key: 'other', label: '', count: other, color: TONE_COLOR.gray }]} total={c.all} centerLabel={t('dashboard.overview.total')} />
+          <Donut slices={[...slices, { key: 'other', label: '', count: other, color: SLICE_COLOR.other }]} total={c.all} centerLabel={t('dashboard.overview.total')} />
           <div className={s.legendWrap} aria-hidden>
             <ul className={s.legend}>
               {slices.map((x) => (

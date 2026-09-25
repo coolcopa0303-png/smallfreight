@@ -198,9 +198,6 @@ p {
 .leaflet-control-attribution {
   font-size: 10px;
 }
-.sf-sat-tiles {
-  filter: brightness(0.62) saturate(0.85) hue-rotate(-8deg);
-}
 /* Map labels — scoped under .leaflet-container to outrank leaflet.css tooltip defaults */
 .leaflet-container .leaflet-tooltip.sf-map-label {
   background: #fff;
@@ -213,19 +210,7 @@ p {
   color: var(--text-primary);
   white-space: pre;
 }
-.leaflet-container .leaflet-tooltip.sf-map-label-dark {
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-  padding: 0;
-  color: #fff;
-  font-size: 13px;
-  font-weight: 600;
-  white-space: pre;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.75);
-}
-.leaflet-container .leaflet-tooltip.sf-map-label::before,
-.leaflet-container .leaflet-tooltip.sf-map-label-dark::before {
+.leaflet-container .leaflet-tooltip.sf-map-label::before {
   display: none;
 }
 

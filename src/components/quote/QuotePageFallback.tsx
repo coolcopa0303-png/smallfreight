@@ -5,7 +5,7 @@ import s from './page.module.css'
 export function QuotePageFallback() {
   return (
     <div className={s.fallback} aria-busy="true">
-      <Skeleton height={120} radius={10} />
+      <Skeleton width={420} height={64} radius={8} />
       <Skeleton height={190} radius={9} />
       <Skeleton height={214} radius={9} />
     </div>

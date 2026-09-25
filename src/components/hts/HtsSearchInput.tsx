@@ -66,6 +66,10 @@ export function HtsSearchInput({ id, value, onChange, initialQuery, invalid, des
     return (codeLike ? g : g.reverse()).filter((x) => x.items.length)
   }, [enabled, hts.data, inq.data, codeLike, t])
   const options = useMemo(() => groups.flatMap((g) => g.items), [groups])
+  // Trailing "Search for “…”" row (reference-v2 06) — runs the search immediately; always the last option.
+  const typed = text.trim()
+  const searchForIdx = typed.length >= 2 ? options.length : -1
+  const optionCount = options.length + (searchForIdx >= 0 ? 1 : 0)
 
   useEffect(() => {
     if (active >= 0) document.getElementById(`${listId}-o${active}`)?.scrollIntoView({ block: 'nearest' })
@@ -122,17 +126,40 @@ export function HtsSearchInput({ id, value, onChange, initialQuery, invalid, des
 
   const choose = (o: Option) => (o.kind === 'hts' ? select(o.item) : void pickInquiry(o.inq))
 
+  /** Run the typed query now: pick an exact (or the only) HTS match, else keep the grouped list open. */
+  async function runSearch() {
+    const q = text.trim()
+    if (q.length < 2) return
+    setResolving(-1)
+    try {
+      const items = await searchHtsItems(q)
+      const exact = items.find((i) => sameCode(i.htsCode, q)) ?? (items.length === 1 ? items[0] : undefined)
+      if (exact) select(exact)
+      else {
+        if (!items.length) toast(t('hts.search.noResults', { query: q }), 'info')
+        setActive(-1)
+        setOpen(true)
+        inputRef.current?.focus()
+      }
+    } catch (e) {
+      toast(t('common.toast.apiError', { message: (e as Error).message }), 'error')
+    } finally {
+      setResolving(null)
+    }
+  }
+  const chooseAt = (i: number) => (i === searchForIdx ? void runSearch() : choose(options[i]))
+
   function onKeyDown(e: KeyboardEvent<HTMLInputElement>) {
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
       e.preventDefault()
       if (!open) return setOpen(true)
-      if (!options.length) return
+      if (!optionCount) return
       const dir = e.key === 'ArrowDown' ? 1 : -1
-      setActive((i) => (i + dir + options.length) % options.length)
+      setActive((i) => (i + dir + optionCount) % optionCount)
     } else if (e.key === 'Enter') {
-      if (open && options.length) {
+      if (open && optionCount) {
         e.preventDefault()
-        choose(options[active >= 0 ? active : 0])
+        chooseAt(active >= 0 ? active : options.length ? 0 : searchForIdx)
       }
     } else if (e.key === 'Escape') {
       if (open) setOpen(false)
@@ -203,13 +230,13 @@ export function HtsSearchInput({ id, value, onChange, initialQuery, invalid, des
           const start = options.indexOf(g.items[0])
           return (
             <div key={g.key} role="group" aria-label={g.label}>
-              <p className={s.groupLabel} aria-hidden>{g.label}</p>
+              {groups.length > 1 && <p className={s.groupLabel} aria-hidden>{g.label}</p>}
               {g.items.map((o, j) => {
                 const i = start + j
                 const common = { id: optId(i), role: 'option' as const, 'aria-selected': active === i, onMouseEnter: () => setActive(i), onClick: () => choose(o) }
                 if (o.kind === 'hts')
                   return (
-                    <div key={`h${o.item.htsCode}`} {...common} className={s.option}>
+                    <div key={`h${o.item.htsCode}`} {...common} className={s.option} data-default={(active < 0 && i === 0) || undefined}>
                       <span className={`${s.code} tnum`}>{cleanCode(o.item.htsCode)}</span>
                       <span className={s.desc}>{lang === 'zh-CN' && o.item.descriptionZh ? o.item.descriptionZh : o.item.description}</span>
                     </div>
@@ -234,6 +261,22 @@ export function HtsSearchInput({ id, value, onChange, initialQuery, invalid, des
             </div>
           )
         })}
+        {showList && searchForIdx >= 0 && (
+          <div
+            id={optId(searchForIdx)}
+            role="option"
+            aria-selected={active === searchForIdx}
+            aria-busy={resolving === -1 || undefined}
+            className={s.searchFor}
+            onMouseEnter={() => setActive(searchForIdx)}
+            onClick={() => void runSearch()}
+          >
+            <Search size={16} aria-hidden />
+            <span>
+              {t('hts.search.searchFor')} <span className={s.searchForQuery}>“{typed}”</span>
+            </span>
+          </div>
+        )}
       </div>
     </div>
   )

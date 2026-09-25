@@ -53,10 +53,11 @@
   align-items: center;
   gap: 8px;
   max-width: calc(100% - 32px);
-  padding: 9px 14px;
+  padding: 7px 14px;
+  border: 1px solid var(--border-card);
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: var(--shadow-hover);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--shadow-card);
   color: var(--text-secondary);
   font-size: 13px;
   font-weight: 500;
@@ -64,13 +65,13 @@
   animation: fadeIn var(--dur) var(--ease);
 }
 .mapHint svg {
-  color: var(--brand-primary);
+  color: var(--text-muted);
   flex: none;
 }
 
-/* ---------- Route Details ---------- */
+/* ---------- Route Details (gray line icons, gray labels, dark values, thin dividers) ---------- */
 .details {
-  padding: 12px 22px 10px 16px;
+  padding: 12px 22px 8px 18px;
   display: flex;
   flex-direction: column;
 }
@@ -81,58 +82,63 @@
   font-size: 17px;
   font-weight: 700;
   letter-spacing: -0.01em;
-  margin-bottom: 8px;
+  color: var(--navy-900);
+  margin-bottom: 4px;
 }
 .detailsIcon {
   color: var(--brand-primary);
+  flex: none;
 }
 .places,
 .placesStacked,
 .metrics {
   margin: 0;
 }
-.places {
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border-soft);
-}
 .placesStacked {
-  padding: 4px 0 10px;
+  padding: 4px 0 8px;
   border-bottom: 1px solid var(--border-soft);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.placeRow {
   display: grid;
-  grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);
-  align-items: center;
-  gap: 8px;
-  min-height: 28px;
-  font-size: 14px;
-}
-.placesStacked .placeRow {
-  grid-template-columns: minmax(96px, 36fr) minmax(0, 64fr);
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 10px 20px;
   align-items: start;
+}
+.placeRow,
+.metricRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 32px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.metrics .metricRow:last-child {
+  border-bottom: 0;
+}
+/* rows share the dl grid so both value columns line up */
+.placesStacked .placeRow {
+  display: contents;
 }
 .placeLabel,
 .metricLabel {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   color: var(--text-secondary);
   min-width: 0;
-}
-.placesStacked .placeLabel {
-  font-size: 13px;
-  padding-top: 1px;
+  white-space: nowrap;
 }
 .placeValue {
   margin: 0;
   display: flex;
   align-items: flex-start;
-  gap: 10px;
   min-width: 0;
   color: var(--text-primary);
+  text-align: right;
+}
+.placesStacked .placeValue {
+  text-align: left;
+  padding-top: 1px;
 }
 .placeText {
   display: flex;
@@ -150,47 +156,32 @@
 }
 .rowIcon {
   display: inline-flex;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   flex: none;
-}
-.valueIcon {
-  display: inline-flex;
-  flex: none;
-  color: var(--text-secondary);
-  padding-top: 1px;
-}
-.metrics {
-  padding-top: 4px;
-}
-.metricRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  min-height: 34px;
-  font-size: 14px;
-}
-.rowDray .metricRow {
-  min-height: 44px;
-  border-bottom: 1px solid var(--border-soft);
-}
-.rowDray .metricRow:last-child {
-  border-bottom: 0;
 }
 .metricValue {
   margin: 0;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-weight: 500;
+  gap: 8px;
+  font-weight: 600;
   color: var(--text-primary);
   text-align: right;
 }
+.rowDray .metricRow {
+  min-height: 44px;
+}
+.rowDray .metricValue {
+  font-weight: 500;
+}
 .info {
   display: inline-flex;
-  color: var(--brand-primary);
+  color: var(--text-muted);
   cursor: help;
   border-radius: 50%;
+}
+.info:hover {
+  color: var(--brand-primary);
 }
 
 /* ---------- Terminal fees (drayage) ---------- */
@@ -210,7 +201,7 @@
   padding: 0;
   color: var(--brand-primary);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   text-align: left;
 }
 .feesToggle span {
@@ -290,9 +281,10 @@
     margin-bottom: 6px;
   }
   .placesStacked {
-    gap: 8px;
+    row-gap: 8px;
     padding-bottom: 8px;
   }
+  .placeRow,
   .metricRow {
     min-height: 30px;
   }
@@ -307,12 +299,7 @@
   .mapTall {
     min-height: 220px;
   }
-  .places {
-    padding-bottom: 6px;
-  }
-  .placeRow {
-    min-height: 26px;
-  }
+  .placeRow,
   .metricRow {
     min-height: 28px;
   }

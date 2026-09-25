@@ -2,7 +2,6 @@
 
 import { useSearchParams } from 'next/navigation'
 import { useState } from 'react'
-import { PageHero } from '@/components/layout/PageHero'
 import { useToast } from '@/components/ui/Toast'
 import { useI18n } from '@/i18n/I18nProvider'
 import { fmtMoney } from '@/i18n/format'
@@ -16,7 +15,7 @@ import { useSavedCalcs } from './savedCalcs'
 import { useDutyForm } from './useDutyForm'
 import s from './page.module.css'
 
-/** HTS Search / Duty Calculator (reference 06, spec §10). Must render inside <Suspense> (useSearchParams). */
+/** HTS Search / Duty Calculator (reference-v2 06, spec §10). Must render inside <Suspense> (useSearchParams). */
 export function HtsPage() {
   const { t, lang } = useI18n()
   const toast = useToast()
@@ -89,7 +88,6 @@ export function HtsPage() {
 
   return (
     <div className={s.page}>
-      <PageHero image="ship" height={124} compactHeight={108} title={t('hts.hero.title')} subtitle={t('hts.hero.subtitle')} position="center 38%" />
       <div className={s.columns}>
         <CalculatorCard api={api} initialQuery={q} onSave={onSave} onAsk={() => setAskOpen(true)} onCalculate={onCalculate} />
         <ResultsCard item={form.item} value={api.valueNum} result={result} ready={api.valid && !api.calculated} onExport={onExport} />

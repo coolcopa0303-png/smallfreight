@@ -10,7 +10,7 @@ import { fmtDate } from '@/i18n/format'
 import { routeGeometry, voyageProgress } from './helpers'
 import s from './overview.module.css'
 
-/** Origin → destination summary with big flags, plus the satellite route map below it. */
+/** Origin → destination summary with big flags, plus the light route map below it. */
 export function RoutePanel({ shipment: sh }: { shipment: Shipment }) {
   const { t } = useI18n()
   return (
@@ -66,13 +66,13 @@ function RouteMapArea({ shipment: sh }: { shipment: Shipment }) {
   const markers = useMemo<MapMarker[]>(() => {
     if (!geo || !sh.origin || !sh.destination) return []
     const list: MapMarker[] = [
-      { point: { lat: geo.from[0], lng: geo.from[1] }, kind: 'ring', label: label(sh.origin), labelDirection: 'right' },
-      { point: { lat: geo.to[0], lng: geo.to[1] }, kind: 'ring', label: label(sh.destination), labelDirection: 'right' },
+      { point: { lat: geo.from[0], lng: geo.from[1] }, kind: 'dot', label: label(sh.origin), labelDirection: 'bottom' },
+      { point: { lat: geo.to[0], lng: geo.to[1] }, kind: 'dot', label: label(sh.destination), labelDirection: 'bottom' },
     ]
     const progress = sh.status === 'inTransit' ? voyageProgress(sh.etd, sh.eta) : undefined
     if (progress !== undefined) {
-      // Keep the vessel visibly on the line rather than hidden under a port ring.
-      const [lat, lng] = geo.at(Math.min(0.94, Math.max(0.06, progress)))
+      // Keep the vessel visibly on the line rather than hidden under a port ring or its label.
+      const [lat, lng] = geo.at(Math.min(0.75, Math.max(0.3, progress)))
       list.push({ point: { lat, lng }, kind: 'vessel' })
     }
     return list
@@ -94,9 +94,10 @@ function RouteMapArea({ shipment: sh }: { shipment: Shipment }) {
       <RouteMap
         markers={markers}
         path={geo.path}
-        variant="satellite"
+        variant="road"
+        routeStyle="thin"
         dashed
-        padding={56}
+        padding={64}
         ariaLabel={t('detail.route.mapLabel', { from: sh.origin.city, to: sh.destination.city })}
       />
     </div>

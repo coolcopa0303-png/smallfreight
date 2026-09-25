@@ -1,7 +1,7 @@
 'use client'
 
-import { AlertTriangle, BarChart3, Coins, Info, ShieldCheck } from 'lucide-react'
-import { Card, CardHeader } from '@/components/ui/Card'
+import { AlertTriangle, BarChart3, Info } from 'lucide-react'
+import { Card } from '@/components/ui/Card'
 import { EmptyState } from '@/components/ui/States'
 import type { HtsItem } from '@/domain/types'
 import { useI18n } from '@/i18n/I18nProvider'
@@ -11,16 +11,14 @@ import { DetailedBreakdown } from './DetailedBreakdown'
 import { fmtUpdated } from './htsUtils'
 import s from './results.module.css'
 
-/** Big money figure with smaller cents, e.g. $145.37 */
-function BigMoney({ n }: { n?: number }) {
-  const { lang } = useI18n()
-  if (n === undefined) return <>—</>
-  const str = fmtMoney(n, lang, 2)
-  const cut = str.lastIndexOf('.')
+/** Big rate figure with a smaller "%" (reference-v2 06), e.g. 55.10% */
+function BigRate({ pct }: { pct?: number }) {
+  const str = fmtPct(pct, 2)
+  if (!str.endsWith('%')) return <>{str}</>
   return (
     <>
-      {str.slice(0, cut)}
-      <span className={s.cents}>{str.slice(cut)}</span>
+      {str.slice(0, -1)}
+      <span className={s.pctSign}>%</span>
     </>
   )
 }
@@ -41,21 +39,17 @@ export function ResultsCard({ item, value, result, ready, onExport }: {
 
   return (
     <Card className={s.card}>
-      <CardHeader
-        icon={<BarChart3 size={28} strokeWidth={2.2} />}
-        title={t('hts.results.title')}
-        className={s.head}
-        action={
-          updated ? (
-            <span className={s.updated}>
-              {t('hts.results.updated', { date: updated })}
-              <span title={t('hts.results.updatedInfo')} className={s.infoIcon}>
-                <Info size={15} aria-label={t('hts.results.updatedInfo')} />
-              </span>
+      <header className={s.head}>
+        <h2 className={s.title}>{t('hts.results.title')}</h2>
+        {updated && (
+          <span className={s.updated}>
+            {t('hts.results.updated', { date: updated })}
+            <span title={t('hts.results.updatedInfo')} className={s.infoIcon}>
+              <Info size={14} aria-label={t('hts.results.updatedInfo')} />
             </span>
-          ) : undefined
-        }
-      />
+          </span>
+        )}
+      </header>
 
       {!result || !item ? (
         <div className={s.empty}>
@@ -64,70 +58,57 @@ export function ResultsCard({ item, value, result, ready, onExport }: {
       ) : (
         <div className={s.body}>
           <div className={s.summary}>
-            <div className={s.metric}>
-              <span className={s.metricLabel}>
+            <section className={`${s.panel} ${s.rateCard}`} aria-labelledby="hts-rate-title">
+              <h3 id="hts-rate-title" className={s.panelTitle}>
                 {t('hts.results.dutyRate')}
                 <span title={t('hts.results.dutyRateInfo')} className={s.infoIcon}>
-                  <Info size={15} aria-label={t('hts.results.dutyRateInfo')} />
+                  <Info size={16} aria-label={t('hts.results.dutyRateInfo')} />
                 </span>
-              </span>
-              <span className={`${s.bigRate} tnum`}>{nonAdValorem ? item.baseRateText : fmtPct(result.dutyRatePct, 2)}</span>
-            </div>
-            <span className={s.divider} aria-hidden />
-            <div className={s.metric}>
-              <span className={s.metricLabel}>{t('hts.results.totalDuties')}</span>
-              <span className={`${s.bigMoney} tnum`}>
-                <BigMoney n={result.totalDuties} />
-              </span>
-            </div>
+              </h3>
+              <p className={`${s.bigRate} tnum`} data-text={nonAdValorem || undefined}>
+                {nonAdValorem ? item.baseRateText : <BigRate pct={result.dutyRatePct} />}
+              </p>
+              <div className={s.rateTotal}>
+                <span>{t('hts.cost.duties')}</span>
+                <span className={`${s.rateTotalValue} tnum`}>{fmtMoney(result.totalDuties, lang)}</span>
+              </div>
+            </section>
+
+            <section className={`${s.panel} ${s.costCard}`} aria-labelledby="hts-cost-title">
+              <h3 id="hts-cost-title" className={s.panelTitle}>{t('hts.cost.title')}</h3>
+              <dl className={s.costList}>
+                <div><dt>{t('hts.cost.base')}</dt><dd className="tnum">{fmtMoney(value, lang)}</dd></div>
+                <div><dt>{t('hts.cost.duties')}</dt><dd className="tnum">{fmtMoney(result.totalDuties, lang)}</dd></div>
+                <div><dt>{t('hts.cost.hmf')}</dt><dd className="tnum">{fmtMoney(result.hmf, lang)}</dd></div>
+                <div><dt>{t('hts.cost.mpf')}</dt><dd className="tnum">{fmtMoney(result.mpf, lang)}</dd></div>
+                <div className={s.landed}><dt>{t('hts.cost.landed')}</dt><dd className="tnum">{fmtMoney(result.landedCost, lang)}</dd></div>
+              </dl>
+            </section>
           </div>
 
           {nonAdValorem && (
             <p className={s.warn} role="note">
-              <AlertTriangle size={16} aria-hidden /> {t('hts.warnings.nonAdValorem', { rate: item.baseRateText })}
+              <AlertTriangle size={14} aria-hidden /> {t('hts.warnings.nonAdValorem', { rate: item.baseRateText })}
             </p>
           )}
-
-          <section className={s.panel} aria-labelledby="hts-cost-title">
-            <h3 id="hts-cost-title" className={s.panelTitle}>
-              <Coins size={24} aria-hidden className={s.panelIcon} />
-              {t('hts.cost.title')}
-            </h3>
-            <dl className={s.costList}>
-              <div><dt>{t('hts.cost.base')}</dt><dd className="tnum">{fmtMoney(value, lang)}</dd></div>
-              <div><dt>{t('hts.cost.duties')}</dt><dd className="tnum">{fmtMoney(result.totalDuties, lang)}</dd></div>
-              <div><dt>{t('hts.cost.hmf')}</dt><dd className="tnum">{fmtMoney(result.hmf, lang)}</dd></div>
-              <div><dt>{t('hts.cost.mpf')}</dt><dd className="tnum">{fmtMoney(result.mpf, lang)}</dd></div>
-              <div className={s.landed}><dt>{t('hts.cost.landed')}</dt><dd className="tnum">{fmtMoney(result.landedCost, lang)}</dd></div>
-            </dl>
-          </section>
 
           <DetailedBreakdown result={result} onExport={onExport} />
 
-          {missingAdditional > 0 && (
-            <p className={s.hint}>
-              <Info size={14} aria-hidden /> {t('hts.warnings.additionalAvailable', { count: missingAdditional })}
-            </p>
-          )}
-
-          {item.pga.length > 0 && (
-            <section className={s.pga} aria-labelledby="hts-pga-title">
-              <h3 id="hts-pga-title" className={s.pgaTitle}>
-                <ShieldCheck size={16} aria-hidden /> {t('hts.pga.title')}
-              </h3>
-              <ul>
-                {item.pga.map((p) => (
-                  <li key={p}>{p}</li>
-                ))}
-              </ul>
-            </section>
-          )}
-
           <footer className={s.foot}>
-            <p className={s.disclaimer}>
-              <AlertTriangle size={14} aria-hidden /> {t('hts.disclaimer')}
+            {missingAdditional > 0 && (
+              <p>
+                <Info size={13} aria-hidden /> {t('hts.warnings.additionalAvailable', { count: missingAdditional })}
+              </p>
+            )}
+            {item.pga.length > 0 && (
+              <p>
+                <Info size={13} aria-hidden /> <span className={s.footStrong}>{t('hts.pga.title')}:</span> {item.pga.join(' · ')}
+              </p>
+            )}
+            <p className={s.footRow}>
+              <span>{t('hts.disclaimer')}</span>
+              {item.updatedAt && <span>{t('hts.source', { date: fmtDate(item.updatedAt, lang) })}</span>}
             </p>
-            {item.updatedAt && <p>{t('hts.source', { date: fmtDate(item.updatedAt, lang) })}</p>}
           </footer>
         </div>
       )}

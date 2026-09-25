@@ -48,14 +48,14 @@ export function LtlMoreOptions({ value, onChange, open, onToggle, dimsError, cla
     <div className={s.more}>
       <div className={s.moreHead}>
         <button type="button" className={s.moreToggle} aria-expanded={open} aria-controls={`${id}-panel`} onClick={onToggle}>
-          <SlidersHorizontal size={16} aria-hidden />
+          <SlidersHorizontal size={14} aria-hidden />
           <span>{t('quotes.more.title')}</span>
-          <ChevronDown size={16} aria-hidden className={s.chev} data-open={open || undefined} />
+          <ChevronDown size={14} aria-hidden className={s.chev} data-open={open || undefined} />
         </button>
         <span className={s.moreSummary} data-error={(!!dimsError && !open) || undefined}>{summary}</span>
         {classNote && (
           <span className={s.classNote} aria-live="polite">
-            <Layers size={14} aria-hidden />
+            <Layers size={13} aria-hidden />
             {classNote}
           </span>
         )}

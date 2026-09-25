@@ -1,15 +1,14 @@
 .page {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  /* Fill the viewport below the header so both cards reach the bottom (reference 06). */
+  /* Fill the viewport below the header so both cards reach the bottom (reference-v2 06). */
   min-height: calc(100vh - var(--topbar-height) - var(--page-gutter-y) - 24px);
 }
 .columns {
   flex: 1;
   display: grid;
-  grid-template-columns: minmax(0, 43fr) minmax(0, 57fr);
-  gap: 13px;
+  grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);
+  gap: 16px;
   align-items: stretch;
 }
 
@@ -28,6 +27,9 @@
   .page {
     min-height: calc(100vh - var(--topbar-height) - 24px);
   }
+  .columns {
+    gap: 12px;
+  }
 }
 @media (min-width: 1024px) and (max-height: 820px) {
   .page {
@@ -41,6 +43,6 @@
 }
 @media (min-width: 1024px) and (max-width: 1199px) and (max-height: 940px) {
   .columns {
-    grid-template-columns: minmax(0, 43fr) minmax(0, 57fr);
+    grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);
   }
 }
