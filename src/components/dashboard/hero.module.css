@@ -15,20 +15,20 @@
   border: 1px solid var(--border-soft);
   background: linear-gradient(90deg, var(--hero-bg-from) 0%, var(--hero-bg-to) 100%);
 }
-/* Monochrome photo (grayscale + pale-blue wash, reference-v2 01), masked so it fades from nothing (left) into the light background. */
+/* Photo masked so it fades from nothing (left) into the light background. */
 .photo {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
-  width: 60%;
+  /* Width follows the image's aspect ratio so the fade starts exactly at its left edge. */
+  aspect-ratio: 638 / 218;
+  max-width: 62%;
   z-index: -1;
-  background: url('/images/hero-port.webp') 70% 52% / cover no-repeat;
-  /* grayscale → sepia → hue-rotate gives a single pale-blue tone (the filter also applies to ::after, so tint here) */
-  filter: grayscale(1) sepia(0.45) hue-rotate(178deg) saturate(1.7) brightness(1.28) contrast(0.78);
-  opacity: 0.9;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.25) 22%, rgba(0, 0, 0, 0.8) 52%, #000 75%);
-  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.25) 22%, rgba(0, 0, 0, 0.8) 52%, #000 75%);
+  /* Ship-and-port scene taken from the reference-v2 01 design (already in the light-blue tone). */
+  background: url('/images/hero-dashboard.webp') right center / cover no-repeat;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.55) 18%, #000 40%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.55) 18%, #000 40%);
 }
 .copy {
   position: relative;
