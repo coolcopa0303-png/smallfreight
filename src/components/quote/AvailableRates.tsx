@@ -78,7 +78,7 @@ export function AvailableRates({ kind, status, result, error, onRetry, summary, 
       </header>
 
       {status === 'idle' && (
-        <div className={s.empty}>
+        <div className={`${s.empty} ${s.emptyInline}`}>
           <EmptyState icon={<Icon size={22} />} title={t('quotes.rates.emptyTitle')} body={t(`quotes.rates.emptyBody${kind === 'ltl' ? 'Ltl' : 'Dray'}`)} />
         </div>
       )}

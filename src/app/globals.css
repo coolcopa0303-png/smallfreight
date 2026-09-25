@@ -228,3 +228,9 @@ p {
 .leaflet-container .leaflet-tooltip.sf-map-label-dark::before {
   display: none;
 }
+
+/* Scrollbars — only appear when content overflows; slim and low-contrast so they don't dominate. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(16, 31, 61, 0.22) transparent;
+}

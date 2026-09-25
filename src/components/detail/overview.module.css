@@ -385,3 +385,188 @@
     height: 58px;
   }
 }
+
+/* ---------- Short viewports (< 941px tall, ≥ 1024px wide): compact overview so it fits one screen ---------- */
+@media (min-width: 1024px) and (max-height: 940px) {
+  .overview {
+    gap: 8px;
+  }
+  .topGrid {
+    gap: 12px;
+  }
+  /* Shipment Details has the longest values — give it more width so they stay on one line. */
+  .infoGrid {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.95fr) minmax(0, 1fr);
+    gap: 10px;
+  }
+  .infoGrid,
+  .topGrid {
+    column-gap: 12px;
+  }
+  .routeSummary {
+    gap: 20px;
+    padding: 10px 18px 8px;
+  }
+  .place {
+    gap: 16px;
+  }
+  .place > [role='img'],
+  .flagPlaceholder {
+    width: 56px !important;
+    height: 40px !important;
+  }
+  .placeCity {
+    font-size: 19px;
+  }
+  .placePort {
+    margin-top: 1px;
+    font-size: 14px;
+  }
+  .placeDate {
+    margin-top: 1px;
+    font-size: 14px;
+  }
+  .routeArrow {
+    margin-bottom: 16px;
+  }
+  .mapBox,
+  .noMap {
+    height: 160px;
+    flex-basis: 160px;
+  }
+  .statusCard {
+    padding: 8px 16px 10px;
+  }
+  .statusHero {
+    gap: 14px;
+    margin: 6px 0 8px;
+  }
+  .statusIcon {
+    width: 54px;
+    height: 54px;
+  }
+  .statusLabel {
+    font-size: 22px;
+  }
+  .statusSub {
+    margin-top: 1px;
+    font-size: 14.5px;
+  }
+  .infoBox {
+    gap: 12px;
+    padding: 6px 12px 7px;
+  }
+  .infoIcon {
+    width: 30px;
+    height: 30px;
+    margin-top: 2px;
+  }
+  .infoValue {
+    font-size: 15px;
+  }
+  .infoNote {
+    margin-top: 2px;
+  }
+  .infoBoxPlain {
+    margin-top: 6px;
+    padding: 7px 0 0;
+  }
+}
+@media (min-width: 1024px) and (max-height: 820px) {
+  .overview {
+    gap: 8px;
+  }
+  .infoGrid {
+    gap: 8px;
+  }
+  .mapBox,
+  .noMap {
+    height: 150px;
+    flex-basis: 150px;
+  }
+  .statusCard {
+    padding-top: 8px;
+    padding-bottom: 10px;
+  }
+  .statusHero {
+    margin: 6px 0 8px;
+  }
+  .statusIcon {
+    width: 48px;
+    height: 48px;
+  }
+  .infoBox {
+    padding-top: 6px;
+    padding-bottom: 7px;
+  }
+  .infoBoxPlain {
+    margin-top: 6px;
+    padding: 7px 0 0;
+  }
+  .statusLabel {
+    font-size: 20px;
+  }
+  .statusSub {
+    font-size: 14px;
+  }
+}
+/* Icon-rail widths (1024–1199): keep route + status side by side and the three info cards in one row. */
+@media (min-width: 1024px) and (max-width: 1199px) and (max-height: 940px) {
+  .topGrid {
+    grid-template-columns: minmax(0, 1fr) 340px;
+  }
+  .infoGrid {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.95fr) minmax(0, 1fr);
+  }
+  .infoGrid > :last-child {
+    grid-column: auto;
+  }
+  .routeSummary {
+    gap: 14px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .place {
+    gap: 12px;
+  }
+}
+/* Narrower desktop/rail widths: give Key Dates a little more room. */
+@media (min-width: 1024px) and (max-width: 1439px) and (max-height: 940px) {
+  .infoGrid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr) minmax(0, 1.1fr);
+  }
+}
+@media (min-width: 1024px) and (max-height: 780px) {
+  .overview,
+  .infoGrid {
+    gap: 6px;
+  }
+  .routeSummary {
+    padding-top: 8px;
+    padding-bottom: 6px;
+  }
+  .statusHero {
+    margin: 4px 0 6px;
+  }
+  .statusIcon {
+    width: 44px;
+    height: 44px;
+  }
+  .statusLabel {
+    font-size: 19px;
+  }
+  .statusSub {
+    font-size: 13.5px;
+  }
+  .infoBox {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .infoValue {
+    font-size: 14px;
+  }
+  .infoBoxPlain {
+    margin-top: 5px;
+    padding-top: 5px;
+  }
+}

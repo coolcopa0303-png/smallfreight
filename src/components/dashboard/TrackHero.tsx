@@ -30,7 +30,7 @@ export function TrackHero() {
   }
 
   return (
-    <PageHero image="port" height={228} title={t('dashboard.hero.title')} subtitle={t('dashboard.hero.subtitle')} aside={<HeroKpis />}>
+    <PageHero image="port" height={228} compactHeight={184} title={t('dashboard.hero.title')} subtitle={t('dashboard.hero.subtitle')} aside={<HeroKpis />}>
       <form role="search" className={s.search} onSubmit={submit}>
         <label htmlFor={id} className="sr-only">
           {t('dashboard.hero.searchLabel')}

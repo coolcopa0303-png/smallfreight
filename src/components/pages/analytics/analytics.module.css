@@ -115,7 +115,7 @@
 }
 .chartBox {
   width: 100%;
-  min-height: 230px;
+  height: 230px;
 }
 .chartSvg {
   display: block;
@@ -316,6 +316,138 @@
   .grid {
     gap: 12px;
     margin-top: 12px;
+  }
+  .barRow {
+    grid-template-columns: minmax(96px, 120px) minmax(0, 1fr) 36px 38px;
+    gap: 8px;
+  }
+}
+
+/* ---------- Short viewports (< 941px tall, ≥ 1024px wide): compact so the page fits one screen ---------- */
+@media (min-width: 1024px) and (max-height: 940px) {
+  .page {
+    gap: 12px;
+  }
+  .header {
+    gap: 2px;
+    padding: 0 2px;
+  }
+  .title {
+    font-size: 28px;
+  }
+  .subtitle {
+    font-size: 13.5px;
+  }
+  .kpis {
+    gap: 12px;
+  }
+  .kpi {
+    padding: 12px 16px;
+  }
+  .kpiValue {
+    font-size: 26px;
+    margin-top: 2px;
+  }
+  .kpiHint {
+    margin-top: 2px;
+  }
+  .grid {
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .grid > section {
+    gap: 10px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .chartBox {
+    height: 196px;
+  }
+  .bars {
+    gap: 8px;
+  }
+  .splits {
+    gap: 14px;
+  }
+  .split {
+    gap: 8px;
+  }
+}
+@media (min-width: 1024px) and (max-height: 820px) {
+  .page,
+  .kpis {
+    gap: 10px;
+  }
+  .grid {
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .kpi {
+    padding: 10px 14px;
+  }
+  .kpiValue {
+    font-size: 24px;
+  }
+  .grid > section {
+    gap: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .chartBox {
+    height: 176px;
+  }
+  .bars {
+    gap: 6px;
+  }
+  .splits {
+    gap: 10px;
+  }
+  .split {
+    gap: 6px;
+  }
+}
+@media (min-width: 1024px) and (max-height: 780px) {
+  .page,
+  .kpis {
+    gap: 8px;
+  }
+  .grid {
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .kpi {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .grid > section {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .chartBox {
+    height: 160px;
+  }
+  .bars {
+    gap: 4px;
+  }
+  .splits {
+    gap: 8px;
+  }
+  .splitLegend {
+    row-gap: 4px;
+  }
+}
+/* Icon-rail widths (1024–1199): keep 4 KPI tiles and the 2-column chart grid. */
+@media (min-width: 1024px) and (max-width: 1199px) and (max-height: 940px) {
+  .kpis {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .kpi {
+    gap: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .barRow {
     grid-template-columns: minmax(96px, 120px) minmax(0, 1fr) 36px 38px;

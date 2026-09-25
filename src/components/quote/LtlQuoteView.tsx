@@ -42,7 +42,7 @@ export function LtlQuoteView() {
 
   return (
     <div className={s.page}>
-      <PageHero image="truck" height={120} position="center 40%" title={t('quotes.ltl.title')} subtitle={t('quotes.ltl.subtitle')} />
+      <PageHero image="truck" height={120} compactHeight={104} position="center 40%" title={t('quotes.ltl.title')} subtitle={t('quotes.ltl.subtitle')} />
       <LtlQuoteForm
         origin={origin}
         destination={destination}

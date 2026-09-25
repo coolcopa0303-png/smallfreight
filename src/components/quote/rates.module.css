@@ -61,6 +61,26 @@
   border: 1px dashed var(--border);
   border-radius: var(--radius-card);
 }
+/* Idle "No rates yet" hint: one compact row (icon | title over body) instead of a tall block. */
+.emptyInline > [role='status'] {
+  display: grid;
+  grid-template-columns: auto minmax(0, auto);
+  justify-content: center;
+  align-items: center;
+  column-gap: 14px;
+  row-gap: 2px;
+  padding: 12px 20px;
+  text-align: left;
+}
+.emptyInline > [role='status'] > :first-child {
+  grid-row: span 2;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+}
+.emptyInline > [role='status'] > p {
+  max-width: none;
+}
 
 /* ---------- LTL rate card: 3 × 2 ---------- */
 .grid {
@@ -410,5 +430,12 @@
     height: 44px;
     top: 4px;
     right: 4px;
+  }
+}
+
+/* ---------- Short viewports (< 941px tall, ≥ 1024px wide) ---------- */
+@media (min-width: 1024px) and (max-height: 940px) {
+  .head {
+    margin-bottom: 8px;
   }
 }

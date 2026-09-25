@@ -89,7 +89,7 @@ export function HtsPage() {
 
   return (
     <div className={s.page}>
-      <PageHero image="ship" height={124} title={t('hts.hero.title')} subtitle={t('hts.hero.subtitle')} position="center 38%" />
+      <PageHero image="ship" height={124} compactHeight={108} title={t('hts.hero.title')} subtitle={t('hts.hero.subtitle')} position="center 38%" />
       <div className={s.columns}>
         <CalculatorCard api={api} initialQuery={q} onSave={onSave} onAsk={() => setAskOpen(true)} onCalculate={onCalculate} />
         <ResultsCard item={form.item} value={api.valueNum} result={result} ready={api.valid && !api.calculated} onExport={onExport} />

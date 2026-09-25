@@ -6,21 +6,24 @@ import { fmtNumber } from '@/i18n/format'
 import type { MonthBucket } from './compute'
 import s from './analytics.module.css'
 
-const HEIGHT = 230
+/** Fallback plot height; the real height comes from `.chartBox` in CSS (shorter on short viewports). */
+const DEFAULT_HEIGHT = 230
 const PAD_TOP = 26
 const PAD_BOTTOM = 40
 
-function useWidth<T extends HTMLElement>() {
+function useSize<T extends HTMLElement>() {
   const ref = useRef<T>(null)
-  const [width, setWidth] = useState(0)
+  const [size, setSize] = useState({ width: 0, height: 0 })
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const ro = new ResizeObserver(([entry]) => setWidth(Math.floor(entry.contentRect.width)))
+    const ro = new ResizeObserver(([entry]) =>
+      setSize({ width: Math.floor(entry.contentRect.width), height: Math.floor(entry.contentRect.height) }),
+    )
     ro.observe(el)
     return () => ro.disconnect()
   }, [])
-  return { ref, width }
+  return { ref, ...size }
 }
 
 /** Rounded-top bar anchored to the baseline. */
@@ -31,7 +34,8 @@ function barPath(x: number, y: number, w: number, h: number, r = 4) {
 
 export function EtaMonthChart({ buckets }: { buckets: MonthBucket[] }) {
   const { t, lang } = useI18n()
-  const { ref, width } = useWidth<HTMLDivElement>()
+  const { ref, width, height } = useSize<HTMLDivElement>()
+  const HEIGHT = height || DEFAULT_HEIGHT
 
   const monthFmt = new Intl.DateTimeFormat(lang, { month: 'short', timeZone: 'UTC' })
   const fullFmt = new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric', timeZone: 'UTC' })

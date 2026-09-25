@@ -1,5 +1,6 @@
 .hero {
   position: relative;
+  min-height: var(--hero-h, auto);
   overflow: hidden;
   border-radius: var(--radius-large);
   background: var(--navy-950);
@@ -74,5 +75,60 @@
   }
   .shade {
     background: linear-gradient(180deg, rgba(7, 27, 51, 0.82) 0%, rgba(7, 27, 51, 0.6) 100%);
+  }
+}
+
+/* Short desktop/rail viewports (< 941px tall): heroes that opt in via `compactHeight` shrink so
+   single-screen pages fit without a page scrollbar. ≥ 941px tall stays at the design size. */
+@media (min-width: 1024px) and (max-height: 940px) {
+  .hero[data-compact] {
+    min-height: var(--hero-h-compact);
+  }
+  .hero[data-compact] .inner {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  .hero[data-compact] .title {
+    font-size: 32px;
+  }
+  .hero[data-compact] .subtitle {
+    margin-top: 4px;
+    font-size: 16px;
+  }
+}
+@media (min-width: 1024px) and (max-height: 820px) {
+  .hero[data-compact] {
+    min-height: max(96px, calc(var(--hero-h-compact) - 12px));
+  }
+  .hero[data-compact] .inner {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .hero[data-compact] .title {
+    font-size: 30px;
+  }
+  .hero[data-compact] .subtitle {
+    margin-top: 2px;
+    font-size: 15px;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1199px) and (max-height: 940px) {
+  .hero[data-compact] .title {
+    font-size: 30px;
+  }
+}
+@media (min-width: 1024px) and (max-height: 780px) {
+  .hero[data-compact] {
+    min-height: 96px;
+  }
+  .hero[data-compact] .inner {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .hero[data-compact] .title {
+    font-size: 28px;
+  }
+  .hero[data-compact] .subtitle {
+    font-size: 14px;
   }
 }

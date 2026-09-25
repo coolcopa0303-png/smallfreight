@@ -75,3 +75,33 @@
     margin-left: 2px;
   }
 }
+
+/* ---------- Short viewports (< 941px tall, ≥ 1024px wide) ---------- */
+@media (min-width: 1024px) and (max-height: 940px) {
+  .page,
+  .pageDray {
+    gap: 12px;
+  }
+  .crumbs {
+    margin-top: 2px;
+  }
+  .pageTitle {
+    font-size: 30px;
+  }
+  .pageSub {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1024px) and (max-height: 820px) {
+  .page,
+  .pageDray {
+    gap: 10px;
+  }
+  .pageTitle {
+    font-size: 28px;
+  }
+  .pageSub {
+    font-size: 15px;
+    margin-top: 0;
+  }
+}

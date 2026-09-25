@@ -21,3 +21,26 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Short viewports (< 941px tall, ≥ 1024px wide): the shell trims its vertical gutter (shell.module.css),
+   so keep the cards reaching the bottom; on icon-rail widths keep the two-column layout. */
+@media (min-width: 1024px) and (max-height: 940px) {
+  .page {
+    min-height: calc(100vh - var(--topbar-height) - 24px);
+  }
+}
+@media (min-width: 1024px) and (max-height: 820px) {
+  .page {
+    min-height: calc(100vh - var(--topbar-height) - 20px);
+  }
+}
+@media (min-width: 1024px) and (max-height: 780px) {
+  .page {
+    min-height: calc(100vh - var(--topbar-height) - 16px);
+  }
+}
+@media (min-width: 1024px) and (max-width: 1199px) and (max-height: 940px) {
+  .columns {
+    grid-template-columns: minmax(0, 43fr) minmax(0, 57fr);
+  }
+}

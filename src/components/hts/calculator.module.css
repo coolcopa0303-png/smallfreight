@@ -344,6 +344,14 @@
     display: none;
   }
 }
+/* Narrow calculator column (two-column layout below 1440px wide): let the three buttons wrap so
+   "Calculate Duties" drops to its own full-width row instead of overflowing the card. */
+@media (min-width: 768px) and (max-width: 1439px) {
+  .actions {
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+}
 @media (max-width: 767px) {
   .card {
     padding: 16px;
@@ -379,5 +387,19 @@
   }
   .addRow {
     min-height: 44px;
+  }
+}
+
+/* Short, narrow viewports (icon-rail widths, ≤ 780px tall): tighter calculator spacing. */
+@media (min-width: 1024px) and (max-width: 1199px) and (max-height: 780px) {
+  .card {
+    gap: 10px;
+    padding: 10px 18px;
+  }
+  .grid2 {
+    row-gap: 10px;
+  }
+  .actions {
+    row-gap: 8px;
   }
 }

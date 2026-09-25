@@ -261,9 +261,75 @@
 @media (max-width: 767px) {
   .mapCard,
   .mapTall {
-    height: 240px;
+    min-height: 230px;
   }
   .details {
     padding: 12px 14px;
+  }
+}
+
+/* ---------- Short viewports (< 941px tall, ≥ 1024px wide) ---------- */
+@media (min-width: 1024px) and (max-height: 940px) {
+  /* map fills the row next to Route Details (min = compact map height) */
+  .mapCard {
+    height: auto;
+    min-height: 180px;
+  }
+  /* the shared map canvas has a 200px floor; let it follow the (shorter) card so attribution stays visible */
+  .mapCard > div {
+    min-height: 0;
+  }
+  .mapTall {
+    min-height: 250px;
+  }
+  .details {
+    padding-top: 10px;
+    padding-bottom: 8px;
+  }
+  .detailsTitle {
+    margin-bottom: 6px;
+  }
+  .placesStacked {
+    gap: 8px;
+    padding-bottom: 8px;
+  }
+  .metricRow {
+    min-height: 30px;
+  }
+  .rowDray .metricRow {
+    min-height: 38px;
+  }
+}
+@media (min-width: 1024px) and (max-height: 820px) {
+  .mapCard {
+    min-height: 160px;
+  }
+  .mapTall {
+    min-height: 220px;
+  }
+  .places {
+    padding-bottom: 6px;
+  }
+  .placeRow {
+    min-height: 26px;
+  }
+  .metricRow {
+    min-height: 28px;
+  }
+  .rowDray .metricRow {
+    min-height: 34px;
+  }
+}
+/* Icon-rail widths (1024–1199): keep map + details side by side. */
+@media (min-width: 1024px) and (max-width: 1199px) and (max-height: 940px) {
+  .row {
+    grid-template-columns: minmax(0, 66fr) minmax(0, 34fr);
+  }
+  .rowDray {
+    grid-template-columns: minmax(0, 62fr) minmax(0, 38fr);
+    gap: 14px;
+  }
+  .details {
+    padding-right: 16px;
   }
 }

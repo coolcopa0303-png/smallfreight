@@ -367,3 +367,44 @@
 .checkRow {
   margin-top: 10px;
 }
+
+/* ---------- Short viewports (< 941px tall, ≥ 1024px wide): compact so the page fits one screen ---------- */
+@media (min-width: 1024px) and (max-height: 940px) {
+  .formCard {
+    padding-top: 10px;
+    padding-bottom: 8px;
+  }
+  .formTitle {
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+  .ltlRow2 {
+    margin-top: 6px;
+  }
+  .more {
+    margin-top: 6px;
+    padding-top: 2px;
+  }
+}
+/* Icon-rail widths (1024–1199): keep the one-row desktop form instead of the stacked tablet grid. */
+@media (min-width: 1024px) and (max-width: 1199px) and (max-height: 940px) {
+  .ltlRow1 {
+    grid-template-columns: 371fr 358fr 310fr 262fr;
+  }
+  .ltlRow2 {
+    grid-template-columns: 371fr 254fr 414fr 262fr;
+  }
+  .ltlRow1,
+  .ltlRow2 {
+    column-gap: 14px;
+  }
+  .drayRow {
+    grid-template-columns: 260fr 190fr 230fr 250fr 200fr;
+    column-gap: 14px;
+  }
+  .submitCell,
+  .drayRow .submitCell {
+    padding-top: 26px;
+    grid-column: auto;
+  }
+}

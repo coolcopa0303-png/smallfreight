@@ -209,3 +209,134 @@
     display: none;
   }
 }
+
+/* ---------- Short viewports (< 941px tall, ≥ 1024px wide): compact header so the overview fits one screen ---------- */
+@media (min-width: 1024px) and (max-height: 940px) {
+  .back {
+    min-height: 24px;
+    margin-top: 0;
+    font-size: 15px;
+  }
+  /* title + actions on one row, meta line spans the full width below so it doesn't wrap */
+  .header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0 24px;
+    align-items: center;
+    margin-top: 0;
+  }
+  .headMain {
+    display: contents;
+  }
+  .titleRow {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .meta {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .actions {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+  }
+  .title {
+    font-size: 34px;
+  }
+  .titleRow {
+    gap: 18px;
+  }
+  .titleRow > span {
+    height: 28px;
+    font-size: 14px;
+  }
+  .meta {
+    margin-top: 0;
+    font-size: 13.5px;
+  }
+  .metaSep {
+    margin: 0 10px;
+  }
+  .actions {
+    gap: 12px;
+    margin-top: 0;
+  }
+  .actionBtn {
+    height: 38px;
+    font-size: 14px;
+    padding: 0 16px;
+  }
+  .splitToggle {
+    width: 38px;
+  }
+  .trackBtn {
+    min-width: 150px;
+  }
+  .tabs {
+    margin-top: 6px;
+  }
+  .tabs > button {
+    height: 38px;
+    padding: 0 18px;
+  }
+  .panel {
+    margin-top: 10px;
+  }
+}
+@media (min-width: 1024px) and (max-height: 820px) {
+  .title {
+    font-size: 30px;
+  }
+  .tabs {
+    margin-top: 4px;
+  }
+  .tabs > button {
+    height: 36px;
+    font-size: 14px;
+  }
+  .panel {
+    margin-top: 8px;
+  }
+}
+/* Narrower desktop/rail widths: long values wrap more in the info cards, so the header gives back a little more. */
+@media (min-width: 1024px) and (max-width: 1439px) and (max-height: 940px) {
+  .title {
+    font-size: 32px;
+  }
+  .tabs > button {
+    height: 36px;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1439px) and (max-height: 820px) {
+  .title {
+    font-size: 30px;
+  }
+}
+/* Icon-rail widths (1024–1199): keep the actions beside the title instead of on their own row. */
+@media (min-width: 1024px) and (max-width: 1199px) and (max-height: 940px) {
+  .actions {
+    gap: 8px;
+  }
+  .actionBtn {
+    padding: 0 12px;
+  }
+  .trackBtn {
+    min-width: 0;
+  }
+}
+@media (min-width: 1024px) and (max-height: 780px) {
+  .back {
+    min-height: 22px;
+    font-size: 14px;
+  }
+  .title {
+    font-size: 28px;
+  }
+  .tabs > button {
+    height: 32px;
+  }
+  .panel {
+    margin-top: 6px;
+  }
+}

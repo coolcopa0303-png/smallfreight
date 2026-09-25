@@ -97,3 +97,61 @@
     align-self: center;
   }
 }
+
+/* ---------- Short viewports (< 941px tall, ≥ 1024px wide) ---------- */
+@media (min-width: 1024px) and (max-height: 940px) {
+  .card {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+  .donut svg {
+    width: 120px;
+    height: 120px;
+  }
+  .legend {
+    gap: 8px;
+  }
+  .other {
+    margin-top: 6px;
+  }
+}
+@media (min-width: 1024px) and (max-height: 820px) {
+  .card {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  .donut svg {
+    width: 108px;
+    height: 108px;
+  }
+  .legend {
+    gap: 5px;
+  }
+  .other {
+    margin-top: 4px;
+  }
+}
+/* Icon-rail widths (1024–1199): narrower side column. */
+@media (min-width: 1024px) and (max-width: 1199px) and (max-height: 940px) {
+  .card {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .body {
+    gap: 14px;
+    padding-left: 0;
+  }
+  .item {
+    grid-template-columns: 11px minmax(0, 1fr) 32px 34px;
+    gap: 6px;
+  }
+}
+@media (min-width: 1024px) and (max-height: 780px) {
+  .donut svg {
+    width: 100px;
+    height: 100px;
+  }
+  .legend {
+    gap: 3px;
+  }
+}
