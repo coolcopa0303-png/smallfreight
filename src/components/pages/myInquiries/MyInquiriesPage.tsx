@@ -28,7 +28,8 @@ export function MyInquiriesPage() {
   }
 
   return (
-    <div className={s.page}>
+    // data-freeze-layout: fixed one-screen height; header, tabs and each tab's toolbar stay put, the list scrolls.
+    <div className={s.page} data-freeze-layout>
       <header className={s.header}>
         <h1 className={s.title}>{t('inquiries.title')}</h1>
         <p className={s.subtitle}>{t('inquiries.subtitle')}</p>
