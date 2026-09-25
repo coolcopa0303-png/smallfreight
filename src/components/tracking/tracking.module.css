@@ -65,6 +65,74 @@
   margin: 18px 0 0 18px;
 }
 
+/* ---------- Toolbar: ETA range + view switch (merged from My Shipments) ---------- */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 14px 0 0 18px;
+}
+.filters,
+.viewActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.dateField {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.dateField > div {
+  height: 36px;
+  width: 158px;
+}
+.count {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.viewSwitch {
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-button);
+  background: var(--surface);
+}
+.viewSwitch button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.viewSwitch button:hover {
+  color: var(--text-primary);
+}
+.viewSwitch button[aria-pressed='true'] {
+  background: var(--brand-primary-soft);
+  color: var(--brand-primary);
+}
+.tableCard {
+  background: var(--surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
 /* ---------- List ---------- */
 .listWrap {
   margin-top: 18px;

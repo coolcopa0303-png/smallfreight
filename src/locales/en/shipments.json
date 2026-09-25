@@ -31,7 +31,10 @@
     "emptyTab": "No shipments in this status.",
     "emptyTabHint": "Switch to another status tab to see more shipments.",
     "clearSearch": "Clear search",
-    "error": "We couldn't load your shipments."
+    "error": "We couldn't load your shipments.",
+    "viewLabel": "View",
+    "viewCards": "Cards",
+    "viewTable": "Table"
   },
   "fields": {
     "bl": "B/L",
@@ -42,22 +45,11 @@
     "reference": "Reference"
   },
   "my": {
-    "title": "My Shipments",
-    "subtitle": "Every booking with its ISF, PGA, customs and freight release status in one table.",
-    "searchLabel": "Keyword",
-    "searchPlaceholder": "SM#, MBL, HBL, container or reference",
     "etaFrom": "ETA from",
     "etaTo": "ETA to",
-    "tabsLabel": "Filter by status",
     "columns": "Columns",
     "columnsLabel": "Show or hide columns",
-    "columnsSaved": "Column settings saved",
     "columnsSaveFailed": "Couldn't save column settings",
-    "export": "Export",
-    "exporting": "Exporting…",
-    "exportStarted": "Export started",
-    "exportFailed": "Export failed. Try again.",
-    "exportNothing": "No matching rows to export",
     "resetFilters": "Reset filters",
     "count": "{{count}} shipments",
     "sortEta": "Sort by ETA",
@@ -74,9 +66,6 @@
       "freightReleased": "Freight Release",
       "statusSteps": "Status"
     },
-    "moreContainers": "+{{count}} more",
-    "empty": "No shipments match these filters.",
-    "emptyHint": "Try another keyword or widen the ETA date range.",
-    "error": "We couldn't load your shipments."
+    "moreContainers": "+{{count}} more"
   }
 }

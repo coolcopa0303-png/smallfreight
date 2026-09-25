@@ -6,7 +6,7 @@ import { Menu, MenuItem } from '@/components/ui/Menu'
 import { useI18n } from '@/i18n/I18nProvider'
 import type { ColumnId } from './columns'
 import type { ColumnSetting } from './useColumnConfig'
-import s from './myShipments.module.css'
+import s from './shipmentTable.module.css'
 
 /** "Columns" dropdown — show/hide table columns (old "Columns Setting"). Stays open while toggling. */
 export function ColumnsMenu({ columns, onToggle }: { columns: ColumnSetting[]; onToggle: (id: ColumnId) => void }) {

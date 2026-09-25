@@ -63,7 +63,7 @@ export function ShipmentDetailView({ id }: { id: string }) {
             title={t('detail.notFound.title')}
             body={t('detail.notFound.body', { id })}
             action={
-              <ButtonLink href="/my-shipments" variant="secondary" size="sm" leading={<ArrowLeft size={16} />}>
+              <ButtonLink href="/shipments" variant="secondary" size="sm" leading={<ArrowLeft size={16} />}>
                 {t('detail.back')}
               </ButtonLink>
             }
@@ -98,7 +98,7 @@ export function ShipmentDetailView({ id }: { id: string }) {
 function BackLink() {
   const { t } = useI18n()
   return (
-    <Link href="/my-shipments" className={s.back}>
+    <Link href="/shipments" className={s.back}>
       <ArrowLeft size={18} aria-hidden />
       {t('detail.back')}
     </Link>

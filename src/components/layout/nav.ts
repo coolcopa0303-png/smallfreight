@@ -1,4 +1,4 @@
-import { BarChart3, BookUser, CircleHelp, FileText, Home, MessageSquareText, Package, Search, Truck, type LucideIcon } from 'lucide-react'
+import { BarChart3, BookUser, CircleHelp, FileText, Home, MessageSquareText, Search, Truck, type LucideIcon } from 'lucide-react'
 
 export interface NavEntry {
   href: string
@@ -25,15 +25,13 @@ export const NAV: NavEntry[] = [
   },
   { href: '/hts', labelKey: 'nav.htsSearch', icon: Search },
   { href: '/address-book', labelKey: 'nav.addressBook', icon: BookUser },
-  { href: '/my-shipments', labelKey: 'nav.myShipments', icon: Package },
   { href: '/my-inquiries', labelKey: 'nav.myInquiries', icon: MessageSquareText },
   { href: '/analytics', labelKey: 'nav.analytics', icon: BarChart3 },
   { href: '/help', labelKey: 'nav.help', icon: CircleHelp },
 ]
 
-/** Shipment detail belongs to "My Shipments" (reference 05); list pages own their own prefix. */
+/** Shipment detail pages belong to Shipment Tracking. */
 export function isActive(entry: NavEntry, pathname: string) {
-  if (entry.href === '/my-shipments' && /^\/shipments\/[^/]+/.test(pathname)) return true
-  if (entry.href === '/shipments') return pathname === '/shipments'
+  if (entry.href === '/shipments') return pathname === '/shipments' || pathname.startsWith('/shipments/')
   return pathname === entry.href || (entry.match ?? [entry.href]).some((p) => pathname.startsWith(p + '/') || pathname === p)
 }

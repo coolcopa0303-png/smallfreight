@@ -25,6 +25,8 @@ const nextConfig: NextConfig = STATIC_EXPORT ? staticConfig : {
       { source: "/", destination: "/dashboard", permanent: false },
       // Old portal URLs keep working.
       { source: "/booking", destination: "/shipments", permanent: false },
+      // "My Shipments" was merged into Shipment Tracking's table view.
+      { source: "/my-shipments", destination: "/shipments?view=table", permanent: false },
       { source: "/new-quote", destination: "/quotes/ltl", permanent: false },
       { source: "/new-fcl-quote", destination: "/quotes/drayage", permanent: false },
       { source: "/quotes", destination: "/my-inquiries?tab=ltl", permanent: false },

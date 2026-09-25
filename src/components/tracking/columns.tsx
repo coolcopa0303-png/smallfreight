@@ -5,7 +5,7 @@ import { StatusChip } from '@/components/ui/StatusChip'
 import type { ReleaseState, Shipment } from '@/domain/types'
 import { fmtIsoDate } from '@/i18n/format'
 import { AlertBadge } from './RowParts'
-import s from './myShipments.module.css'
+import s from './shipmentTable.module.css'
 
 /** Column ids match the old portal's user-config / export ids (cargoTable.columns). */
 export const COLUMN_IDS = [

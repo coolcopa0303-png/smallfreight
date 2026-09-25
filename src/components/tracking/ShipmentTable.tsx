@@ -8,7 +8,7 @@ import { Skeleton } from '@/components/ui/States'
 import type { Shipment } from '@/domain/types'
 import { useI18n } from '@/i18n/I18nProvider'
 import { RENDER, type ColumnId } from './columns'
-import s from './myShipments.module.css'
+import s from './shipmentTable.module.css'
 
 export type SortDir = 'asc' | 'desc'
 
