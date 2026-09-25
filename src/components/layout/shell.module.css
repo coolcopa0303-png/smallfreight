@@ -451,3 +451,18 @@
     padding-bottom: 8px;
   }
 }
+
+/* Freeze layout (Shipment Tracking): pages marked data-freeze-layout get a fixed one-screen height so their
+   header / filters stay put and only the list area scrolls. Desktop and tablet only. */
+@media (min-width: 768px) {
+  .main:has([data-freeze-layout]) {
+    height: 100vh;
+    height: 100dvh;
+  }
+  .main:has([data-freeze-layout]) .content {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+  }
+}

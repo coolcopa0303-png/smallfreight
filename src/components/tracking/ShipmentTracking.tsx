@@ -96,7 +96,12 @@ export function ShipmentTracking() {
   const pageRows = rows.slice(page * size, (page + 1) * size)
   const goPage = (p: number) => {
     setPager({ key: filterKey, page: p })
-    document.getElementById('shipment-list')?.scrollIntoView({ block: 'start', behavior: 'smooth' })
+    const list = document.getElementById('shipment-list')
+    if (!list) return
+    // Desktop: the list scrolls inside the frozen layout (card list or table wrapper) — reset that scroller.
+    for (const el of list.querySelectorAll<HTMLElement>(':scope > *, :scope > * > *')) el.scrollTop = 0
+    // Mobile: the whole page scrolls.
+    list.scrollIntoView({ block: 'start', behavior: 'smooth' })
   }
 
   const tabItems = STATUS_TABS.map((k) => ({
@@ -135,7 +140,8 @@ export function ShipmentTracking() {
   else body = <ol className={s.list}>{pageRows.map((sh) => <ShipmentRow key={sh.id} sh={sh} />)}</ol>
 
   return (
-    <div className={s.page}>
+    // data-freeze-layout: the shell gives this page a fixed one-screen height; only the list scrolls (Excel-style freeze).
+    <div className={s.page} data-freeze-layout>
       <header className={s.header}>
         <div className={s.titles}>
           <h1 className={s.title}>{t('shipments.tracking.title')}</h1>
@@ -181,7 +187,7 @@ export function ShipmentTracking() {
         onToggleColumn={toggle}
       />
 
-      <div id="shipment-list" className={s.listWrap}>
+      <div id="shipment-list" className={s.listWrap} data-view={view}>
         {view === 'cards' && !(data && rows.length === 0) && (
           <div className={s.colHead} aria-hidden>
             {COLS.map((c) => (

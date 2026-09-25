@@ -330,6 +330,10 @@
   .h-actions {
     display: none;
   }
+  /* Keep the visually hidden text inside the link so it cannot escape the scrolling list. */
+  .view {
+    position: relative;
+  }
   .viewText {
     position: absolute;
     width: 1px;
@@ -464,5 +468,50 @@
   }
   .footer {
     justify-content: center;
+  }
+}
+
+/* ---------- Freeze: header, tabs, filters and column header stay fixed; only the list scrolls ---------- */
+@media (min-width: 768px) {
+  .page {
+    flex: 1;
+    min-height: 0;
+  }
+  .header,
+  .tabs,
+  .toolbar,
+  .footer {
+    flex: none;
+  }
+  .listWrap {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  /* Card view: column header fixed, rows scroll under it. */
+  .listWrap[data-view='cards'] > .colHead {
+    flex: none;
+  }
+  .listWrap[data-view='cards'] > :not(.colHead) {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+  }
+  /* Rows keep their natural height inside the scrolling list (they clip overflow, so they would otherwise shrink). */
+  .listWrap[data-view='cards'] > .list > * {
+    flex-shrink: 0;
+  }
+  /* Table view: the table card fills the space; its wrapper scrolls both ways and the sticky <th> stays on top. */
+  .listWrap[data-view='table'] > .tableCard {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .listWrap[data-view='table'] > .tableCard > div {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
   }
 }
