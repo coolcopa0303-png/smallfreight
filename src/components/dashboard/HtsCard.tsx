@@ -28,7 +28,7 @@ export function HtsCard() {
       <CardHeader
         icon={<FileSearch size={28} strokeWidth={1.8} />}
         title={t('dashboard.hts.title')}
-        action={<ViewAllLink href="/my-inquiries?tab=hts">{t('common.actions.viewAll')}</ViewAllLink>}
+        action={<ViewAllLink href="/hts">{t('common.actions.viewAll')}</ViewAllLink>}
       />
       <form role="search" className={s.htsForm} onSubmit={submit}>
         <label htmlFor={id} className="sr-only">
