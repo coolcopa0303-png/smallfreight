@@ -23,7 +23,21 @@
   flex: none;
   display: inline-flex;
 }
+.donut svg {
+  overflow: visible;
+}
+.slice {
+  cursor: pointer;
+  transition: opacity 200ms var(--ease), stroke-width 200ms var(--ease);
+}
+.slice[data-dim='true'] {
+  opacity: 0.22;
+}
+.slice[data-active='true'] {
+  stroke-width: 29px;
+}
 .center {
+  pointer-events: none;
   position: absolute;
   inset: 0;
   display: flex;
@@ -64,6 +78,11 @@
   align-items: center;
   gap: 10px;
   font-size: 13px;
+  cursor: default;
+  transition: opacity 200ms var(--ease);
+}
+.item[data-dim='true'] {
+  opacity: 0.35;
 }
 .dot {
   width: 11px;

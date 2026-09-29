@@ -21,10 +21,14 @@
   gap: 14px;
 }
 .bottom {
+  /* Same 3-column track as .services so the table lines up under LTL + Drayage and the side column under HTS. */
   display: grid;
-  grid-template-columns: minmax(0, 1.67fr) minmax(0, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   align-items: stretch;
+}
+.bottom > :first-child {
+  grid-column: span 2;
 }
 .side {
   display: flex;
@@ -45,6 +49,9 @@
   }
   .bottom {
     grid-template-columns: minmax(0, 1fr);
+  }
+  .bottom > :first-child {
+    grid-column: auto;
   }
   .side {
     display: grid;
@@ -90,7 +97,10 @@
     grid-column: auto;
   }
   .bottom {
-    grid-template-columns: minmax(0, 1.67fr) minmax(0, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .bottom > :first-child {
+    grid-column: span 2;
   }
   .side {
     display: flex;

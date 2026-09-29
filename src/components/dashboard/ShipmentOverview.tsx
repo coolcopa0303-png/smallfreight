@@ -1,7 +1,7 @@
 'use client'
 
 import { ChartColumn } from 'lucide-react'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { countByStatus } from '@/adapters/shipmentAdapter'
 import { Card, CardHeader, ViewAllLink } from '@/components/ui/Card'
 import { ErrorState, Skeleton } from '@/components/ui/States'
@@ -31,8 +31,22 @@ interface Slice {
   color: string
 }
 
-function Donut({ slices, total, centerLabel }: { slices: Slice[]; total: number; centerLabel: string }) {
+function Donut({
+  slices,
+  total,
+  centerLabel,
+  active,
+  onHover,
+}: {
+  slices: Slice[]
+  total: number
+  centerLabel: string
+  /** Hovered slice key — it stays bright and the rest dim. */
+  active: string | null
+  onHover: (key: string | null) => void
+}) {
   const { lang } = useI18n()
+  const hovered = slices.find((x) => x.key === active && x.count > 0)
   const size = (R + STROKE / 2) * 2 + 4
   const c = size / 2
   let offset = 0
@@ -57,6 +71,11 @@ function Donut({ slices, total, centerLabel }: { slices: Slice[]; total: number;
                 strokeDasharray={`${dash} ${C - dash}`}
                 strokeDashoffset={-offset}
                 transform={`rotate(-90 ${c} ${c})`}
+                className={s.slice}
+                data-dim={(active !== null && active !== x.key) || undefined}
+                data-active={active === x.key || undefined}
+                onMouseEnter={() => onHover(x.label ? x.key : null)}
+                onMouseLeave={() => onHover(null)}
               />
             )
             offset += len
@@ -64,8 +83,8 @@ function Donut({ slices, total, centerLabel }: { slices: Slice[]; total: number;
           })}
       </svg>
       <div className={s.center}>
-        <strong className={`${s.total} tnum`}>{fmtNumber(total, lang)}</strong>
-        <span className={s.totalLabel}>{centerLabel}</span>
+        <strong className={`${s.total} tnum`}>{fmtNumber(hovered ? hovered.count : total, lang)}</strong>
+        <span className={s.totalLabel}>{hovered ? hovered.label : centerLabel}</span>
       </div>
     </div>
   )
@@ -76,6 +95,7 @@ export function ShipmentOverview() {
   const { t, lang } = useI18n()
   const { data, error, isLoading, mutate } = useShipments()
   const c = useMemo(() => (data ? countByStatus(data) : undefined), [data])
+  const [active, setActive] = useState<string | null>(null)
 
   const slices: Slice[] = c
     ? [
@@ -111,11 +131,17 @@ export function ShipmentOverview() {
         </div>
       ) : (
         <div className={s.body} role="img" aria-label={chartLabel}>
-          <Donut slices={[...slices, { key: 'other', label: '', count: other, color: SLICE_COLOR.other }]} total={c.all} centerLabel={t('dashboard.overview.total')} />
+          <Donut slices={[...slices, { key: 'other', label: '', count: other, color: SLICE_COLOR.other }]} total={c.all} centerLabel={t('dashboard.overview.total')} active={active} onHover={setActive} />
           <div className={s.legendWrap} aria-hidden>
             <ul className={s.legend}>
               {slices.map((x) => (
-                <li key={x.key} className={s.item}>
+                <li
+                  key={x.key}
+                  className={s.item}
+                  data-dim={(active !== null && active !== x.key) || undefined}
+                  onMouseEnter={() => setActive(x.key)}
+                  onMouseLeave={() => setActive(null)}
+                >
                   <span className={s.dot} style={{ background: x.color }} />
                   <span className={s.name}>{x.label}</span>
                   <span className={`${s.count} tnum`}>{fmtNumber(x.count, lang)}</span>
