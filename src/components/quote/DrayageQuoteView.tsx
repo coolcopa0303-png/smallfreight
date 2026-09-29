@@ -1,16 +1,14 @@
 'use client'
 
-import { ArrowLeft, Plus } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 import useSWR from 'swr'
-import { Button } from '@/components/ui/Button'
 import { useI18n } from '@/i18n/I18nProvider'
 import { CONTAINER_TYPES, fetchDrayagePorts, requestDrayageQuote, type ContainerTypeId, type DrayageQuoteInput } from '@/services/quotes'
 import { DrayageQuoteForm } from './DrayageQuoteForm'
 import { DrayageQuoteResult } from './DrayageQuoteResult'
-import d from './drayage.module.css'
 import s from './page.module.css'
+import { QuoteResultHeader } from './QuoteResultHeader'
 import { useQuoteRequest } from './useQuoteRequest'
 
 /**
@@ -65,20 +63,15 @@ export function DrayageQuoteView() {
 
       {screen === 'result' && quote.status !== 'idle' && (
         <>
-          <header className={d.resultHead}>
-            <button type="button" className={d.back} onClick={() => show('form')}>
-              <ArrowLeft size={18} aria-hidden />
-              {t('quotes.dray.editRequest')}
-            </button>
-            <h1 className={d.resultTitle}>
-              {quote.status === 'done' && quote.result
+          <QuoteResultHeader
+            title={
+              quote.status === 'done' && quote.result
                 ? t('quotes.dray.resultTitle', { number: quote.result.quotationNumber })
-                : t('quotes.dray.resultTitlePending')}
-            </h1>
-            <Button leading={<Plus size={18} />} onClick={newQuote}>
-              {t('quotes.dray.newQuote')}
-            </Button>
-          </header>
+                : t('quotes.dray.resultTitlePending')
+            }
+            onEdit={() => show('form')}
+            onNewQuote={newQuote}
+          />
           <DrayageQuoteResult status={quote.status} quote={quote.result} onRetry={quote.retry} />
         </>
       )}

@@ -2,7 +2,9 @@
   "ltl": {
     "title": "Get an LTL Quote",
     "subtitle": "Compare real-time rates from top carriers in seconds.",
-    "shipmentDetails": "Shipment Details"
+    "shipmentDetails": "Shipment Details",
+    "resultTitle": "LTL Quote #{{number}}",
+    "resultTitlePending": "LTL Quote"
   },
   "dray": {
     "title": "Get a Drayage Quote",
@@ -83,8 +85,6 @@
     "disclaimerEmail": "Email:",
     "disclaimerChange": "Rates are subject to change depending on market conditions.",
     "error": "Couldn't get a drayage quote",
-    "newQuote": "New Quote",
-    "editRequest": "Edit Request",
     "resultTitle": "Drayage Quote #{{number}}",
     "resultTitlePending": "Drayage Quote"
   },
@@ -144,8 +144,6 @@
     "milesApprox": "≈ {{count}} miles",
     "originPort": "Origin Port",
     "deliveryDest": "Delivery Destination",
-    "hintLtl": "Enter origin and destination to see the route",
-    "hintDray": "Choose a port and delivery ZIP to see the route",
     "mapLabel": "Route map from {{from}} to {{to}}",
     "mapEmpty": "Map of the United States",
     "terminalFees": "Terminal accessorial fees ({{count}})"
@@ -292,5 +290,9 @@
     "BDL": "Bundle",
     "BAG": "Bag",
     "TOTE": "Tote"
+  },
+  "result": {
+    "editRequest": "Edit Request",
+    "newQuote": "New Quote"
   }
 }

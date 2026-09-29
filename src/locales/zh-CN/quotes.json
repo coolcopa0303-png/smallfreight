@@ -2,7 +2,9 @@
   "ltl": {
     "title": "LTL 散货报价",
     "subtitle": "几秒钟内比较多家承运商的实时运价。",
-    "shipmentDetails": "货运信息"
+    "shipmentDetails": "货运信息",
+    "resultTitle": "LTL 报价 #{{number}}",
+    "resultTitlePending": "LTL 报价"
   },
   "dray": {
     "title": "拖车报价",
@@ -83,8 +85,6 @@
     "disclaimerEmail": "邮箱：",
     "disclaimerChange": "价格可能随市场情况变动。",
     "error": "获取拖车报价失败",
-    "newQuote": "新询价",
-    "editRequest": "修改询价",
     "resultTitle": "拖车报价 #{{number}}",
     "resultTitlePending": "拖车报价"
   },
@@ -144,8 +144,6 @@
     "milesApprox": "约 {{count}} 英里",
     "originPort": "起运港口",
     "deliveryDest": "派送地址",
-    "hintLtl": "输入起始地和目的地后显示路线",
-    "hintDray": "选择港口并输入派送邮编后显示路线",
     "mapLabel": "从 {{from}} 到 {{to}} 的路线地图",
     "mapEmpty": "美国地图",
     "terminalFees": "码头附加费（{{count}} 项）"
@@ -292,5 +290,9 @@
     "BDL": "捆",
     "BAG": "袋",
     "TOTE": "周转箱"
+  },
+  "result": {
+    "editRequest": "修改询价",
+    "newQuote": "新询价"
   }
 }
