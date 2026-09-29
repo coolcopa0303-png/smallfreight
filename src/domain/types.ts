@@ -163,7 +163,31 @@ export interface DrayagePort {
   terminal: string
   location: string
   point?: GeoPoint
-  fees: { label: string; amount: number }[]
+  fees: DrayageFee[]
+}
+
+export type DrayageFeeUnit = 'perDay' | 'perHourAfter2' | 'perContainer' | 'over350Miles'
+
+/** One line of a terminal's accessorial price sheet (/api/ftl-addresses). */
+export interface DrayageFee {
+  label: string
+  amount: number
+  unit: DrayageFeeUnit
+}
+
+/** SMALL FREIGHT's own drayage quote (old FCL quote result page) — no other carriers. */
+export interface DrayageQuote {
+  quotationId: string
+  quotationNumber: string
+  port: DrayagePort
+  destination: Location
+  containers: string[]
+  /** Base rate, fuel included; undefined when the lane has no published rate. */
+  baseRate?: number
+  chassisPerDay: number
+  chassisMinDays: number
+  estimatedTotal?: number
+  otherFees: DrayageFee[]
 }
 
 // ---------- HTS ----------

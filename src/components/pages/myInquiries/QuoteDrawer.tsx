@@ -4,6 +4,7 @@ import { EyeOff } from 'lucide-react'
 import { useState } from 'react'
 import useSWR from 'swr'
 import { Button } from '@/components/ui/Button'
+import { DrayagePriceSheet } from '@/components/quote/DrayageQuoteResult'
 import { Drawer } from '@/components/ui/Overlay'
 import { ErrorState, Skeleton } from '@/components/ui/States'
 import { Badge } from '@/components/ui/StatusChip'
@@ -65,7 +66,9 @@ export function QuoteDrawer({ item, onClose, onHidden }: { item: QuoteHistoryIte
   const { data, error, isLoading, mutate } = useSWR(['quotation', item.id], () => fetchQuotation(item.id))
   const rates = data?.result.rates ?? []
   const prices = rates.filter((r) => r.available && r.totalPrice !== undefined).map((r) => r.totalPrice!)
-  const min = prices.length ? Math.min(...prices) : undefined
+  // "Lowest price" only means something when there is more than one price.
+  const min = prices.length > 1 ? Math.min(...prices) : undefined
+  const port = data?.drayage?.port
 
   const hide = async () => {
     setHiding(true)
@@ -95,7 +98,7 @@ export function QuoteDrawer({ item, onClose, onHidden }: { item: QuoteHistoryIte
       <div className={s.stack}>
         <dl className={s.facts}>
           <div><dt>{t('inquiries.quote.shipDate')}</dt><dd className="tnum">{fmtDate(item.shippingDate, lang)}</dd></div>
-          <div><dt>{t('inquiries.quote.origin')}</dt><dd>{item.origin || '—'}</dd></div>
+          <div><dt>{t('inquiries.quote.origin')}</dt><dd>{port ? `${port.city.toUpperCase()}, ${port.state} – ${port.terminal}` : item.origin || '—'}</dd></div>
           <div><dt>{t('inquiries.quote.destination')}</dt><dd>{item.destination || '—'}</dd></div>
         </dl>
         <section>
@@ -107,6 +110,10 @@ export function QuoteDrawer({ item, onClose, onHidden }: { item: QuoteHistoryIte
               <Skeleton height={64} />
               <Skeleton height={64} />
               <Skeleton height={64} />
+            </div>
+          ) : data.drayage ? (
+            <div className={s.stack}>
+              <DrayagePriceSheet quote={data.drayage} flat />
             </div>
           ) : rates.length === 0 ? (
             <p className={s.muted}>{t('inquiries.quote.noRates')}</p>

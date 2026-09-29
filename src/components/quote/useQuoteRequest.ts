@@ -6,19 +6,19 @@ import type { QuoteResult } from '@/domain/types'
 import { useI18n } from '@/i18n/I18nProvider'
 import type { QuoteStatus, SummaryRow } from './quoteUtils'
 
-interface State {
+interface State<R> {
   status: QuoteStatus
-  result?: QuoteResult
+  result?: R
   error?: string
   summary: SummaryRow[]
   accessorials: string[]
 }
 
 /** Runs a quote request, keeps the last input for "Try Again", toasts API errors (spec §4.7 / §19). */
-export function useQuoteRequest<I>(request: (input: I) => Promise<QuoteResult>) {
+export function useQuoteRequest<I, R = QuoteResult>(request: (input: I) => Promise<R>) {
   const { t } = useI18n()
   const toast = useToast()
-  const [state, setState] = useState<State>({ status: 'idle', summary: [], accessorials: [] })
+  const [state, setState] = useState<State<R>>({ status: 'idle', summary: [], accessorials: [] })
   const last = useRef<{ input: I; summary: SummaryRow[]; accessorials: string[] } | null>(null)
   const seq = useRef(0)
 

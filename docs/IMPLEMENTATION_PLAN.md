@@ -60,7 +60,7 @@
 
 **LTL（旧 /new-quote） → /quotes/ltl**：Shipping Date→Pickup Date；Origin/Destination Zip+City+State→"City, State or ZIP"单框（邮编自动反查）；Weight/Units、L×W×H/Units、Handling、Count→Weight / Pieces / Dimensions（设计稿第二行）；Accessorials（26 项）→"More options"折叠区；Freight Class 旧 API 无此字段 → 显示"Auto（按密度估算）"，不提交。结果 `saia/arcb/xpo/estes/uber/senmart` → 6 张 Rate Card，null → "Rate not available / Request Rate"。
 
-**Drayage（旧 /new-fcl-quote） → /quotes/drayage**：Port + Terminal → Port 下拉（ftl-addresses 26 项）；Destination Zip → Delivery ZIP；Class 20/40/45 → Container Type；Job Type、Weight、Residential Delivery → "More options"；结果 `ftlPrice` → SMALL FREIGHT 卡，其它承运商字段存在则显示。
+**Drayage（旧 /new-fcl-quote） → /quotes/drayage**：表单与旧页一致——Origin（Port + Terminal，来自 ftl-addresses）、Destination（Zip / City / State / Country）、Accessorial Services（Residential Delivery；More 里的 Overweight 按箱重自动勾选）、Shipment Information（可添加多个箱：Class 20/40/45，最大重量 36000/43000/43000 LBS，Weight、Units、Description）、Job Type、Others。结果只显示 SMALL FREIGHT 自营价：`ftlRate.baseRate`（含燃油）+ 车架费 × 2 天 = 预估总价，下方列出码头附加费（Pier pass 以美分存储，显示时 ÷100），右侧路线图与免责声明；不显示其它承运商。
 
 **HTS（旧 /hts-inquiries） → /hts**：hts-items → Autocomplete + Duty 基础税率；`additionalDuty` 文本 → 可勾选的"附加关税"行（不自动叠加）；hts-inquiries（258 条人工答复）→ Autocomplete 的"历史咨询"分组 + My Inquiries；"+ 新咨询" → "Ask our team"。
 

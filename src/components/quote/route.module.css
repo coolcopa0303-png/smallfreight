@@ -4,10 +4,6 @@
   grid-template-columns: minmax(0, 70fr) minmax(0, 30fr);
   gap: 14px;
 }
-.rowDray {
-  grid-template-columns: minmax(0, 68fr) minmax(0, 32fr);
-  gap: 20px;
-}
 
 .mapCard {
   position: relative;
@@ -19,9 +15,6 @@
 }
 .mapCard :global(.leaflet-container) {
   border-radius: var(--radius-card);
-}
-.mapTall {
-  height: 312px;
 }
 .routing {
   position: absolute;
@@ -168,12 +161,6 @@
   color: var(--text-primary);
   text-align: right;
 }
-.rowDray .metricRow {
-  min-height: 44px;
-}
-.rowDray .metricValue {
-  font-weight: 500;
-}
 .info {
   display: inline-flex;
   color: var(--text-muted);
@@ -184,74 +171,16 @@
   color: var(--brand-primary);
 }
 
-/* ---------- Terminal fees (drayage) ---------- */
-.fees {
-  margin-top: 6px;
-  border-top: 1px solid var(--border-soft);
-  padding-top: 4px;
-}
-.feesToggle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  min-height: 34px;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  color: var(--brand-primary);
-  font-size: 13px;
-  font-weight: 500;
-  text-align: left;
-}
-.feesToggle span {
-  flex: 1;
-}
-.feesList {
-  margin: 0 0 6px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 4px 12px;
-  font-size: 13px;
-  animation: fadeIn var(--dur) var(--ease);
-}
-.feesChev {
-  transition: transform var(--dur) var(--ease);
-}
-.feesChev[data-open] {
-  transform: rotate(180deg);
-}
-.feeRow {
-  display: contents;
-}
-.feesList dt {
-  color: var(--text-secondary);
-}
-.feesList dd {
-  margin: 0;
-  text-align: right;
-  font-weight: 500;
-}
-.feesNote {
-  grid-column: 1 / -1;
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-top: 4px;
-}
-
 @media (max-width: 1199px) {
-  .row,
-  .rowDray {
+  .row {
     grid-template-columns: minmax(0, 1fr);
   }
-  .mapCard,
-  .mapTall {
+  .mapCard {
     height: 300px;
   }
 }
 @media (max-width: 767px) {
-  .mapCard,
-  .mapTall {
+  .mapCard {
     min-height: 230px;
   }
   .details {
@@ -270,9 +199,6 @@
   .mapCard > div {
     min-height: 0;
   }
-  .mapTall {
-    min-height: 250px;
-  }
   .details {
     padding-top: 10px;
     padding-bottom: 8px;
@@ -288,33 +214,20 @@
   .metricRow {
     min-height: 30px;
   }
-  .rowDray .metricRow {
-    min-height: 38px;
-  }
 }
 @media (min-width: 1024px) and (max-height: 820px) {
   .mapCard {
     min-height: 160px;
   }
-  .mapTall {
-    min-height: 220px;
-  }
   .placeRow,
   .metricRow {
     min-height: 28px;
-  }
-  .rowDray .metricRow {
-    min-height: 34px;
   }
 }
 /* Icon-rail widths (1024–1199): keep map + details side by side. */
 @media (min-width: 1024px) and (max-width: 1199px) and (max-height: 940px) {
   .row {
     grid-template-columns: minmax(0, 66fr) minmax(0, 34fr);
-  }
-  .rowDray {
-    grid-template-columns: minmax(0, 62fr) minmax(0, 38fr);
-    gap: 14px;
   }
   .details {
     padding-right: 16px;

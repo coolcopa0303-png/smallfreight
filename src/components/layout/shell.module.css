@@ -507,3 +507,18 @@
     overflow: hidden;
   }
 }
+
+/* ---------- Print: page content only ---------- */
+@media print {
+  .shell {
+    display: block;
+  }
+  .sidebar,
+  .header,
+  .tabbar {
+    display: none !important;
+  }
+  .content {
+    padding: 0;
+  }
+}

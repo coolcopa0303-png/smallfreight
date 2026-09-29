@@ -1,6 +1,6 @@
-import { toDrayagePort, toDrayageQuoteResult, toLtlQuoteResult } from '@/adapters/quoteAdapter'
+import { toDrayagePort, toDrayageQuote, toDrayageQuoteResult, toLtlQuoteResult } from '@/adapters/quoteAdapter'
 import type { RawFtlAddress, RawQuotation, RawQuotationRequest } from '@/domain/raw'
-import type { DrayagePort, Location, QuoteResult } from '@/domain/types'
+import type { DrayagePort, DrayageQuote, Location, QuoteResult } from '@/domain/types'
 import { apiGet, apiPost, apiPut } from '@/lib/api/client'
 
 /** Accessorial codes accepted by POST /api/quotations-browser (old portal enum). */
@@ -57,44 +57,59 @@ export async function requestLtlQuote(i: LtlQuoteInput): Promise<QuoteResult> {
   return toLtlQuoteResult(await apiPost<RawQuotation>('/api/quotations-browser', body))
 }
 
+/** Container classes and max cargo weight, as in the old FCL quote form. */
 export const CONTAINER_TYPES = [
   { id: '20', labelKey: 'quotes.container.20', maxLbs: 36000 },
-  { id: '40', labelKey: 'quotes.container.40', maxLbs: 44000 },
-  { id: '40HC', labelKey: 'quotes.container.40hc', maxLbs: 44000 },
-  { id: '45', labelKey: 'quotes.container.45', maxLbs: 44000 },
+  { id: '40', labelKey: 'quotes.container.40', maxLbs: 43000 },
+  { id: '45', labelKey: 'quotes.container.45', maxLbs: 43000 },
 ] as const
 export type ContainerTypeId = (typeof CONTAINER_TYPES)[number]['id']
 
-export interface DrayageQuoteInput {
-  portId: string
-  destination: Location
+export const LBS_PER_KG = 2.20462
+
+export interface DrayageContainerLine {
   containerType: ContainerTypeId
-  pickupDate: string
-  direction: 'IMPORT' | 'EXPORT'
   weight?: number
   weightUnit: 'LBS' | 'KGS'
   description?: string
+}
+
+export interface DrayageQuoteInput {
+  port: DrayagePort
+  destination: Location
+  containers: DrayageContainerLine[]
+  direction: 'IMPORT' | 'EXPORT'
   residentialDelivery: boolean
+  overweight: boolean
   other?: string
 }
 
-export async function requestDrayageQuote(i: DrayageQuoteInput): Promise<QuoteResult> {
+export async function requestDrayageQuote(i: DrayageQuoteInput): Promise<DrayageQuote> {
+  const accessorials = [i.residentialDelivery && 'ResidentialDelivery', i.overweight && 'Overweight'].filter(Boolean) as string[]
   const body: RawQuotationRequest = {
     type: 'FTL',
     paymentTerms: 'Prepaid',
-    shippingDate: i.pickupDate,
+    // The old FCL form has no pickup date and sends tomorrow.
+    shippingDate: isoTomorrow(),
     // Origin of an FTL quote is the terminal (ftlAddressId); the old form sent empty origin fields.
     originCity: '', originState: '', originZip: '', originCountry: 'US',
     direction: i.direction,
     destinationCity: i.destination.city, destinationState: i.destination.state, destinationZip: i.destination.zip, destinationCountry: i.destination.country,
     ...emptyExtras,
     otherAccessorial: i.other ?? '',
-    accessorials: i.residentialDelivery ? ['ResidentialDelivery'] : [],
+    accessorials,
     shipments: [],
-    ftlAddressId: i.portId,
-    ftlShipments: [{ weight: String(i.weight ?? ''), units: i.weightUnit, class: i.containerType === '40HC' ? '40' : i.containerType, description: i.description ?? '' }],
+    ftlAddressId: i.port.id,
+    ftlShipments: i.containers.map((c) => ({ weight: c.weight ? String(c.weight) : '', units: c.weightUnit, class: c.containerType, description: c.description ?? '' })),
   }
-  return toDrayageQuoteResult(await apiPost<RawQuotation>('/api/quotations-browser', body))
+  const raw = await apiPost<RawQuotation>('/api/quotations-browser', body)
+  return toDrayageQuote(raw, i.port, i.destination, i.containers.map((c) => c.containerType))
+}
+
+function isoTomorrow() {
+  const d = new Date()
+  d.setDate(d.getDate() + 1)
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
 }
 
 export async function fetchDrayagePorts(): Promise<DrayagePort[]> {
@@ -130,9 +145,18 @@ export async function fetchQuoteHistory(type: 'LTL' | 'FTL', keyword = ''): Prom
   }))
 }
 
-export async function fetchQuotation(id: string): Promise<{ raw: RawQuotation; result: QuoteResult }> {
+export async function fetchQuotation(id: string): Promise<{ raw: RawQuotation; result: QuoteResult; drayage?: DrayageQuote }> {
   const raw = await apiGet<RawQuotation>(`/api/quotations-browser/${id}`)
-  return { raw, result: raw.type === 'FTL' ? toDrayageQuoteResult(raw) : toLtlQuoteResult(raw) }
+  if (raw.type !== 'FTL') return { raw, result: toLtlQuoteResult(raw) }
+  const drayage = raw.ftlAddress
+    ? toDrayageQuote(
+        raw,
+        toDrayagePort(raw.ftlAddress),
+        { city: raw.destinationCity, state: raw.destinationState, zip: raw.destinationZip, country: raw.destinationCountry },
+        (raw.ftlShipments ?? []).map((l) => l.class),
+      )
+    : undefined
+  return { raw, result: toDrayageQuoteResult(raw), drayage }
 }
 
 export const toggleQuotationVisible = (id: string) => apiPut<unknown>(`/api/quotations-browser/${id}/visible`)

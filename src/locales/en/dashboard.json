@@ -34,10 +34,9 @@
     "portsError": "Ports unavailable",
     "container": "Container Type",
     "containers": {
-      "20": "20' Standard",
-      "40": "40' Standard",
-      "45": "45' High Cube",
-      "40HC": "40' High Cube"
+      "20": "20' Container",
+      "40": "40' Container",
+      "45": "45' Container"
     },
     "pickupZip": "Pickup ZIP",
     "deliveryZip": "Delivery ZIP",

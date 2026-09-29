@@ -104,22 +104,24 @@ async function createQuotation(req: RawQuotationRequest): Promise<RawQuotation> 
     }
   }
   const transit = req.type === 'FTL' ? (dist > 120 ? 2 : 1) : Math.ceil(dist / 450) + 1
+  const ltl = req.type === 'LTL'
+  // Drayage (FTL) is priced by SMALL FREIGHT only: base rate (fuel included) for lanes within ~100 miles of the terminal.
+  const ftlBase = !ltl && ftlAddress && dist <= 100 ? Math.round((250 + dist * 8.7) / 5) * 5 : null
   const quotation: RawQuotation = {
     ...req,
     id: uid(),
     number: 'Q' + Date.now().toString().slice(-8),
     visible: true,
     createdAt: new Date().toISOString(),
-    saia: vendor(1.0, transit + 1, 'SAIA LTL Freight', 'SA', 7),
-    arcb: vendor(1.062, transit + 1, 'ABF Freight', 'AB', 7),
-    xpo: vendor(1.103, transit + 2, 'XPO Logistics', 'XP', 7),
-    estes: vendor(1.133, transit + 2, 'Estes Express Lines', 'ES'),
-    uber: vendor(1.187, transit + 2, 'Uber Freight', 'UF', 7),
-    // SMALL FREIGHT's own lane: priced for short hauls only in this mock.
-    senmart: req.type === 'LTL' ? vendor(1.227, transit + 3, 'SMALL FREIGHT', 'SF', 14) : null,
-    ftlPrice: req.type === 'FTL' && dist <= 60 && ftlAddress ? round2(250 + dist * 4.2) : null,
+    saia: ltl ? vendor(1.0, transit + 1, 'SAIA LTL Freight', 'SA', 7) : null,
+    arcb: ltl ? vendor(1.062, transit + 1, 'ABF Freight', 'AB', 7) : null,
+    xpo: ltl ? vendor(1.103, transit + 2, 'XPO Logistics', 'XP', 7) : null,
+    estes: ltl ? vendor(1.133, transit + 2, 'Estes Express Lines', 'ES') : null,
+    uber: ltl ? vendor(1.187, transit + 2, 'Uber Freight', 'UF', 7) : null,
+    senmart: ltl ? vendor(1.227, transit + 3, 'SMALL FREIGHT', 'SF', 14) : null,
+    ftlPrice: ftlBase,
     ftlAddress,
-    ftlRate: req.type === 'FTL' && dist <= 60 ? { baseRate: round2(250 + dist * 4.2) } : null,
+    ftlRate: ftlBase === null ? null : { baseRate: ftlBase },
   }
   return quotation
 }

@@ -1,5 +1,5 @@
 import type { RawFtlAddress, RawQuotation, RawVendorQuote } from '@/domain/raw'
-import type { CarrierCode, DrayagePort, QuoteResult, RateOption } from '@/domain/types'
+import type { CarrierCode, DrayageFee, DrayageFeeUnit, DrayagePort, DrayageQuote, Location, QuoteResult, RateOption } from '@/domain/types'
 import { TERMINAL_POINTS } from '@/services/geo'
 
 export const CARRIERS: Record<CarrierCode, { name: string; taglineKey: string }> = {
@@ -73,22 +73,44 @@ export function toDrayageQuoteResult(q: RawQuotation): QuoteResult {
         breakdown: q.ftlAddress ? drayageAccessorials(q.ftlAddress) : undefined,
       }
     : { id: `${q.id}-senmart`, carrier: 'senmart', carrierName: CARRIERS.senmart.name, carrierTagline: CARRIERS.senmart.taglineKey, available: false, currency: 'USD', serviceType: 'portToDoor' }
-  const others = (['saia', 'arcb', 'xpo', 'estes', 'uber'] as CarrierCode[])
-    .map((k) => vendorRate(q, k, q[k], 'portToDoor'))
-    .filter((r) => r.available)
-    .map((r) => ({ ...r, validDays: r.validDays ?? 7 }))
-  return { quotationId: q.id, quotationNumber: q.number, rates: [...others, ownRate] }
+  // Drayage is SMALL FREIGHT's own service only — other carriers' fields are ignored.
+  return { quotationId: q.id, quotationNumber: q.number, rates: [ownRate] }
 }
 
-/** Terminal price sheet from /api/ftl-addresses (possible accessorial charges). */
-export function drayageAccessorials(a: RawFtlAddress) {
-  const rows: [string, number][] = [
-    ['chassis', a.chassis], ['storage', a.storage], ['prepull', a.prepull], ['detention', a.dentention],
-    ['residentialDelivery', a.residentialDelivery], ['owPermit', a.owPermit], ['chassisSplit', a.chassisSplit],
-    ['reefer', a.reefer], ['hazmat', a.hazmat], ['dryRun', a.dryrun], ['layover', a.layover],
-    ['pierPass20', a.pierPass20], ['pierPass40', a.pierPass40], ['congestionNyct', a.congestionNyct], ['tollFeeToPa', a.tollFeeToPa],
+/** Chassis is billed per day with a 2-day minimum (old FCL result page). */
+export const CHASSIS_MIN_DAYS = 2
+
+/** Terminal price sheet from /api/ftl-addresses (possible accessorial charges), with the billing unit of each. */
+export function drayageAccessorials(a: RawFtlAddress): DrayageFee[] {
+  const rows: [string, number, DrayageFeeUnit][] = [
+    ['chassis', a.chassis, 'perDay'], ['storage', a.storage, 'perDay'], ['prepull', a.prepull, 'perContainer'],
+    ['detention', a.dentention, 'perHourAfter2'], ['residentialDelivery', a.residentialDelivery, 'perContainer'],
+    ['owPermit', a.owPermit, 'perContainer'], ['chassisSplit', a.chassisSplit, 'perContainer'], ['reefer', a.reefer, 'perContainer'],
+    ['hazmat', a.hazmat, 'perContainer'], ['dryRun', a.dryrun, 'perContainer'], ['layover', a.layover, 'over350Miles'],
+    // Pier pass is stored in cents (5900 → $59), as the old result page shows it.
+    ['pierPass20', a.pierPass20 / 100, 'perContainer'], ['pierPass40', a.pierPass40 / 100, 'perContainer'],
+    ['congestionNyct', a.congestionNyct, 'perContainer'], ['tollFeeToPa', a.tollFeeToPa, 'perContainer'],
   ]
-  return rows.filter(([, v]) => v > 0).map(([label, amount]) => ({ label, amount }))
+  return rows.filter(([, v]) => v > 0).map(([label, amount, unit]) => ({ label, amount, unit }))
+}
+
+/** FTL quotation → SMALL FREIGHT's own drayage quote: base rate + chassis (2-day min) = estimated total. */
+export function toDrayageQuote(q: RawQuotation, port: DrayagePort, destination: Location, containers: string[]): DrayageQuote {
+  const fees = q.ftlAddress ? drayageAccessorials(q.ftlAddress) : port.fees
+  const chassisPerDay = fees.find((f) => f.label === 'chassis')?.amount ?? 0
+  const baseRate = q.ftlRate?.baseRate ?? q.ftlPrice ?? undefined
+  return {
+    quotationId: q.id,
+    quotationNumber: q.number,
+    port,
+    destination,
+    containers,
+    baseRate,
+    chassisPerDay,
+    chassisMinDays: CHASSIS_MIN_DAYS,
+    estimatedTotal: baseRate === undefined ? undefined : baseRate + chassisPerDay * CHASSIS_MIN_DAYS,
+    otherFees: fees,
+  }
 }
 
 const titleCase = (s: string) => s.trim().toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())

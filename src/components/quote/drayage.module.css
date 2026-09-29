@@ -1,0 +1,297 @@
+/* ---------- Drayage quote: request form (old FCL quote page layout) ---------- */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.twoCol {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 14px;
+}
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.block > :first-child {
+  margin-bottom: 2px;
+}
+.fields2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 16px;
+}
+.note {
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+.linkBtn {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--brand-primary);
+  text-decoration: underline;
+  font: inherit;
+}
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border);
+  border-top-color: var(--brand-primary);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+}
+
+.lines {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.line {
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) minmax(150px, 1fr) minmax(100px, 0.6fr) minmax(0, 1.6fr) 40px;
+  gap: 12px 16px;
+  align-items: start;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--border-soft);
+}
+.line:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.lineAction {
+  padding-top: 24px;
+}
+.warn {
+  grid-column: 1 / -1;
+  margin-top: -4px;
+  font-size: 12.5px;
+  color: var(--dash-customs-text, #b86e00);
+}
+.jobRow {
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) minmax(0, 2.2fr);
+  gap: 12px 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-soft);
+}
+.submit {
+  min-width: 180px;
+}
+
+/* ---------- Result (old FCL quote result page) ---------- */
+.resultWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scroll-margin-top: 80px;
+}
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.toolBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-button);
+  background: var(--surface);
+  color: var(--brand-primary);
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.toolBtn:hover {
+  background: var(--brand-primary-soft);
+  border-color: var(--brand-primary);
+}
+.result {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(320px, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+.resultMain {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.lane {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.priceList {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+.priceList > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 9px 0;
+  font-size: 15px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.priceList dd {
+  margin: 0;
+  font-weight: 600;
+}
+.totalRow {
+  border-bottom: 0 !important;
+  font-weight: 700;
+  font-size: 17px !important;
+  color: var(--text-primary);
+}
+.totalRow dd {
+  color: var(--brand-primary);
+  font-weight: 700;
+}
+.noRate {
+  padding: 12px 14px;
+  border-radius: var(--radius-input);
+  background: var(--dash-customs-soft, #fff4df);
+  color: var(--text-primary);
+  font-size: 14px;
+}
+.feesTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.feesTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.feesTable th,
+.feesTable td {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+.feesTable tr:last-child th,
+.feesTable tr:last-child td {
+  border-bottom: 0;
+}
+.feesTable th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+.feesTable td {
+  text-align: right;
+  color: var(--text-secondary);
+}
+.feesTable td:nth-child(2) {
+  width: 90px;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.feesTable td:last-child {
+  width: 190px;
+}
+
+.resultSide {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.mapCard {
+  position: relative;
+  height: 340px;
+  overflow: hidden;
+}
+.mapCard > div {
+  height: 100%;
+}
+.miles {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 500;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  box-shadow: 0 2px 8px rgba(var(--text-rgb), 0.15);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.disclaimer {
+  padding: 0 6px;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+.disclaimer h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.disclaimer ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.disclaimer li + li {
+  margin-top: 4px;
+}
+.disclaimer a {
+  color: var(--brand-primary);
+}
+
+@media (max-width: 1199px) {
+  .twoCol,
+  .result {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .line {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) 40px;
+  }
+  .line > :nth-child(4) {
+    grid-column: 1 / 4;
+  }
+}
+@media (max-width: 767px) {
+  .fields2,
+  .jobRow,
+  .line {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .line > :nth-child(4) {
+    grid-column: auto;
+  }
+  .lineAction {
+    padding-top: 0;
+  }
+  .feesTable td:last-child {
+    width: auto;
+  }
+}
+
+/* Print only the quote (the app chrome is hidden by shell.module.css). */
+@media print {
+  .form,
+  .toolbar {
+    display: none !important;
+  }
+}
