@@ -1,4 +1,4 @@
-/* Shipment detail cards: updates log, documents, container dates */
+/* Shipment detail cards: updates log, container dates */
 .sub {
   margin: -4px 0 12px 32px;
   font-size: 12.5px;
@@ -61,64 +61,6 @@
   font-size: 12.5px;
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
-}
-
-/* ---------- documents ---------- */
-.docList {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.doc {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 10px 14px;
-  border: 1px solid var(--border-soft);
-  border-radius: 8px;
-}
-.docIcon {
-  display: inline-flex;
-  width: 36px;
-  height: 36px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  background: var(--brand-primary-soft);
-  color: var(--brand-primary);
-  flex: none;
-}
-.docText {
-  flex: 1;
-  min-width: 0;
-}
-.docName {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-primary);
-  overflow-wrap: anywhere;
-}
-.docMeta {
-  font-size: 12px;
-  color: var(--text-muted);
-}
-.docLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 44px;
-  padding: 0 8px;
-  font-size: 13.5px;
-  font-weight: 600;
-  color: var(--brand-primary);
-  border-radius: 6px;
-}
-.docLink:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 
 /* ---------- containers ---------- */

@@ -81,3 +81,23 @@ export const TERMINAL_POINTS: Record<string, GeoPoint> = {
   HOUSTON: { lat: 29.6153, lng: -95.0149 },
   OAKLAND: { lat: 37.7958, lng: -122.3136 },
 }
+
+/** Known coordinates for ports / ramps used in fixtures and drayage terminals. */
+export const PLACE_POINTS: Record<string, GeoPoint> = {
+  CNSHA: { lat: 31.35, lng: 121.6 },
+  CNNGB: { lat: 29.93, lng: 121.85 },
+  CNSZX: { lat: 22.57, lng: 114.27 },
+  CNTAO: { lat: 36.08, lng: 120.3 },
+  CNXMN: { lat: 24.47, lng: 118.07 },
+  KRPUS: { lat: 35.1, lng: 129.04 },
+  VNSGN: { lat: 10.76, lng: 106.79 },
+  DEHAM: { lat: 53.54, lng: 9.97 },
+  USLAX: { lat: 33.74, lng: -118.27 },
+  USLGB: { lat: 33.75, lng: -118.21 },
+  USNYC: { lat: 40.68, lng: -74.15 },
+  USSAV: { lat: 32.13, lng: -81.14 },
+  USHOU: { lat: 29.61, lng: -95.01 },
+  USCHI: { lat: 41.42, lng: -88.17 },
+  USSEA: { lat: 47.27, lng: -122.41 },
+  USOAK: { lat: 37.8, lng: -122.31 },
+}

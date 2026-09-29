@@ -19,6 +19,7 @@ export function DetailSkeleton() {
         <Skeleton height={125} radius={9} />
         <div className={s.bodyGrid}>
           <div className={s.bodyMain}>
+            <Skeleton height={300} radius={9} />
             <Skeleton height={260} radius={9} />
             <Skeleton height={140} radius={9} />
           </div>

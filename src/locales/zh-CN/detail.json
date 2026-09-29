@@ -63,14 +63,6 @@
     "noEvents": "暂无状态更新",
     "noEventsBody": "货物有新动态时会显示在这里。"
   },
-  "documents": {
-    "title": "文件",
-    "empty": "暂无文件",
-    "emptyBody": "到货通知、清关单据、提货单等文件上传后会显示在这里。",
-    "error": "文件加载失败。",
-    "open": "打开",
-    "uploaded": "上传于 {{date}}"
-  },
   "containers": {
     "title": "柜号",
     "number": "柜号",
@@ -92,5 +84,17 @@
     "value": "内容",
     "status": "状态",
     "lastEvent": "最新动态"
+  },
+  "route": {
+    "label": "航线",
+    "origin": "起运港",
+    "destination": "目的港",
+    "unknownOrigin": "暂无起运港信息",
+    "unknownDestination": "暂无目的港信息",
+    "etd": "预计开船",
+    "eta": "预计到港",
+    "mapLabel": "{{from}} 至 {{to}} 航线地图",
+    "noMapTitle": "暂无航线地图",
+    "noMap": "起运港和目的港信息齐全后，将在此显示航线。"
   }
 }

@@ -63,14 +63,6 @@
     "noEvents": "No tracking updates yet",
     "noEventsBody": "Updates will appear here as soon as your shipment moves."
   },
-  "documents": {
-    "title": "Documents",
-    "empty": "No documents yet",
-    "emptyBody": "Arrival notices, customs entries and delivery orders will appear here once they are uploaded.",
-    "error": "We couldn't load the documents.",
-    "open": "Open",
-    "uploaded": "Uploaded {{date}}"
-  },
   "containers": {
     "title": "Containers",
     "number": "Container No.",
@@ -92,5 +84,17 @@
     "value": "Value",
     "status": "Status",
     "lastEvent": "Latest Update"
+  },
+  "route": {
+    "label": "Route",
+    "origin": "Origin",
+    "destination": "Destination",
+    "unknownOrigin": "Origin not available",
+    "unknownDestination": "Destination not available",
+    "etd": "ETD",
+    "eta": "ETA",
+    "mapLabel": "Route map from {{from}} to {{to}}",
+    "noMapTitle": "Route map unavailable",
+    "noMap": "Route details will appear once origin and destination are available."
   }
 }
