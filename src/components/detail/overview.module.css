@@ -51,22 +51,6 @@
   gap: 22px;
   min-width: 0;
 }
-.place > [role='img'] {
-  flex: none;
-  height: 50px !important;
-  border-radius: 2px;
-  box-shadow: 0 0 0 1px rgba(var(--text-rgb), 0.08);
-  margin-top: 1px;
-  background-size: cover;
-}
-.flagPlaceholder {
-  flex: none;
-  width: 70px;
-  height: 50px;
-  border-radius: 2px;
-  background: var(--neutral-soft);
-  border: 1px dashed var(--border);
-}
 .placeText {
   min-width: 0;
 }
@@ -366,11 +350,6 @@
   .place {
     gap: 14px;
   }
-  .place > [role='img'],
-  .flagPlaceholder {
-    width: 48px !important;
-    height: 34px !important;
-  }
   .placeCity {
     font-size: 18px;
     white-space: normal;
@@ -416,11 +395,6 @@
   }
   .place {
     gap: 16px;
-  }
-  .place > [role='img'],
-  .flagPlaceholder {
-    width: 56px !important;
-    height: 40px !important;
   }
   .placeCity {
     font-size: 19px;

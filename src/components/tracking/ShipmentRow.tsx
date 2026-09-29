@@ -4,7 +4,7 @@ import { ArrowRight, MoveRight } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import type { MouseEvent } from 'react'
-import { FlagLocation } from '@/components/shipment/FlagLocation'
+import { PlaceLabel } from '@/components/shipment/PlaceLabel'
 import { ShipmentProgress } from '@/components/shipment/ShipmentProgress'
 import { Skeleton } from '@/components/ui/States'
 import { StatusChip } from '@/components/ui/StatusChip'
@@ -37,9 +37,9 @@ export function ShipmentRow({ sh }: { sh: Shipment }) {
         <ModeBadge sh={sh} />
       </div>
       <div className={s.cRoute}>
-        <FlagLocation place={sh.origin} />
+        <PlaceLabel place={sh.origin} />
         <MoveRight size={16} className={s.routeArrow} aria-label={t('shipments.tracking.to')} />
-        <FlagLocation place={sh.destination} />
+        <PlaceLabel place={sh.destination} />
       </div>
       <div className={s.cProgress}>
         {/* Calm list: reached steps stay brand blue for delivered rows too (no all-green rows). */}

@@ -3,14 +3,13 @@
 import { MapPinOff } from 'lucide-react'
 import { useMemo } from 'react'
 import { RouteMap, type MapMarker } from '@/components/map/RouteMap'
-import { Flag } from '@/components/ui/misc'
 import type { Place, Shipment } from '@/domain/types'
 import { useI18n } from '@/i18n/I18nProvider'
 import { fmtDate } from '@/i18n/format'
 import { routeGeometry, voyageProgress } from './helpers'
 import s from './overview.module.css'
 
-/** Origin → destination summary with big flags, plus the light route map below it. */
+/** Origin → destination summary, plus the light route map below it. */
 export function RoutePanel({ shipment: sh }: { shipment: Shipment }) {
   const { t } = useI18n()
   return (
@@ -36,11 +35,6 @@ function PlaceBlock({ place, date, kind }: { place?: Place; date?: string; kind:
   const dateLabel = t(kind === 'origin' ? 'detail.route.etd' : 'detail.route.eta')
   return (
     <div className={s.place} data-kind={kind}>
-      {place ? (
-        <Flag code={place.countryCode} width={70} title={place.countryCode} />
-      ) : (
-        <span className={s.flagPlaceholder} aria-hidden />
-      )}
       <div className={s.placeText}>
         <span className={s.srOnly}>{t(`detail.route.${kind}`)}: </span>
         <p className={`${s.placeCity} ${place ? '' : s.muted}`}>
