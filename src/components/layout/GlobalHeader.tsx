@@ -1,6 +1,6 @@
 'use client'
 
-import { Bell, ChevronDown, CircleHelp, KeyRound, Languages, LogOut, Search } from 'lucide-react'
+import { Bell, ChevronDown, CircleHelp, KeyRound, Languages, LogOut, PanelLeftClose, PanelLeftOpen, Search } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useState, type FormEvent } from 'react'
@@ -13,7 +13,13 @@ import { ChangePasswordModal } from './ChangePasswordModal'
 import { NotificationsPanel, useNotifications } from './Notifications'
 import s from './shell.module.css'
 
-export function GlobalHeader() {
+export function GlobalHeader({
+  sidebarCollapsed,
+  onToggleSidebar,
+}: {
+  sidebarCollapsed: boolean
+  onToggleSidebar: () => void
+}) {
   const { t, lang, setLang } = useI18n()
   const router = useRouter()
   const pathname = usePathname()
@@ -40,6 +46,16 @@ export function GlobalHeader() {
 
   return (
     <header className={s.header}>
+      <button
+        type="button"
+        className={`${s.iconBtn} ${s.sidebarToggle}`}
+        onClick={onToggleSidebar}
+        aria-label={t(sidebarCollapsed ? 'nav.expandSidebar' : 'nav.collapseSidebar')}
+        title={t(sidebarCollapsed ? 'nav.expandSidebar' : 'nav.collapseSidebar')}
+        aria-expanded={!sidebarCollapsed}
+      >
+        {sidebarCollapsed ? <PanelLeftOpen size={20} /> : <PanelLeftClose size={20} />}
+      </button>
       {showSearch && (
         <form className={s.search} role="search" onSubmit={onSearch}>
           <label className={s.searchField}>

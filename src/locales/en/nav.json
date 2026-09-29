@@ -11,6 +11,8 @@
   "help": "Help & Support",
   "home": "Home",
   "menu": "Menu",
+  "collapseSidebar": "Collapse sidebar",
+  "expandSidebar": "Expand sidebar",
   "notifications": "Notifications",
   "account": "Account"
 }

@@ -11,6 +11,8 @@
   "help": "帮助与支持",
   "home": "首页",
   "menu": "菜单",
+  "collapseSidebar": "收起侧边栏",
+  "expandSidebar": "展开侧边栏",
   "notifications": "通知",
   "account": "账户"
 }

@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
   min-height: 100vh;
+  transition: grid-template-columns var(--dur) var(--ease);
 }
 
 /* ---------- Sidebar (spec §4.1) ---------- */
@@ -107,6 +108,41 @@
   font-weight: 600;
   background: var(--brand-primary-soft);
 }
+/* Collapsed (toggle in the header): icon rail like the narrow-screen layout. */
+.shell[data-collapsed='true'] {
+  --sidebar-width: 72px;
+}
+.shell[data-collapsed='true'] .logoText,
+.shell[data-collapsed='true'] .navLabel,
+.shell[data-collapsed='true'] .subNav {
+  display: none;
+}
+.shell[data-collapsed='true'] .logo {
+  justify-content: center;
+  padding: 0;
+}
+.shell[data-collapsed='true'] .logoMark {
+  width: 40px;
+}
+.shell[data-collapsed='true'] .nav {
+  align-items: center;
+}
+.shell[data-collapsed='true'] .navItem {
+  justify-content: center;
+  width: 46px;
+  padding: 0;
+}
+.shell[data-collapsed='true'] .navItem[aria-current='page'],
+.shell[data-collapsed='true'] .navItem[data-active='true'] {
+  background: var(--brand-primary-soft);
+  color: var(--brand-primary);
+}
+.sidebarToggle {
+  flex: none;
+  margin-left: -12px;
+  color: var(--text-secondary);
+}
+
 /* ---------- Main column ---------- */
 .main {
   min-width: 0;
@@ -345,6 +381,10 @@
   .navItem {
     justify-content: center;
     padding: 0;
+  }
+  /* Already an icon rail at this width. */
+  .sidebarToggle {
+    display: none;
   }
 }
 @media (max-width: 767px) {
