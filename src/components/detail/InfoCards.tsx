@@ -1,11 +1,12 @@
 'use client'
 
-import { Box, FileText } from 'lucide-react'
+import { FileText } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { Copyable } from '@/components/ui/misc'
-import type { Shipment } from '@/domain/types'
+import { ToneChip } from '@/components/ui/StatusChip'
+import type { ReleaseState, Shipment } from '@/domain/types'
 import { useI18n } from '@/i18n/I18nProvider'
-import { fmtNumber } from '@/i18n/format'
+import { fmtDate } from '@/i18n/format'
 import { containerSummary, DASH, serviceType } from './helpers'
 import s from './info.module.css'
 
@@ -35,44 +36,37 @@ function Row({ label, value, copy, mono }: { label: string; value?: ReactNode; c
   )
 }
 
+const RELEASE_TONE = { released: 'green', notReleased: 'orange', na: 'gray' } as const
+const ISF_TONE = { matched: 'green', notMatched: 'orange', na: 'gray' } as const
+
+/** Fields of the old booking drawer: MBL, HBL, CNTR, REF#, ETA, ISF / PGA / customs / freight status, service type. */
 export function ShipmentDetailsCard({ shipment: sh }: { shipment: Shipment }) {
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
   const containers = containerSummary(sh)
+  const release = (r: ReleaseState) => <ToneChip tone={RELEASE_TONE[r]} size="sm">{t(`status.release.${r}`)}</ToneChip>
   return (
     <InfoCard id="detail-info-shipment" icon={<FileText size={20} />} title={t('detail.details.title')}>
-      <dl className={s.list}>
-        <Row label={t('detail.details.shipmentNumber')} value={sh.smNumber} copy={sh.smNumber} />
-        <Row label={t('detail.details.bookingNumber')} value={sh.smNumber} />
-        <Row label={t('detail.details.bl')} value={sh.mbl} copy={sh.mbl} />
-        {sh.hbl && <Row label={t('detail.details.hbl')} value={sh.hbl} copy={sh.hbl} />}
-        <Row label={t('detail.details.serviceType')} value={serviceType(sh, t)} />
-        <Row label={t('detail.details.containers')} value={containers} copy={sh.containers.join(' ') || undefined} />
-        <Row label={t('detail.details.reference')} value={sh.reference} copy={sh.reference} />
-        <Row label={t('detail.details.isf')} value={sh.isfNumber} copy={sh.isfNumber} />
-        <Row label={t('detail.details.shipper')} value={sh.shipper} />
-        <Row label={t('detail.details.consignee')} value={sh.consignee} />
-        <Row label={t('detail.details.deliverTo')} value={sh.deliverTo} />
-      </dl>
-    </InfoCard>
-  )
-}
-
-export function CargoCard({ shipment: sh }: { shipment: Shipment }) {
-  const { t, lang } = useI18n()
-  const c = sh.cargo
-  const dg = c?.dangerousGoods === undefined ? undefined : t(c.dangerousGoods ? 'detail.cargo.yes' : 'detail.cargo.no')
-  return (
-    <InfoCard id="detail-info-cargo" icon={<Box size={20} />} title={t('detail.cargo.title')}>
-      <dl className={s.list}>
-        <Row label={t('detail.cargo.description')} value={c?.description} />
-        <Row label={t('detail.cargo.hsCode')} value={c?.hsCode} />
-        <Row label={t('detail.cargo.packages')} value={c?.packages} />
-        <Row label={t('detail.cargo.weight')} value={c?.weightKg !== undefined ? t('detail.cargo.kgs', { value: fmtNumber(c.weightKg, lang, 2) }) : undefined} />
-        <Row label={t('detail.cargo.volume')} value={c?.volumeCbm !== undefined ? t('detail.cargo.cbm', { value: fmtNumber(c.volumeCbm, lang, 2) }) : undefined} />
-        <Row label={t('detail.cargo.containerType')} value={c?.containerType ? `${c.containerType} (${sh.mode})` : undefined} />
-        <Row label={t('detail.cargo.seal')} value={c?.sealNumber} />
-        <Row label={t('detail.cargo.dangerous')} value={dg} />
-      </dl>
+      <div className={s.cols}>
+        <dl className={s.list}>
+          <Row label={t('detail.details.bl')} value={sh.mbl} copy={sh.mbl} mono />
+          <Row label={t('detail.details.hbl')} value={sh.hbl} copy={sh.hbl} mono />
+          <Row label={t('detail.details.containers')} value={containers} copy={sh.containers.join(' ') || undefined} mono />
+          <Row label={t('detail.details.reference')} value={sh.reference} copy={sh.reference} />
+          <Row label={t('detail.details.eta')} value={sh.eta ? fmtDate(sh.eta, lang) : undefined} />
+          <Row label={t('detail.details.serviceType')} value={serviceType(sh, t)} />
+        </dl>
+        <dl className={s.list}>
+          <Row
+            label={t('detail.details.isfStatus')}
+            value={<ToneChip tone={ISF_TONE[sh.isf.state]} size="sm">{t(`status.isf.${sh.isf.state}`)}</ToneChip>}
+          />
+          <Row label={t('detail.details.pgaStatus')} value={sh.pgaStatus} />
+          <Row label={t('detail.details.customsRelease')} value={release(sh.customsRelease)} />
+          <Row label={t('detail.details.freightRelease')} value={release(sh.freightRelease)} />
+          <Row label={t('detail.details.appointment')} value={sh.appointment} />
+          <Row label={t('detail.details.deliverTo')} value={sh.deliverTo} />
+        </dl>
+      </div>
     </InfoCard>
   )
 }

@@ -19,51 +19,6 @@
     "trackOff": "已取消订阅 {{sm}} 的动态更新",
     "csvReady": "货物概要已下载"
   },
-  "tabs": {
-    "label": "货物详情分区",
-    "overview": "概览",
-    "tracking": "追踪",
-    "documents": "文件",
-    "containers": "柜号（{{count}}）",
-    "charges": "费用",
-    "communications": "沟通记录"
-  },
-  "route": {
-    "label": "航线",
-    "origin": "起运港",
-    "destination": "目的港",
-    "unknownOrigin": "暂无起运港信息",
-    "unknownDestination": "暂无目的港信息",
-    "etd": "预计开船",
-    "eta": "预计到港",
-    "mapLabel": "{{from}} 至 {{to}} 航线地图",
-    "noMapTitle": "暂无航线地图",
-    "noMap": "起运港和目的港信息齐全后，将在此显示航线。"
-  },
-  "status": {
-    "title": "当前状态",
-    "viewTracking": "查看追踪详情",
-    "lastUpdated": "最近更新",
-    "noUpdates": "暂无更新",
-    "estimatedArrival": "预计到港",
-    "arrival": "到港日期",
-    "daysRemaining": "还剩 {{count}} 天",
-    "dayRemaining": "还剩 1 天",
-    "arrivingToday": "今日到港",
-    "arrived": "已到港",
-    "overdue": "已超出预计到港 {{count}} 天",
-    "sub": {
-      "pending": "订单已接收，等待开船",
-      "inTransitOcean": "海运途中",
-      "inTransitTruck": "陆运途中",
-      "atPort": "已到港，可安排提柜",
-      "customs": "已到港，正在清关",
-      "outForDelivery": "已提柜，正在派送",
-      "delivered": "货物已送达",
-      "completed": "清关已完成",
-      "exception": "需要处理，请联系您的客服"
-    }
-  },
   "timeline": {
     "label": "货物节点",
     "departed": "已从 {{city}} 开船",
@@ -83,60 +38,30 @@
   "details": {
     "title": "货物信息",
     "shipmentNumber": "货物编号",
-    "bookingNumber": "订舱号",
     "bl": "主提单号",
     "hbl": "分提单号",
     "serviceType": "服务类型",
     "containers": "柜号",
     "reference": "参考号码",
     "isf": "反恐申报号码",
-    "shipper": "发货人",
-    "consignee": "收货人",
-    "deliverTo": "派送地址"
-  },
-  "cargo": {
-    "title": "货品信息",
-    "description": "货物描述",
-    "hsCode": "HS 编码",
-    "packages": "总件数",
-    "weight": "总重量",
-    "volume": "总体积",
-    "containerType": "柜型",
-    "seal": "封条号",
-    "dangerous": "危险品",
-    "yes": "是",
-    "no": "否",
-    "kgs": "{{value}} 公斤",
-    "cbm": "{{value}} 立方米"
+    "deliverTo": "派送地址",
+    "eta": "预计到港",
+    "isfStatus": "ISF 状态",
+    "pgaStatus": "PGA 状态",
+    "customsRelease": "清关放行",
+    "freightRelease": "货物放行",
+    "appointment": "预约"
   },
   "dates": {
-    "title": "关键日期",
-    "booked": "订单确认",
-    "isfFiled": "反恐申报完成",
-    "departed": "已开船",
-    "departure": "预计开船",
-    "arrived": "已到港",
-    "arrival": "预计到港",
-    "customsReleased": "清关放行",
     "lfd": "免费堆存日期",
     "lfdWarning": "即将到期",
-    "lfdDanger": "已过期",
-    "pickup": "提柜日期",
-    "delivered": "派送日期",
-    "emptyReturn": "还空柜日期"
+    "lfdDanger": "已过期"
   },
   "tracking": {
     "eventsTitle": "状态更新",
     "eventsSub": "按时间倒序，来自操作团队的最新记录",
     "noEvents": "暂无状态更新",
-    "noEventsBody": "货物有新动态时会显示在这里。",
-    "statusTitle": "申报与放行",
-    "isf": "反恐申报状态",
-    "pga": "PGA 状态",
-    "customsRelease": "清关放行状态",
-    "freightRelease": "货物放行状态",
-    "appointment": "派送预约时间",
-    "deliverTo": "派送地址"
+    "noEventsBody": "货物有新动态时会显示在这里。"
   },
   "documents": {
     "title": "文件",
@@ -157,14 +82,6 @@
     "empty": "此票货物没有柜号",
     "emptyBody": "拼箱 / 散货按提单号追踪。"
   },
-  "charges": {
-    "title": "费用明细将显示在这里",
-    "body": "此票货物的账单和运费暂不支持在线查看。如需对账单，请致电 {{phone}}。"
-  },
-  "communications": {
-    "title": "暂无沟通记录",
-    "body": "您与操作团队关于此票货物的沟通会显示在这里。如需帮助，请致电 {{phone}}。"
-  },
   "notFound": {
     "title": "未找到该货物",
     "body": "您的账户中没有货物 {{id}}。"
@@ -174,10 +91,6 @@
     "field": "字段",
     "value": "内容",
     "status": "状态",
-    "origin": "起运港",
-    "destination": "目的港",
-    "etd": "预计开船",
-    "eta": "预计到港",
     "lastEvent": "最新动态"
   }
 }

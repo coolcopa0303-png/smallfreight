@@ -340,3 +340,28 @@
     margin-top: 6px;
   }
 }
+
+/* ---------- One-page body: progress, then details / containers / documents beside the update log ---------- */
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  margin-top: 14px;
+}
+.bodyGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
+  gap: 13px;
+  align-items: start;
+}
+.bodyMain {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  min-width: 0;
+}
+@media (max-width: 1199px) {
+  .bodyGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -8,7 +8,7 @@ import type { ContainerInfo, Shipment } from '@/domain/types'
 import { useI18n } from '@/i18n/I18nProvider'
 import { fmtDate } from '@/i18n/format'
 import { InfoCard } from './InfoCards'
-import s from './tabs.module.css'
+import s from './cards.module.css'
 
 const COLS = ['pickupDate', 'deliverDate', 'emptyReturnDate', 'emptyNotificationDate'] as const
 const COL_KEY: Record<(typeof COLS)[number], string> = {
@@ -18,7 +18,8 @@ const COL_KEY: Record<(typeof COLS)[number], string> = {
   emptyNotificationDate: 'emptyNotification',
 }
 
-export function ContainersTab({ shipment: sh }: { shipment: Shipment }) {
+/** Per-container dates (old drawer's right column: last free day, pick up, delivery, empty return, empty notification). */
+export function ContainerDatesCard({ shipment: sh }: { shipment: Shipment }) {
   const { t } = useI18n()
   return (
     <InfoCard id="detail-containers" icon={<Container size={20} />} title={t('detail.containers.title')}>

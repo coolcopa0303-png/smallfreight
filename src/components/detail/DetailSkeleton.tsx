@@ -3,7 +3,6 @@
 import { Skeleton } from '@/components/ui/States'
 import { useI18n } from '@/i18n/I18nProvider'
 import s from './detail.module.css'
-import o from './overview.module.css'
 
 export function DetailSkeleton() {
   const { t } = useI18n()
@@ -16,17 +15,14 @@ export function DetailSkeleton() {
           <Skeleton width={560} height={16} style={{ maxWidth: '100%' }} />
         </div>
       </div>
-      <Skeleton height={40} style={{ margin: '14px 0' }} />
-      <div className={o.overview}>
-        <div className={o.topGrid}>
-          <Skeleton height={310} radius={9} />
-          <Skeleton height={310} radius={9} />
-        </div>
+      <div className={s.body}>
         <Skeleton height={125} radius={9} />
-        <div className={o.infoGrid}>
-          <Skeleton height={220} radius={9} />
-          <Skeleton height={220} radius={9} />
-          <Skeleton height={220} radius={9} />
+        <div className={s.bodyGrid}>
+          <div className={s.bodyMain}>
+            <Skeleton height={260} radius={9} />
+            <Skeleton height={140} radius={9} />
+          </div>
+          <Skeleton height={420} radius={9} />
         </div>
       </div>
     </div>

@@ -27,7 +27,7 @@ export function DetailHeader({ shipment }: { shipment: Shipment }) {
   if (summary)
     meta.push(
       <span key="cn" className={s.metaItem}>
-        {shipment.cargo?.containerType ? summary : <Copyable value={shipment.containers.join(' ')} className={s.metaValue}>{summary}</Copyable>}
+        <Copyable value={shipment.containers.join(' ')} className={s.metaValue}>{summary}</Copyable>
       </span>,
     )
   if (shipment.reference)

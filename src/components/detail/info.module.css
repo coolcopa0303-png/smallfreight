@@ -216,3 +216,23 @@
     grid-template-columns: 84px 34px;
   }
 }
+
+/* Two field columns inside Shipment Details. */
+.cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 28px;
+}
+.cols .row {
+  align-items: center;
+  min-height: 30px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.cols .row:last-child {
+  border-bottom: 0;
+}
+@media (max-width: 767px) {
+  .cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

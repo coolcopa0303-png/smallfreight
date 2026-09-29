@@ -1,4 +1,4 @@
-/* Tracking / Documents / Containers / Charges / Communications tabs */
+/* Shipment detail cards: updates log, documents, container dates */
 .sub {
   margin: -4px 0 12px 32px;
   font-size: 12.5px;
@@ -8,13 +8,7 @@
   font-family: var(--font-mono);
 }
 
-/* ---------- tracking ---------- */
-.trackingGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 400px;
-  gap: 15px;
-  align-items: start;
-}
+/* ---------- updates ---------- */
 .events {
   list-style: none;
   margin: 0;
@@ -67,31 +61,6 @@
   font-size: 12.5px;
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
-}
-.statusGrid {
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-}
-.statusCell {
-  padding: 10px 12px;
-  border-radius: 8px;
-  background: var(--bg-muted);
-  border: 1px solid var(--border-soft);
-  min-width: 0;
-}
-.statusCell dt {
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-bottom: 4px;
-}
-.statusCell dd {
-  margin: 0;
-  font-size: 13.5px;
-  font-weight: 500;
-  color: var(--text-primary);
-  overflow-wrap: anywhere;
 }
 
 /* ---------- documents ---------- */
@@ -206,39 +175,7 @@
   background: var(--danger-soft);
 }
 
-/* ---------- charges / communications ---------- */
-.supportCard {
-  background: var(--surface);
-  border: 1px solid var(--border-card);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
-  padding: 24px;
-}
-.phoneLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 0 16px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-button);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--brand-primary);
-}
-.phoneLink:hover {
-  border-color: var(--brand-primary);
-}
-
-@media (max-width: 1199px) {
-  .trackingGrid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
 @media (max-width: 767px) {
-  .statusGrid {
-    grid-template-columns: minmax(0, 1fr);
-  }
   /* containers table → stacked cards */
   .table thead {
     display: none;

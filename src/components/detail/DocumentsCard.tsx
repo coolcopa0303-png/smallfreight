@@ -9,9 +9,9 @@ import { useI18n } from '@/i18n/I18nProvider'
 import { fmtDate } from '@/i18n/format'
 import { fetchShipmentFiles } from '@/services/shipments'
 import { InfoCard } from './InfoCards'
-import s from './tabs.module.css'
+import s from './cards.module.css'
 
-export function DocumentsTab({ shipment }: { shipment: Shipment }) {
+export function DocumentsCard({ shipment }: { shipment: Shipment }) {
   const { t, lang } = useI18n()
   const windows = useBillingWindows()
   const { data, error, isLoading, mutate } = useSWR(windows ? ['cargo-files', shipment.id, JSON.stringify(windows)] : null, () =>

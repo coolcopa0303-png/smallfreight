@@ -28,8 +28,6 @@ export function DetailActions({ shipment: sh }: { shipment: Shipment }) {
   }
 
   const csv = () => {
-    const place = (p?: Shipment['origin']) => (p ? [p.city, p.countryCode, p.portName].filter(Boolean).join(', ') : '')
-    const c = sh.cargo
     const rows: [string, string][] = [
       [t('detail.csv.field'), t('detail.csv.value')],
       [t('detail.details.shipmentNumber'), sh.smNumber],
@@ -37,23 +35,15 @@ export function DetailActions({ shipment: sh }: { shipment: Shipment }) {
       [t('detail.details.hbl'), sh.hbl ?? ''],
       [t('detail.details.containers'), sh.containers.join(' ')],
       [t('detail.details.reference'), sh.reference ?? ''],
-      [t('detail.details.isf'), sh.isfNumber ?? ''],
+      [t('detail.details.eta'), sh.eta ? fmtIsoDate(sh.eta) : ''],
       [t('detail.details.serviceType'), serviceType(sh, t)],
       [t('detail.csv.status'), sh.completed ? t('status.completed') : t(STATUS_META[sh.status].labelKey)],
-      [t('detail.csv.origin'), place(sh.origin)],
-      [t('detail.csv.destination'), place(sh.destination)],
-      [t('detail.csv.etd'), sh.etd ? fmtIsoDate(sh.etd) : ''],
-      [t('detail.csv.eta'), sh.eta ? fmtIsoDate(sh.eta) : ''],
-      [t('detail.details.shipper'), sh.shipper ?? ''],
-      [t('detail.details.consignee'), sh.consignee ?? ''],
+      [t('detail.details.isfStatus'), t(`status.isf.${sh.isf.state}`)],
+      [t('detail.details.pgaStatus'), sh.pgaStatus ?? ''],
+      [t('detail.details.customsRelease'), t(`status.release.${sh.customsRelease}`)],
+      [t('detail.details.freightRelease'), t(`status.release.${sh.freightRelease}`)],
+      [t('detail.details.appointment'), sh.appointment ?? ''],
       [t('detail.details.deliverTo'), sh.deliverTo ?? ''],
-      [t('detail.cargo.description'), c?.description ?? ''],
-      [t('detail.cargo.hsCode'), c?.hsCode ?? ''],
-      [t('detail.cargo.packages'), c?.packages ?? ''],
-      [t('detail.cargo.weight'), c?.weightKg !== undefined ? `${c.weightKg} KGS` : ''],
-      [t('detail.cargo.volume'), c?.volumeCbm !== undefined ? `${c.volumeCbm} CBM` : ''],
-      [t('detail.cargo.containerType'), c?.containerType ?? ''],
-      [t('detail.cargo.seal'), c?.sealNumber ?? ''],
       [t('detail.csv.lastEvent'), sh.lastEvent ? `${sh.lastEvent} (${sh.lastUpdated ?? DASH})` : ''],
     ]
     downloadBlob(toCsv(rows), `${sh.smNumber}.csv`)
