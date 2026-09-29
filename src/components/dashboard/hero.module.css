@@ -26,7 +26,7 @@
   max-width: 62%;
   z-index: -1;
   /* Ship-and-port scene taken from the reference-v2 01 design (already in the light-blue tone). */
-  background: url('/images/hero-dashboard.webp') right center / cover no-repeat;
+  background: url('../../../public/images/hero-dashboard.webp') right center / cover no-repeat;
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.55) 18%, #000 40%);
   mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.55) 18%, #000 40%);
 }

@@ -6,9 +6,12 @@ const DATA_MODE = process.env.NEXT_PUBLIC_DATA_MODE ?? "mock";
 const UPSTREAM = process.env.SMALL_FREIGHT_API_ORIGIN ?? "https://smallfreight.senmartintl.com";
 // STATIC_EXPORT=1 builds a plain static site (sample data only) for demo hosting — see README.
 const STATIC_EXPORT = process.env.STATIC_EXPORT === "1";
+// Sub-path for hosts that serve the site under a folder, e.g. GitHub Pages → "/smallfreight".
+const BASE_PATH = process.env.PAGES_BASE_PATH || undefined;
 
 const staticConfig: NextConfig = {
   output: "export",
+  basePath: BASE_PATH,
   trailingSlash: true,
   env: { STATIC_EXPORT: "1" },
 };
