@@ -40,7 +40,8 @@ export default function MapCanvas({ markers, path, variant = 'road', routeStyle 
 
   useEffect(() => {
     if (!el.current || map.current) return
-    const m = L.map(el.current, { zoomControl: false, attributionControl: true, scrollWheelZoom: false, worldCopyJump: true })
+    // No worldCopyJump: trans-Pacific routes are drawn past lng 180, and the jump would pan to a world copy without them.
+    const m = L.map(el.current, { zoomControl: false, attributionControl: true, scrollWheelZoom: false })
     L.control.zoom({ position: 'topleft' }).addTo(m)
     L.tileLayer(TILES[variant].url, {
       attribution: TILES[variant].attribution,
