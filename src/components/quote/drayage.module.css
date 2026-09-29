@@ -295,3 +295,51 @@
     display: none !important;
   }
 }
+
+/* ---------- Result screen header: back to the form · quote number · new quote ---------- */
+.resultHead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    'back back'
+    'title action';
+  align-items: center;
+  gap: 4px 16px;
+  margin: 2px 0 0 4px;
+}
+.back {
+  grid-area: back;
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  padding: 2px 0;
+  background: none;
+  color: var(--brand-primary);
+  font-size: 15px;
+  font-weight: 500;
+}
+.back:hover {
+  text-decoration: underline;
+}
+.resultTitle {
+  grid-area: title;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--navy-900);
+}
+.resultHead > :last-child {
+  grid-area: action;
+}
+@media (max-width: 767px) {
+  .resultTitle {
+    font-size: 24px;
+  }
+}
+@media print {
+  .resultHead {
+    display: none;
+  }
+}

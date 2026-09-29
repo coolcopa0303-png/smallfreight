@@ -82,7 +82,11 @@
     "disclaimerPhone": "客服电话：",
     "disclaimerEmail": "邮箱：",
     "disclaimerChange": "价格可能随市场情况变动。",
-    "error": "获取拖车报价失败"
+    "error": "获取拖车报价失败",
+    "newQuote": "新询价",
+    "editRequest": "修改询价",
+    "resultTitle": "拖车报价 #{{number}}",
+    "resultTitlePending": "拖车报价"
   },
   "form": {
     "origin": "起始地",

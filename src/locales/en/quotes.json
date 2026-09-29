@@ -82,7 +82,11 @@
     "disclaimerPhone": "Service:",
     "disclaimerEmail": "Email:",
     "disclaimerChange": "Rates are subject to change depending on market conditions.",
-    "error": "Couldn't get a drayage quote"
+    "error": "Couldn't get a drayage quote",
+    "newQuote": "New Quote",
+    "editRequest": "Edit Request",
+    "resultTitle": "Drayage Quote #{{number}}",
+    "resultTitlePending": "Drayage Quote"
   },
   "form": {
     "origin": "Origin",
