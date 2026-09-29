@@ -1,4 +1,4 @@
-import { BarChart3, BookUser, CircleHelp, FileText, Home, MessageSquareText, Search, Truck, type LucideIcon } from 'lucide-react'
+import { BarChart3, CircleHelp, FileText, Home, MessageSquareText, Search, Truck, type LucideIcon } from 'lucide-react'
 
 export interface NavEntry {
   href: string
@@ -9,7 +9,7 @@ export interface NavEntry {
   children?: { href: string; labelKey: string }[]
 }
 
-// Fixed order (spec §1).
+// Fixed order (spec §1). Address Book lives in the account menu (top right).
 export const NAV: NavEntry[] = [
   { href: '/dashboard', labelKey: 'nav.dashboard', icon: Home },
   { href: '/shipments', labelKey: 'nav.shipmentTracking', icon: Truck, match: ['/shipments'] },
@@ -24,7 +24,6 @@ export const NAV: NavEntry[] = [
     ],
   },
   { href: '/hts', labelKey: 'nav.htsSearch', icon: Search },
-  { href: '/address-book', labelKey: 'nav.addressBook', icon: BookUser },
   { href: '/my-inquiries', labelKey: 'nav.myInquiries', icon: MessageSquareText },
   { href: '/analytics', labelKey: 'nav.analytics', icon: BarChart3 },
   { href: '/help', labelKey: 'nav.help', icon: CircleHelp },

@@ -1,6 +1,6 @@
 'use client'
 
-import { Bell, ChevronDown, CircleHelp, KeyRound, Languages, LogOut, PanelLeftClose, PanelLeftOpen, Search } from 'lucide-react'
+import { Bell, BookUser, ChevronDown, CircleHelp, KeyRound, Languages, LogOut, PanelLeftClose, PanelLeftOpen, Search } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useState, type FormEvent } from 'react'
@@ -125,6 +125,9 @@ export function GlobalHeader({
                 <strong>{me?.user.email ?? '—'}</strong>
               </div>
               <MenuSeparator />
+              <MenuItem icon={<BookUser size={16} />} onSelect={() => { close(); router.push('/address-book') }}>
+                {t('nav.addressBook')}
+              </MenuItem>
               <MenuItem icon={<KeyRound size={16} />} onSelect={() => { close(); setPwOpen(true) }}>
                 {t('account.changePassword')}
               </MenuItem>
