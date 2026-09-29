@@ -82,13 +82,5 @@
     },
     "other": "另有 {{count}} 票待处理或异常未计入",
     "empty": "暂无可统计的货物。"
-  },
-  "announcements": {
-    "title": "公告",
-    "kinds": {
-      "alert": "警示",
-      "info": "更新",
-      "notice": "通知"
-    }
   }
 }

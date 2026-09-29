@@ -82,13 +82,5 @@
     },
     "other": "{{count}} pending or exception not shown",
     "empty": "No shipments to summarize yet."
-  },
-  "announcements": {
-    "title": "Announcements",
-    "kinds": {
-      "alert": "Alert",
-      "info": "Update",
-      "notice": "Notice"
-    }
   }
 }

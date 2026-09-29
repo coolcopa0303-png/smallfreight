@@ -1,4 +1,3 @@
-import { Announcements } from '@/components/dashboard/Announcements'
 import { DrayageQuoteCard } from '@/components/dashboard/DrayageQuoteCard'
 import { HtsCard } from '@/components/dashboard/HtsCard'
 import { LtlQuoteCard } from '@/components/dashboard/LtlQuoteCard'
@@ -21,7 +20,6 @@ export default function DashboardPage() {
         <RecentShipments />
         <div className={s.side}>
           <ShipmentOverview />
-          <Announcements />
         </div>
       </div>
     </div>
