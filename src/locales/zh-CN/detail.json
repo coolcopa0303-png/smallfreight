@@ -52,27 +52,11 @@
     "freightRelease": "货物放行",
     "appointment": "预约"
   },
-  "dates": {
-    "lfd": "免费堆存日期",
-    "lfdWarning": "即将到期",
-    "lfdDanger": "已过期"
-  },
   "tracking": {
     "eventsTitle": "状态更新",
     "eventsSub": "按时间倒序，来自操作团队的最新记录",
     "noEvents": "暂无状态更新",
     "noEventsBody": "货物有新动态时会显示在这里。"
-  },
-  "containers": {
-    "title": "柜号",
-    "number": "柜号",
-    "lfd": "免费堆存日期",
-    "pickup": "提柜日期",
-    "delivered": "派送日期",
-    "emptyReturn": "还空柜日期",
-    "emptyNotification": "通知空柜日期",
-    "empty": "此票货物没有柜号",
-    "emptyBody": "拼箱 / 散货按提单号追踪。"
   },
   "notFound": {
     "title": "未找到该货物",

@@ -52,27 +52,11 @@
     "freightRelease": "Freight Release",
     "appointment": "Appointment"
   },
-  "dates": {
-    "lfd": "Last Free Day",
-    "lfdWarning": "Due soon",
-    "lfdDanger": "Past due"
-  },
   "tracking": {
     "eventsTitle": "Tracking History",
     "eventsSub": "Latest updates first, as reported by our operations team",
     "noEvents": "No tracking updates yet",
     "noEventsBody": "Updates will appear here as soon as your shipment moves."
-  },
-  "containers": {
-    "title": "Containers",
-    "number": "Container No.",
-    "lfd": "Last Free Day",
-    "pickup": "Pickup",
-    "delivered": "Delivered",
-    "emptyReturn": "Empty Return",
-    "emptyNotification": "Empty Notification",
-    "empty": "No containers on this shipment",
-    "emptyBody": "LCL / loose cargo shipments are tracked by B/L instead of container."
   },
   "notFound": {
     "title": "Shipment not found",
