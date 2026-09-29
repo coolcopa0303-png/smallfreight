@@ -2,7 +2,7 @@
 
 import { Bell, ChevronDown, CircleHelp, KeyRound, Languages, LogOut, Search } from 'lucide-react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useState, type FormEvent } from 'react'
 import { Menu, MenuItem, MenuSeparator } from '@/components/ui/Menu'
 import { useMe } from '@/hooks/useData'
@@ -16,6 +16,9 @@ import s from './shell.module.css'
 export function GlobalHeader() {
   const { t, lang, setLang } = useI18n()
   const router = useRouter()
+  const pathname = usePathname()
+  // The shipment search bar only lives on the Dashboard.
+  const showSearch = pathname.startsWith('/dashboard')
   const { data: me } = useMe()
   const [q, setQ] = useState('')
   const [pwOpen, setPwOpen] = useState(false)
@@ -37,16 +40,18 @@ export function GlobalHeader() {
 
   return (
     <header className={s.header}>
-      <form className={s.search} role="search" onSubmit={onSearch}>
-        <label className={s.searchField}>
-          <Search size={17} aria-hidden />
-          <span className="sr-only">{t('common.search.global')}</span>
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={t('common.search.global')} />
-        </label>
-        <button type="submit" className={s.searchBtn} aria-label={t('common.search.submit')}>
-          <Search size={20} />
-        </button>
-      </form>
+      {showSearch && (
+        <form className={s.search} role="search" onSubmit={onSearch}>
+          <label className={s.searchField}>
+            <Search size={17} aria-hidden />
+            <span className="sr-only">{t('common.search.global')}</span>
+            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={t('common.search.global')} />
+          </label>
+          <button type="submit" className={s.searchBtn} aria-label={t('common.search.submit')}>
+            <Search size={20} />
+          </button>
+        </form>
+      )}
 
       <div className={s.headerRight}>
         {DATA_MODE === 'mock' && (
