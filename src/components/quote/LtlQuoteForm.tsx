@@ -31,7 +31,7 @@ export function LtlQuoteForm({ origin, destination, initial, loading, onSubmit }
   const [unit, setUnit] = useState<'LBS' | 'KGS'>('LBS')
   const [pieces, setPieces] = useState(() => initial.pieces?.replace(/\D/g, '') || '1')
   const [cls, setCls] = useState('auto')
-  const [more, setMore] = useState(false)
+  const [more, setMore] = useState(true)
   const [extras, setExtras] = useState<LtlExtras>(() => {
     const d = parseDims(initial.dims)
     return { length: d?.length ?? '', width: d?.width ?? '', height: d?.height ?? '', dimUnit: 'IN', handlingType: 'PLT', description: '', accessorials: [] }
