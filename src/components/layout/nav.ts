@@ -1,4 +1,4 @@
-import { BarChart3, CircleHelp, FileText, Home, MessageSquareText, Search, Truck, type LucideIcon } from 'lucide-react'
+import { BarChart3, CircleHelp, FileText, Home, Search, Truck, type LucideIcon } from 'lucide-react'
 
 export interface NavEntry {
   href: string
@@ -17,14 +17,14 @@ export const NAV: NavEntry[] = [
     href: '/quotes/ltl',
     labelKey: 'nav.getQuote',
     icon: FileText,
-    match: ['/quotes'],
+    match: ['/quotes', '/my-inquiries'],
     children: [
       { href: '/quotes/ltl', labelKey: 'nav.ltlQuote' },
       { href: '/quotes/drayage', labelKey: 'nav.drayageQuote' },
+      { href: '/my-inquiries', labelKey: 'nav.myInquiries' },
     ],
   },
   { href: '/hts', labelKey: 'nav.htsSearch', icon: Search },
-  { href: '/my-inquiries', labelKey: 'nav.myInquiries', icon: MessageSquareText },
   { href: '/analytics', labelKey: 'nav.analytics', icon: BarChart3 },
   { href: '/help', labelKey: 'nav.help', icon: CircleHelp },
 ]
