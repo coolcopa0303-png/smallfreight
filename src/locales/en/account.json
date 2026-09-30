@@ -8,13 +8,22 @@
   "passwordNotMatch": "Passwords do not match",
   "logout": "Logout",
   "login": {
-    "title": "Sign in to SMALL FREIGHT",
-    "subtitle": "Track shipments, get quotes and check duties in one place.",
-    "email": "Email",
+    "title": "Sign in",
+    "subtitle": "Access your SMALL FREIGHT account.",
+    "email": "Email address",
     "password": "Password",
     "submit": "Login",
     "invalid": "Invalid email or password",
-    "demo": "Sample-data mode: any email and password will sign you in."
+    "demo": "Sample-data mode: any email and password will sign you in.",
+    "remember": "Remember me",
+    "forgot": "Forgot password?",
+    "forgotHint": "To reset your password, please call customer support:",
+    "needHelp": "Need help?",
+    "contactSupport": "Contact Support",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "welcome": "Welcome to",
+    "tagline": "Track shipments, compare quotes, and manage freight online."
   },
   "notifications": {
     "title": "Notifications",
