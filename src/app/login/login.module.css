@@ -15,22 +15,21 @@
   isolation: isolate;
 }
 .hero::before {
-  /* the photo, softened so it reads light like the brand banners */
   content: '';
   position: absolute;
   inset: 0;
   z-index: -2;
-  background: url('../../../public/images/hero-port.webp') 60% 75% / cover no-repeat;
-  filter: saturate(0.7) brightness(1.12) contrast(0.85);
+  background: url('../../../public/images/login-bg.webp') 70% 70% / cover no-repeat;
 }
 .hero::after {
+  /* light wash behind the welcome text only — the photo is already bright */
   content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(180deg, rgba(243, 246, 251, 0.97) 0%, rgba(243, 246, 251, 0.9) 35%, rgba(236, 242, 250, 0.45) 62%, rgba(226, 236, 248, 0.25) 100%),
-    linear-gradient(90deg, rgba(243, 246, 251, 0.5) 0%, rgba(243, 246, 251, 0) 55%);
+    linear-gradient(180deg, rgba(243, 246, 251, 0.55) 0%, rgba(243, 246, 251, 0.25) 40%, rgba(243, 246, 251, 0) 60%),
+    linear-gradient(90deg, rgba(243, 246, 251, 0.45) 0%, rgba(243, 246, 251, 0) 55%);
 }
 .heroText {
   position: relative;
@@ -239,6 +238,9 @@
   .hero {
     min-height: 280px;
     padding: 48px 24px 80px;
+  }
+  .hero::after {
+    background: linear-gradient(180deg, rgba(243, 246, 251, 0.85) 0%, rgba(243, 246, 251, 0.65) 55%, rgba(243, 246, 251, 0.1) 100%);
   }
   .welcome {
     font-size: 34px;
