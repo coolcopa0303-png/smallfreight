@@ -37,15 +37,17 @@ export function useDutyForm() {
   // Bumped on reset so the autocomplete remounts with an empty query.
   const [resetKey, setResetKey] = useState(0)
 
-  const valueNum = Number(form.value)
+  // Value is optional: left empty, the calculator still shows the duty rate; amounts render as "—".
+  const valueNum = form.value.trim() === '' ? 0 : Number(form.value)
+  const hasValue = valueNum > 0
   const errors: { item?: string; value?: string } = {
     item: !form.item ? 'hts.validation.item' : undefined,
-    value: !(valueNum > 0) ? 'hts.validation.value' : undefined,
+    value: !(valueNum >= 0) ? 'hts.validation.value' : undefined,
   }
   const valid = !errors.item && !errors.value
 
   const result = useMemo(() => {
-    if (!calculated || !form.item || !(valueNum > 0)) return null
+    if (!calculated || !form.item || !(valueNum >= 0)) return null
     return calculateDuties({
       item: form.item,
       value: valueNum,
@@ -63,6 +65,7 @@ export function useDutyForm() {
     errors: showErrors ? errors : ({} as typeof errors),
     valid,
     valueNum,
+    hasValue,
     result,
     calculated,
     resetKey,

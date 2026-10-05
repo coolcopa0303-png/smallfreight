@@ -69,11 +69,11 @@
   },
   "validation": {
     "item": "Select an HTS code from the suggestions",
-    "value": "Enter a shipment value greater than 0"
+    "value": "Enter a valid shipment value (or leave it empty)"
   },
   "toast": {
     "saved": "Calculation saved to My Inquiries",
-    "saveNeedsInput": "Select an HTS code and enter a value before saving",
+    "saveNeedsInput": "Select an HTS code before saving",
     "reset": "Form reset",
     "askSent": "Inquiry sent — our customs team will reply in My Inquiries",
     "exported": "Results exported"
@@ -97,7 +97,7 @@
     "dutyRateInfo": "Base rate plus the additional duties you selected, as a percentage of shipment value.",
     "totalDuties": "Total Duties (USD)",
     "emptyTitle": "No estimate yet",
-    "emptyBody": "Search an HTS code and enter a shipment value to see estimated duties.",
+    "emptyBody": "Search an HTS code to see the duty rate. Add a shipment value to estimate amounts.",
     "emptyReady": "Ready — click Calculate Duties to see the estimate."
   },
   "cost": {

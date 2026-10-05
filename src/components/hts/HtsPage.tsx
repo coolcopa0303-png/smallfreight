@@ -90,7 +90,7 @@ export function HtsPage() {
     <div className={s.page}>
       <div className={s.columns}>
         <CalculatorCard api={api} initialQuery={q} onSave={onSave} onAsk={() => setAskOpen(true)} onCalculate={onCalculate} />
-        <ResultsCard item={form.item} value={api.valueNum} result={result} ready={api.valid && !api.calculated} onExport={onExport} />
+        <ResultsCard item={form.item} value={api.hasValue ? api.valueNum : undefined} result={result} ready={api.valid && !api.calculated} onExport={onExport} />
       </div>
       {askOpen && <AskTeamModal open onClose={() => setAskOpen(false)} />}
       <span className="sr-only" aria-live="polite">

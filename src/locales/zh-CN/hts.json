@@ -69,11 +69,11 @@
   },
   "validation": {
     "item": "请从建议列表中选择一个税号",
-    "value": "请输入大于 0 的货值"
+    "value": "请输入有效的货值（也可留空）"
   },
   "toast": {
     "saved": "计算结果已保存到“我的查询”",
-    "saveNeedsInput": "保存前请先选择税号并填写货值",
+    "saveNeedsInput": "保存前请先选择税号",
     "reset": "已重置",
     "askSent": "查询已提交，报关团队将在“我的查询”中答复",
     "exported": "结果已导出"
@@ -97,7 +97,7 @@
     "dutyRateInfo": "基础税率加上您勾选的额外税率，按货值百分比计算。",
     "totalDuties": "关税合计（美元）",
     "emptyTitle": "暂无估算结果",
-    "emptyBody": "搜索 HTS 税号并填写货值，即可查看预估关税。",
+    "emptyBody": "搜索 HTS 税号即可查看税率；填写货值可估算金额。",
     "emptyReady": "已准备就绪，点击“计算关税”查看估算结果。"
   },
   "cost": {

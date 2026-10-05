@@ -25,7 +25,8 @@ function BigRate({ pct }: { pct?: number }) {
 
 export function ResultsCard({ item, value, result, ready, onExport }: {
   item: HtsItem | null
-  value: number
+  /** Undefined when the user left Shipment Value empty — only rates are meaningful then. */
+  value: number | undefined
   result: DutyResult | null
   /** Inputs are valid but the user hasn't calculated yet. */
   ready: boolean
@@ -33,6 +34,7 @@ export function ResultsCard({ item, value, result, ready, onExport }: {
 }) {
   const { t, lang } = useI18n()
   const updated = fmtUpdated(item?.updatedAt, lang)
+  const money = (n: number | undefined) => fmtMoney(value === undefined ? undefined : n, lang)
   const nonAdValorem = result?.warnings.includes('nonAdValorem')
   // Programmes are alternatives, so only nudge when none were selected at all.
   const missingAdditional = item && result && !result.lines.some((l) => l.kind === 'additional') ? item.additionalDuties.length : 0
@@ -70,7 +72,7 @@ export function ResultsCard({ item, value, result, ready, onExport }: {
               </p>
               <div className={s.rateTotal}>
                 <span>{t('hts.cost.duties')}</span>
-                <span className={`${s.rateTotalValue} tnum`}>{fmtMoney(result.totalDuties, lang)}</span>
+                <span className={`${s.rateTotalValue} tnum`}>{money(result.totalDuties)}</span>
               </div>
             </section>
 
@@ -78,10 +80,10 @@ export function ResultsCard({ item, value, result, ready, onExport }: {
               <h3 id="hts-cost-title" className={s.panelTitle}>{t('hts.cost.title')}</h3>
               <dl className={s.costList}>
                 <div><dt>{t('hts.cost.base')}</dt><dd className="tnum">{fmtMoney(value, lang)}</dd></div>
-                <div><dt>{t('hts.cost.duties')}</dt><dd className="tnum">{fmtMoney(result.totalDuties, lang)}</dd></div>
-                <div><dt>{t('hts.cost.hmf')}</dt><dd className="tnum">{fmtMoney(result.hmf, lang)}</dd></div>
-                <div><dt>{t('hts.cost.mpf')}</dt><dd className="tnum">{fmtMoney(result.mpf, lang)}</dd></div>
-                <div className={s.landed}><dt>{t('hts.cost.landed')}</dt><dd className="tnum">{fmtMoney(result.landedCost, lang)}</dd></div>
+                <div><dt>{t('hts.cost.duties')}</dt><dd className="tnum">{money(result.totalDuties)}</dd></div>
+                <div><dt>{t('hts.cost.hmf')}</dt><dd className="tnum">{money(result.hmf)}</dd></div>
+                <div><dt>{t('hts.cost.mpf')}</dt><dd className="tnum">{money(result.mpf)}</dd></div>
+                <div className={s.landed}><dt>{t('hts.cost.landed')}</dt><dd className="tnum">{money(result.landedCost)}</dd></div>
               </dl>
             </section>
           </div>
@@ -92,7 +94,7 @@ export function ResultsCard({ item, value, result, ready, onExport }: {
             </p>
           )}
 
-          <DetailedBreakdown result={result} onExport={onExport} />
+          <DetailedBreakdown result={result} hasValue={value !== undefined} onExport={onExport} />
 
           <footer className={s.foot}>
             {missingAdditional > 0 && (

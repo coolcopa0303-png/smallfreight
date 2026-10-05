@@ -143,10 +143,7 @@ export function ShipmentTracking() {
     // data-freeze-layout: the shell gives this page a fixed one-screen height; only the list scrolls (Excel-style freeze).
     <div className={s.page} data-freeze-layout>
       <header className={s.header}>
-        <div className={s.titles}>
-          <h1 className={s.title}>{t('shipments.tracking.title')}</h1>
-          <p className={s.subtitle}>{t('shipments.tracking.subtitle')}</p>
-        </div>
+        <h1 className={s.title}>{t('shipments.tracking.title')}</h1>
         <div role="search" className={s.searchBox}>
           <label htmlFor="tracking-search" className="sr-only">
             {t('shipments.tracking.searchLabel')}

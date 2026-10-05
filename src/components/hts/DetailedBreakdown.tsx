@@ -26,7 +26,7 @@ export function useLineText() {
   }
 }
 
-export function DetailedBreakdown({ result, onExport }: { result: DutyResult; onExport: () => void }) {
+export function DetailedBreakdown({ result, hasValue, onExport }: { result: DutyResult; hasValue: boolean; onExport: () => void }) {
   const { t, lang } = useI18n()
   const text = useLineText()
   const rows = result.lines.filter((l) => l.kind !== 'exclusion')
@@ -72,7 +72,7 @@ export function DetailedBreakdown({ result, onExport }: { result: DutyResult; on
                   </td>
                   <td className={`${s.num} tnum`}>{l.ratePct === undefined ? '—' : fmtRate(l.ratePct)}</td>
                   <td className={`${s.num} ${s.amount} tnum`}>
-                    {l.amount === undefined ? <span className={s.mutedCell}>{t('hts.detail.specificRate')}</span> : fmtMoney(l.amount, lang)}
+                    {l.amount === undefined ? <span className={s.mutedCell}>{t('hts.detail.specificRate')}</span> : hasValue ? fmtMoney(l.amount, lang) : '—'}
                   </td>
                 </tr>
               )

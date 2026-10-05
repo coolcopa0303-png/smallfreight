@@ -7,13 +7,10 @@
 /* ---------- Header ---------- */
 .header {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: 24px;
+  gap: 12px;
   padding: 16px 0 0 18px;
-}
-.titles {
-  min-width: 0;
 }
 .title {
   font-size: 38px;
@@ -22,17 +19,10 @@
   letter-spacing: -0.015em;
   color: var(--text-primary);
 }
-.subtitle {
-  margin-top: 4px;
-  font-size: 19px;
-  color: var(--text-secondary);
-}
 .searchBox {
   position: relative;
-  flex: 0 1 492px;
-  min-width: 260px;
-  margin-top: 38px;
-  margin-right: 10px;
+  width: 492px;
+  max-width: 100%;
 }
 .header .search {
   height: 48px;
@@ -44,7 +34,7 @@
 .fieldChip {
   position: absolute;
   top: calc(100% + 6px);
-  right: 0;
+  left: 0;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -399,21 +389,14 @@
 }
 @media (max-width: 767px) {
   .header {
-    flex-direction: column;
-    gap: 12px;
+    align-items: stretch;
     padding-top: 0;
   }
   .title {
     font-size: 26px;
   }
-  .subtitle {
-    font-size: 14px;
-  }
   .searchBox {
-    flex: none;
     width: 100%;
-    min-width: 0;
-    margin-top: 0;
   }
   .fieldChip {
     position: static;
