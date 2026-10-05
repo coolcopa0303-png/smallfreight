@@ -86,6 +86,20 @@ body {
   padding: 0;
 }
 
+/* Desktop renders at 80% scale (same as browser zoom 80%) so more fits on one screen.
+   Zoom also shrinks vh/vw, so full-screen sizes divide by --ui-zoom to stay full-screen. */
+:root {
+  --ui-zoom: 1;
+}
+@media (min-width: 1024px) {
+  :root {
+    --ui-zoom: 0.8;
+  }
+  html {
+    zoom: var(--ui-zoom);
+  }
+}
+
 body {
   background: var(--bg-page);
   color: var(--text-primary);

@@ -612,7 +612,7 @@
   right: 0;
   bottom: 0;
   z-index: 901;
-  width: min(520px, 100vw);
+  width: min(520px, calc(100vw / var(--ui-zoom)));
   background: var(--surface);
   box-shadow: var(--shadow-pop);
   display: flex;
@@ -633,8 +633,8 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: min(520px, calc(100vw - 32px));
-  max-height: calc(100vh - 48px);
+  width: min(520px, calc(100vw / var(--ui-zoom) - 32px));
+  max-height: calc(100vh / var(--ui-zoom) - 48px);
   background: var(--surface);
   border-radius: var(--radius-large);
   box-shadow: var(--shadow-pop);

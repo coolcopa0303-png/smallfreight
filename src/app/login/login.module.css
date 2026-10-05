@@ -1,5 +1,5 @@
 .page {
-  min-height: 100vh;
+  min-height: calc(100vh / var(--ui-zoom));
   display: grid;
   grid-template-columns: minmax(0, 57fr) minmax(0, 43fr);
   background: #f3f6fb;
@@ -10,7 +10,7 @@
   position: relative;
   display: flex;
   align-items: flex-start;
-  padding: clamp(96px, 18vh, 180px) clamp(32px, 6vw, 104px) 48px;
+  padding: clamp(96px, calc(18vh / var(--ui-zoom)), 180px) clamp(32px, 6vw, 104px) 48px;
   overflow: hidden;
   isolation: isolate;
 }

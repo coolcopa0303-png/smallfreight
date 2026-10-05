@@ -58,7 +58,7 @@ export function Drawer({ open, onClose, title, children, footer, width }: PanelP
   return createPortal(
     <>
       <div className={s.overlay} onClick={onClose} aria-hidden />
-      <div ref={panel} className={s.drawer} role="dialog" aria-modal="true" aria-labelledby={id} style={width ? { width: `min(${width}px, 100vw)` } : undefined}>
+      <div ref={panel} className={s.drawer} role="dialog" aria-modal="true" aria-labelledby={id} style={width ? { width: `min(${width}px, calc(100vw / var(--ui-zoom)))` } : undefined}>
         <PanelHead id={id} title={title} onClose={onClose} />
         <div className={s.panelBody}>{children}</div>
         {footer && <div className={s.panelFoot}>{footer}</div>}
@@ -75,7 +75,7 @@ export function Modal({ open, onClose, title, children, footer, width }: PanelPr
   return createPortal(
     <>
       <div className={s.overlay} onClick={onClose} aria-hidden />
-      <div ref={panel} className={s.modal} role="dialog" aria-modal="true" aria-labelledby={id} style={width ? { width: `min(${width}px, calc(100vw - 32px))` } : undefined}>
+      <div ref={panel} className={s.modal} role="dialog" aria-modal="true" aria-labelledby={id} style={width ? { width: `min(${width}px, calc(100vw / var(--ui-zoom) - 32px))` } : undefined}>
         <PanelHead id={id} title={title} onClose={onClose} />
         <div className={s.panelBody}>{children}</div>
         {footer && <div className={s.panelFoot}>{footer}</div>}

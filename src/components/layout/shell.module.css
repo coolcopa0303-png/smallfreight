@@ -1,7 +1,7 @@
 .shell {
   display: grid;
   grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
-  min-height: 100vh;
+  min-height: calc(100vh / var(--ui-zoom));
   transition: grid-template-columns var(--dur) var(--ease);
 }
 
@@ -9,7 +9,7 @@
 .sidebar {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: calc(100vh / var(--ui-zoom));
   display: flex;
   flex-direction: column;
   color: var(--text-primary);
@@ -383,7 +383,7 @@
     color: #5b9bff;
   }
   .notif {
-    width: min(360px, calc(100vw - 24px));
+    width: min(360px, calc(100vw / var(--ui-zoom) - 24px));
   }
 }
 
@@ -436,8 +436,8 @@
    header / filters stay put and only the list area scrolls. Desktop and tablet only. */
 @media (min-width: 768px) {
   .main:has([data-freeze-layout]) {
-    height: 100vh;
-    height: 100dvh;
+    height: calc(100vh / var(--ui-zoom));
+    height: calc(100dvh / var(--ui-zoom));
   }
   .main:has([data-freeze-layout]) .content {
     display: flex;

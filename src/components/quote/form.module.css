@@ -261,7 +261,7 @@
   flex-direction: column;
   gap: 8px;
   margin-top: 12px;
-  max-height: 52vh;
+  max-height: calc(52vh / var(--ui-zoom));
   overflow: auto;
 }
 .pickItem {

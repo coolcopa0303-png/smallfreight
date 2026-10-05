@@ -8,7 +8,7 @@ import { useI18n } from '@/i18n/I18nProvider'
 export default function NotFound() {
   const { t } = useI18n()
   return (
-    <div style={{ minHeight: '100vh', display: 'grid', placeItems: 'center', padding: 24 }}>
+    <div style={{ minHeight: 'calc(100vh / var(--ui-zoom))', display: 'grid', placeItems: 'center', padding: 24 }}>
       <EmptyState
         icon={<Compass size={22} />}
         title={t('common.notFound.title')}
