@@ -2,7 +2,7 @@
 
 import { ArrowRight, MoveRight } from 'lucide-react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useShipmentDrawer } from '@/components/detail/ShipmentDrawer'
 import type { MouseEvent } from 'react'
 import { PlaceLabel } from '@/components/shipment/PlaceLabel'
 import { ShipmentProgress } from '@/components/shipment/ShipmentProgress'
@@ -17,15 +17,14 @@ import s from './tracking.module.css'
 /** Compact horizontal shipment card (reference 02). Whole row opens the detail; "View Details" is the keyboard entry. */
 export function ShipmentRow({ sh }: { sh: Shipment }) {
   const { t } = useI18n()
-  const router = useRouter()
-  const href = `/shipments/${sh.id}`
+  const drawer = useShipmentDrawer()
   const status = sh.completed ? t('status.completed') : t(STATUS_META[sh.status].labelKey)
 
   const onClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement
     if (target.closest('a, button, [tabindex]')) return
     if (window.getSelection()?.toString()) return // let people select/copy text
-    router.push(href)
+    drawer.open(sh.id)
   }
 
   return (
@@ -56,7 +55,7 @@ export function ShipmentRow({ sh }: { sh: Shipment }) {
         <LastUpdateCell sh={sh} />
       </div>
       <div className={s.cAction}>
-        <Link href={href} className={s.view} aria-label={t('shipments.tracking.rowLabel', { id: sh.smNumber, status })}>
+        <Link {...drawer.linkProps(sh.id)} className={s.view} aria-label={t('shipments.tracking.rowLabel', { id: sh.smNumber, status })}>
           <span className={s.viewText}>{t('common.actions.viewDetails')}</span>
           <ArrowRight size={16} aria-hidden />
         </Link>

@@ -1,0 +1,300 @@
+/* Shipment detail drawer — layout follows the old Booking drawer (fields | per-container dates | updates) plus a route map. */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  background: rgba(var(--navy-rgb), 0.32);
+  animation: fadeIn 260ms var(--ease) both;
+}
+.overlay[data-closing] {
+  animation: fadeOut 220ms var(--ease) both;
+}
+.panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 901;
+  width: min(1120px, calc(100vw / var(--ui-zoom)));
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-muted);
+  box-shadow: -12px 0 40px rgba(16, 31, 61, 0.16);
+  outline: 0;
+  animation: slideIn 320ms cubic-bezier(0.22, 0.8, 0.24, 1) both;
+}
+.panel[data-closing] {
+  animation: slideOut 240ms cubic-bezier(0.4, 0, 0.9, 0.5) both;
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes slideOut {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .panel {
+    animation: none;
+  }
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 56px;
+  padding: 0 14px 0 22px;
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--surface);
+  flex: none;
+}
+.title {
+  flex: 1;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.iconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.iconBtn:hover {
+  background: var(--neutral-soft);
+  color: var(--text-primary);
+}
+
+.scroll {
+  flex: 1;
+  overflow: auto;
+}
+.loading {
+  display: grid;
+  gap: 16px;
+  padding: 20px 22px;
+}
+.body {
+  display: grid;
+  gap: 14px;
+  padding: 16px 22px 28px;
+}
+
+/* fields | dates | updates; service/document and the map span the first two columns */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas:
+    'fields dates updates'
+    'extra extra updates'
+    'map map updates';
+  align-items: start;
+  background: var(--surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  padding: 8px 0 18px;
+}
+.fields {
+  grid-area: fields;
+  margin: 0;
+  padding: 0 18px;
+}
+.extra {
+  grid-area: extra;
+  border-top: 1px solid var(--border-soft);
+  margin-top: 4px;
+}
+.field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 41px;
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 14px;
+}
+.field:last-child {
+  border-bottom: 0;
+}
+.fieldLabel {
+  flex: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--text-primary);
+}
+.fieldValue {
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--text-primary);
+}
+.muted {
+  color: var(--text-muted);
+}
+.chip {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--neutral-soft);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.dates {
+  grid-area: dates;
+  padding: 8px 18px 0;
+  border-left: 1px solid var(--border-soft);
+  min-height: 100%;
+}
+.datesTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.cntrSelect {
+  margin-top: 8px;
+  height: 34px;
+  max-width: 220px;
+}
+.cntrSelect select {
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+.dateList {
+  margin: 12px 0 0;
+  display: grid;
+  gap: 12px;
+}
+.dateRow dt {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.dateRow dd {
+  margin: 3px 0 0;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+.dateRow[data-lfd='warning'] dt,
+.dateRow[data-lfd='warning'] dd {
+  color: var(--warning-strong);
+}
+.dateRow[data-lfd='danger'] dt,
+.dateRow[data-lfd='danger'] dd {
+  color: var(--danger-strong);
+  font-weight: 600;
+}
+
+.updates {
+  grid-area: updates;
+  align-self: stretch;
+  padding: 8px 18px 0;
+  border-left: 1px solid var(--border-soft);
+}
+.updTitle {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.updList {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.updList li {
+  position: relative;
+  padding-left: 16px;
+}
+.updList li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand-primary);
+}
+.updDate {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.updText {
+  margin-top: 2px;
+  font-size: 12.5px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.map {
+  grid-area: map;
+  margin: 14px 18px 0;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+.map > div {
+  height: 280px;
+  margin: 0;
+  border-radius: 0;
+}
+.map > div > div {
+  border-radius: 0;
+}
+
+@media (max-width: 899px) {
+  .body {
+    padding: 12px 12px 24px;
+  }
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'fields' 'dates' 'extra' 'map' 'updates';
+  }
+  .dates,
+  .updates {
+    border-left: 0;
+    border-top: 1px solid var(--border-soft);
+    margin-top: 10px;
+    padding-top: 14px;
+    padding-bottom: 6px;
+  }
+  .map > div {
+    height: 220px;
+  }
+}

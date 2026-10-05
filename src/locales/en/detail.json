@@ -80,5 +80,28 @@
     "mapLabel": "Route map from {{from}} to {{to}}",
     "noMapTitle": "Route map unavailable",
     "noMap": "Route details will appear once origin and destination are available."
+  },
+  "drawer": {
+    "openPage": "Open full page",
+    "close": "Close",
+    "mbl": "MBL",
+    "hbl": "HBL",
+    "cntr": "CNTR",
+    "ref": "REF#",
+    "eta": "ETA",
+    "isf": "ISF Status",
+    "pga": "PGA Status",
+    "customs": "Custom Release",
+    "freight": "Freight Release",
+    "serviceType": "Service Type",
+    "document": "Document",
+    "timeZone": "Time Zone",
+    "noContainers": "No containers on this shipment",
+    "lfd": "Last Free Day",
+    "pickup": "Pick Up Date",
+    "delivery": "Delivery Date",
+    "emptyReturn": "Empty Return Date",
+    "emptyNotification": "Empty Notification Date",
+    "update": "Update"
   }
 }

@@ -2,7 +2,7 @@
 
 import { ArrowRight, ClipboardList, SlidersHorizontal } from 'lucide-react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useShipmentDrawer } from '@/components/detail/ShipmentDrawer'
 import { useMemo, useState } from 'react'
 import { tabCounts } from '@/adapters/shipmentAdapter'
 import { ButtonLink } from '@/components/ui/Button'
@@ -36,7 +36,7 @@ function PlaceCell({ place }: { place?: Place }) {
 /** Five most recently updated shipments with status tabs (spec §5.4, left). */
 export function RecentShipments() {
   const { t } = useI18n()
-  const router = useRouter()
+  const drawer = useShipmentDrawer()
   const { data, error, isLoading, mutate } = useShipments()
   const [tab, setTab] = useState<RecentTab>('all')
 
@@ -95,7 +95,7 @@ export function RecentShipments() {
                       ))}
                     </tr>
                   ))
-                : rows.map((sh) => <Row key={sh.id} sh={sh} onOpen={() => router.push(`/shipments/${sh.id}`)} />)}
+                : rows.map((sh) => <Row key={sh.id} sh={sh} onOpen={() => drawer.open(sh.id)} />)}
             </tbody>
           </table>
           {data && rows.length === 0 && <EmptyState title={t('dashboard.recent.empty')} body={t('dashboard.recent.emptyHint')} />}
@@ -107,6 +107,7 @@ export function RecentShipments() {
 
 function Row({ sh, onOpen }: { sh: Shipment; onOpen: () => void }) {
   const { t } = useI18n()
+  const drawer = useShipmentDrawer()
   return (
     <tr className={s.row} onClick={onOpen}>
       <td className={s['c-booking']}>
@@ -128,7 +129,7 @@ function Row({ sh, onOpen }: { sh: Shipment; onOpen: () => void }) {
         {sh.lastEvent && <span className={s.sub} title={sh.lastEvent}>{sh.lastEvent}</span>}
       </td>
       <td className={s['c-actions']}>
-        <Link href={`/shipments/${sh.id}`} className={s.view} onClick={(e) => e.stopPropagation()} aria-label={t('dashboard.recent.viewShipment', { id: sh.smNumber })}>
+        <Link {...drawer.linkProps(sh.id)} className={s.view} aria-label={t('dashboard.recent.viewShipment', { id: sh.smNumber })}>
           {t('common.actions.view')}
           <ArrowRight size={14} aria-hidden />
         </Link>

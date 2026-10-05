@@ -54,7 +54,7 @@ function PlaceBlock({ place, date, kind }: { place?: Place; date?: string; kind:
 const plain = (v: string) => v.replace(/[<>&]/g, '')
 const label = (p: Place) => [p.city, p.portName].filter(Boolean).map((v) => plain(v!)).join('\n')
 
-function RouteMapArea({ shipment: sh }: { shipment: Shipment }) {
+export function RouteMapArea({ shipment: sh }: { shipment: Shipment }) {
   const { t } = useI18n()
   const geo = useMemo(() => routeGeometry(sh), [sh])
   const markers = useMemo<MapMarker[]>(() => {

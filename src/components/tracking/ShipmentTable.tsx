@@ -2,7 +2,7 @@
 
 import { ArrowDown, ArrowUp } from 'lucide-react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useShipmentDrawer } from '@/components/detail/ShipmentDrawer'
 import type { MouseEvent } from 'react'
 import { Skeleton } from '@/components/ui/States'
 import type { Shipment } from '@/domain/types'
@@ -21,11 +21,11 @@ export function ShipmentTable({ rows, columns, loading, sortDir, onSort }: {
   onSort: () => void
 }) {
   const { t } = useI18n()
-  const router = useRouter()
+  const drawer = useShipmentDrawer()
   const open = (e: MouseEvent, id: string) => {
     if ((e.target as HTMLElement).closest('a, button, [tabindex]')) return
     if (window.getSelection()?.toString()) return
-    router.push(`/shipments/${id}`)
+    drawer.open(id)
   }
 
   return (
@@ -63,7 +63,7 @@ export function ShipmentTable({ rows, columns, loading, sortDir, onSort }: {
                   {columns.map((c) => (
                     <td key={c} className={s[`col-${c}`]} data-label={t(`shipments.my.cols.${c}`)}>
                       {c === 'displayId' ? (
-                        <Link href={`/shipments/${sh.id}`} className={s.idLink}>
+                        <Link {...drawer.linkProps(sh.id)} className={s.idLink}>
                           {RENDER.displayId(sh, t)}
                         </Link>
                       ) : (

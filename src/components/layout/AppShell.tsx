@@ -4,6 +4,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useSyncExternalStore, type ReactNode } from 'react'
 import { useMe } from '@/hooks/useData'
 import { ApiError, UNAUTHORIZED_EVENT } from '@/lib/api/client'
+import { ShipmentDrawerProvider } from '@/components/detail/ShipmentDrawer'
 import { GlobalHeader } from './GlobalHeader'
 import { MobileTabBar } from './MobileTabBar'
 import { Sidebar } from './Sidebar'
@@ -53,15 +54,17 @@ export function AppShell({ children }: { children: ReactNode }) {
   }, [error, router, pathname])
 
   return (
-    <div className={s.shell} data-collapsed={collapsed || undefined}>
-      <Sidebar />
-      <div className={s.main}>
-        <GlobalHeader sidebarCollapsed={collapsed} onToggleSidebar={toggleSidebar} />
-        <main id="main" className={s.content}>
-          {children}
-        </main>
+    <ShipmentDrawerProvider>
+      <div className={s.shell} data-collapsed={collapsed || undefined}>
+        <Sidebar />
+        <div className={s.main}>
+          <GlobalHeader sidebarCollapsed={collapsed} onToggleSidebar={toggleSidebar} />
+          <main id="main" className={s.content}>
+            {children}
+          </main>
+        </div>
+        <MobileTabBar />
       </div>
-      <MobileTabBar />
-    </div>
+    </ShipmentDrawerProvider>
   )
 }

@@ -80,5 +80,28 @@
     "mapLabel": "{{from}} 至 {{to}} 航线地图",
     "noMapTitle": "暂无航线地图",
     "noMap": "起运港和目的港信息齐全后，将在此显示航线。"
+  },
+  "drawer": {
+    "openPage": "打开完整页面",
+    "close": "关闭",
+    "mbl": "MBL",
+    "hbl": "HBL",
+    "cntr": "柜号",
+    "ref": "参考号",
+    "eta": "预计到港",
+    "isf": "ISF 状态",
+    "pga": "PGA 状态",
+    "customs": "清关放行",
+    "freight": "货物放行",
+    "serviceType": "服务类型",
+    "document": "文件",
+    "timeZone": "时间节点",
+    "noContainers": "该票货暂无柜号",
+    "lfd": "最后免费日",
+    "pickup": "提柜日期",
+    "delivery": "送货日期",
+    "emptyReturn": "还空日期",
+    "emptyNotification": "空柜通知日期",
+    "update": "更新记录"
   }
 }
