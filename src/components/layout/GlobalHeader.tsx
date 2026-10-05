@@ -1,9 +1,9 @@
 'use client'
 
-import { Bell, BookUser, ChevronDown, CircleHelp, KeyRound, Languages, LogOut, PanelLeftClose, PanelLeftOpen, Search } from 'lucide-react'
+import { Bell, BookUser, ChevronDown, CircleHelp, KeyRound, Languages, LogOut, PanelLeftClose, PanelLeftOpen } from 'lucide-react'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
-import { useState, type FormEvent } from 'react'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { Menu, MenuItem, MenuSeparator } from '@/components/ui/Menu'
 import { useMe } from '@/hooks/useData'
 import { useI18n } from '@/i18n/I18nProvider'
@@ -22,19 +22,9 @@ export function GlobalHeader({
 }) {
   const { t, lang, setLang } = useI18n()
   const router = useRouter()
-  const pathname = usePathname()
-  // The shipment search bar only lives on the Dashboard.
-  const showSearch = pathname.startsWith('/dashboard')
   const { data: me } = useMe()
-  const [q, setQ] = useState('')
   const [pwOpen, setPwOpen] = useState(false)
   const notifications = useNotifications()
-
-  const onSearch = (e: FormEvent) => {
-    e.preventDefault()
-    const v = q.trim()
-    router.push(v ? `/shipments?q=${encodeURIComponent(v)}` : '/shipments')
-  }
 
   const onLogout = async () => {
     try {
@@ -56,19 +46,6 @@ export function GlobalHeader({
       >
         {sidebarCollapsed ? <PanelLeftOpen size={20} /> : <PanelLeftClose size={20} />}
       </button>
-      {showSearch && (
-        <form className={s.search} role="search" onSubmit={onSearch}>
-          <label className={s.searchField}>
-            <Search size={17} aria-hidden />
-            <span className="sr-only">{t('common.search.global')}</span>
-            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={t('common.search.global')} />
-          </label>
-          <button type="submit" className={s.searchBtn} aria-label={t('common.search.submit')}>
-            <Search size={20} />
-          </button>
-        </form>
-      )}
-
       <div className={s.headerRight}>
         {DATA_MODE === 'mock' && (
           <span className={`${s.sample} ${s.hideMobile}`} title={t('common.sampleDataHint')}>
