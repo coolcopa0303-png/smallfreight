@@ -44,3 +44,6 @@ next-env.d.ts
 
 # local link to the Vercel demo project
 .vercel-demo-link
+
+# maplibre worker is copied from node_modules at build time
+/public/maplibre/

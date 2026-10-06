@@ -85,15 +85,15 @@ export function LtlQuoteForm({ origin, destination, initial, loading, onSubmit }
       accessorials: extras.accessorials,
     }
     const summary: SummaryRow[] = [
-      { label: t('quotes.form.origin'), value: origin.text },
-      { label: t('quotes.form.destination'), value: destination.text },
-      { label: t('quotes.form.pickupDate'), value: date },
-      { label: t('quotes.form.weight'), value: `${fmtNumber(input.weight, lang, 2).replace(/\.00$/, '')} ${unit}` },
-      { label: t('quotes.form.pieces'), value: `${input.pieces} × ${t(`quotes.handling.${input.handlingType}`)}` },
-      { label: t('quotes.more.dimensions'), value: `${input.length} × ${input.width} × ${input.height} ${input.dimUnit}` },
-      { label: t('quotes.form.freightClass'), value: cls === 'auto' ? (est ? t('quotes.form.classEstimated', { cls: est.cls }) : '—') : cls },
+      { label: t('quotes.form.origin'), value: origin.text, icon: 'origin' },
+      { label: t('quotes.form.destination'), value: destination.text, icon: 'destination' },
+      { label: t('quotes.form.pickupDate'), value: date, icon: 'date' },
+      { label: t('quotes.form.weight'), value: `${fmtNumber(input.weight, lang, 2).replace(/\.00$/, '')} ${unit}`, icon: 'weight' },
+      { label: t('quotes.form.pieces'), value: `${input.pieces} × ${t(`quotes.handling.${input.handlingType}`)}`, icon: 'pieces' },
+      { label: t('quotes.more.dimensions'), value: `${input.length} × ${input.width} × ${input.height} ${input.dimUnit}`, icon: 'dims' },
+      { label: t('quotes.form.freightClass'), value: cls === 'auto' ? (est ? t('quotes.form.classEstimated', { cls: est.cls }) : '—') : cls, icon: 'class' },
     ]
-    if (input.description) summary.push({ label: t('quotes.more.description'), value: input.description })
+    if (input.description) summary.push({ label: t('quotes.more.description'), value: input.description, icon: 'note' })
     onSubmit(input, summary, input.accessorials.map((a) => t(`quotes.accessorial.${a}`)))
   }
 

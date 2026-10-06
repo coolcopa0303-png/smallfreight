@@ -14,7 +14,7 @@ import { sortRates, type QuoteKind, type QuoteStatus, type SortKey, type Summary
 import s from './rates.module.css'
 
 /** "Available Rates" section — cards, never a table (spec §7.4 / §8.3 / §20). */
-export function AvailableRates({ kind, status, result, error, onRetry, summary, accessorials = [] }: {
+export function AvailableRates({ kind, status, result, error, onRetry, summary, accessorials = [], grow }: {
   kind: QuoteKind
   status: QuoteStatus
   result?: QuoteResult
@@ -22,6 +22,8 @@ export function AvailableRates({ kind, status, result, error, onRetry, summary, 
   onRetry: () => void
   summary: SummaryRow[]
   accessorials?: string[]
+  /** Result screen: stretch to fill the leftover height instead of leaving the page half empty. */
+  grow?: boolean
 }) {
   const { t } = useI18n()
   const toast = useToast()
@@ -58,7 +60,7 @@ export function AvailableRates({ kind, status, result, error, onRetry, summary, 
       : t('quotes.rates.subDray')
 
   return (
-    <section className={s.section} aria-labelledby={`${kind}-rates-title`} aria-busy={status === 'loading' || undefined}>
+    <section className={`${s.section} ${grow ? s.sectionGrow : ''}`} aria-labelledby={`${kind}-rates-title`} aria-busy={status === 'loading' || undefined}>
       <header className={s.head}>
         <span className={kind === 'ltl' ? s.headIconBox : s.headIcon} aria-hidden>
           <Icon size={kind === 'ltl' ? 22 : 30} strokeWidth={kind === 'ltl' ? 2 : 1.6} />

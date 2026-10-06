@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowRightLeft, Clock, MapPin, Truck } from 'lucide-react'
+import { ArrowRightLeft, CalendarDays, Clock, MapPin, Package, Scale, Truck } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { useMemo, useState } from 'react'
 import type { MapMarker } from '@/components/map/RouteMap'
@@ -18,6 +18,22 @@ import r from './route.module.css'
 import { useLocationField } from './useLocationField'
 import { useQuoteRequest } from './useQuoteRequest'
 import { useRoute } from './useRoute'
+
+const METRIC_ICON = { date: <CalendarDays size={18} />, weight: <Package size={18} />, class: <Scale size={18} /> }
+
+/** Pickup date, cargo and freight class from the request, shown under the route metrics. */
+function quoteMetrics(summary: SummaryRow[]) {
+  const by = (icon: SummaryRow['icon']) => summary.find((r) => r.icon === icon)
+  const date = by('date')
+  const weight = by('weight')
+  const dims = by('dims')
+  const cls = by('class')
+  return [
+    date && { icon: METRIC_ICON.date, label: date.label, value: date.value },
+    weight && { icon: METRIC_ICON.weight, label: weight.label, value: dims ? `${weight.value} · ${dims.value}` : weight.value },
+    cls && { icon: METRIC_ICON.class, label: cls.label, value: cls.value },
+  ].filter((m) => !!m)
+}
 
 /** /quotes/ltl — "New Quote" remounts a blank session; the dashboard prefill only seeds the first one. */
 export function LtlQuoteView() {
@@ -79,7 +95,7 @@ function LtlQuoteSession({ prefill, onNewQuote }: { prefill: boolean; onNewQuote
       </div>
 
       {screen === 'result' && quote.status !== 'idle' && (
-        <>
+        <div className={s.resultScreen}>
           <QuoteResultHeader
             title={
               quote.status === 'done' && quote.result?.quotationNumber
@@ -90,7 +106,7 @@ function LtlQuoteSession({ prefill, onNewQuote }: { prefill: boolean; onNewQuote
             onNewQuote={onNewQuote}
           />
           <QuoteSummary rows={quote.summary} extra={quote.accessorials.length ? { label: t('quotes.more.accessorials'), value: quote.accessorials.join(', ') } : undefined} />
-          <div className={r.row}>
+          <div className={`${r.row} ${r.rowGrow}`}>
             <RouteMapCard
               markers={markers}
               path={route?.path}
@@ -106,6 +122,8 @@ function LtlQuoteSession({ prefill, onNewQuote }: { prefill: boolean; onNewQuote
               metrics={[
                 { icon: <ArrowRightLeft size={18} />, label: t('quotes.route.totalMiles'), value: miles, loading: routing },
                 { icon: <Clock size={18} />, label: t('quotes.route.transit'), value: span ? daysLabel(t, span[0], span[1], true) : undefined, loading: routing },
+                // Repeat what was quoted so the panel reads as the full request next to the map.
+                ...quoteMetrics(quote.summary),
                 { icon: <Truck size={18} />, label: t('quotes.rates.serviceType'), value: t('quotes.service.standardLtl'), info: t('quotes.service.standardLtlInfo') },
               ]}
             />
@@ -118,8 +136,9 @@ function LtlQuoteSession({ prefill, onNewQuote }: { prefill: boolean; onNewQuote
             onRetry={quote.retry}
             summary={quote.summary}
             accessorials={quote.accessorials}
+            grow
           />
-        </>
+        </div>
       )}
     </div>
   )

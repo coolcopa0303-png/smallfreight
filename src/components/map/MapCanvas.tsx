@@ -3,17 +3,21 @@
 // Leaflet renderer. Never import directly — use <RouteMap> (lazy, ssr:false) from ./RouteMap.
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+import '@maplibre/maplibre-gl-leaflet'
+import { setWorkerUrl } from 'maplibre-gl'
+import 'maplibre-gl/dist/maplibre-gl.css'
 import { useEffect, useRef } from 'react'
 import s from '../shipment/shipment.module.css'
 import type { MapMarker, RouteMapProps } from './RouteMap'
 
-const TILES = {
-  road: {
-    // Light, low-saturation basemap (pale land, light-blue water) per reference-v2. Keyless.
-    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
-    attribution: 'Tiles &copy; Esri',
-  },
+/** OpenFreeMap "Liberty" vector basemap — keyless, and the closest free style to Google Maps. */
+const BASEMAP = {
+  style: 'https://tiles.openfreemap.org/styles/liberty',
+  attribution: '&copy; <a href="https://openfreemap.org">OpenFreeMap</a> &copy; OpenStreetMap',
 }
+
+// Served from /public by scripts/copy-maplibre-worker.mjs — see that file for why the bundled worker can't be used.
+setWorkerUrl(`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/maplibre/maplibre-gl-worker.mjs`)
 
 const BRAND = '#0B5FF5'
 const RED = '#E5484D'
@@ -43,10 +47,9 @@ export default function MapCanvas({ markers, path, variant = 'road', routeStyle 
     // No worldCopyJump: trans-Pacific routes are drawn past lng 180, and the jump would pan to a world copy without them.
     const m = L.map(el.current, { zoomControl: false, attributionControl: true })
     L.control.zoom({ position: 'topleft' }).addTo(m)
-    L.tileLayer(TILES[variant].url, {
-      attribution: TILES[variant].attribution,
-      maxZoom: 18,
-    }).addTo(m)
+    // Credit goes on Leaflet's own control; the GL map's would be a second copy inside the canvas.
+    L.maplibreGL({ style: BASEMAP.style, attributionControl: false }).addTo(m)
+    m.attributionControl.addAttribution(BASEMAP.attribution)
     layer.current = L.layerGroup().addTo(m)
     map.current = m
     m.setView([37, -96], 4)

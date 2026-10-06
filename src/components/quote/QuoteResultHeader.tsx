@@ -1,10 +1,10 @@
 'use client'
 
-import { ArrowLeft, Plus } from 'lucide-react'
+import { ArrowLeft, Boxes, CalendarDays, FileText, MapPin, MoveVertical, Package, Plus, Scale, type LucideIcon } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { useI18n } from '@/i18n/I18nProvider'
-import type { SummaryRow } from './quoteUtils'
+import type { SummaryIcon, SummaryRow } from './quoteUtils'
 import s from './page.module.css'
 
 /** Result screen header shared by LTL and drayage quotes: back to the form · quote number · new quote. */
@@ -24,6 +24,17 @@ export function QuoteResultHeader({ title, onEdit, onNewQuote }: { title: string
   )
 }
 
+const SUMMARY_ICON: Record<SummaryIcon, LucideIcon> = {
+  origin: MapPin,
+  destination: MapPin,
+  date: CalendarDays,
+  weight: Package,
+  pieces: Boxes,
+  dims: MoveVertical,
+  class: Scale,
+  note: FileText,
+}
+
 /** One-line recap of what was quoted (weight, pieces, dimensions, accessorials…). */
 export function QuoteSummary({ rows, extra }: { rows: SummaryRow[]; extra?: SummaryRow }) {
   const all = extra ? [...rows, extra] : rows
@@ -31,12 +42,22 @@ export function QuoteSummary({ rows, extra }: { rows: SummaryRow[]; extra?: Summ
   return (
     <Card className={s.summary}>
       <dl>
-        {all.map((r) => (
-          <div key={r.label}>
-            <dt>{r.label}</dt>
-            <dd>{r.value}</dd>
-          </div>
-        ))}
+        {all.map((r) => {
+          const Icon = r.icon ? SUMMARY_ICON[r.icon] : undefined
+          return (
+            <div key={r.label}>
+              {Icon && (
+                <span className={s.summaryIcon} aria-hidden>
+                  <Icon size={17} strokeWidth={1.9} />
+                </span>
+              )}
+              <div className={s.summaryText}>
+                <dt>{r.label}</dt>
+                <dd>{r.value}</dd>
+              </div>
+            </div>
+          )
+        })}
       </dl>
     </Card>
   )

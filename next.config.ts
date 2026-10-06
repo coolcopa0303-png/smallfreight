@@ -13,7 +13,8 @@ const staticConfig: NextConfig = {
   output: "export",
   basePath: BASE_PATH,
   trailingSlash: true,
-  env: { STATIC_EXPORT: "1" },
+  // NEXT_PUBLIC_BASE_PATH: for assets we reference by hand (the map worker), which Next doesn't prefix.
+  env: { STATIC_EXPORT: "1", NEXT_PUBLIC_BASE_PATH: BASE_PATH ?? "" },
 };
 
 const nextConfig: NextConfig = STATIC_EXPORT ? staticConfig : {

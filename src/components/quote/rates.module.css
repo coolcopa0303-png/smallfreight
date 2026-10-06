@@ -2,6 +2,21 @@
 .section {
   min-width: 0;
 }
+/* One-screen result layout: cards grow with the page, but only so far — the map row takes the rest.
+   Capped height only where the cards stay in one row; narrower screens stack them and must not clip. */
+@media (min-width: 1200px) {
+  .sectionGrow {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: 330px;
+  }
+  .sectionGrow .miniGrid {
+    flex: 1 1 auto;
+    align-content: stretch;
+  }
+}
 .head {
   display: flex;
   align-items: center;

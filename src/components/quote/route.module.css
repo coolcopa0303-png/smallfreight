@@ -5,6 +5,21 @@
   gap: 14px;
 }
 
+/* Inside the one-screen result layout the row stretches instead of leaving the page half empty. */
+@media (min-width: 1200px) {
+  .rowGrow {
+    flex: 2 1 auto;
+    min-height: 236px;
+  }
+  .rowGrow .mapCard {
+    height: 100%;
+  }
+  /* Beside a tall map the rows stay compact at the top rather than stretching into banded gaps. */
+  .rowGrow .details .metricRow,
+  .rowGrow .details .placeRow {
+    min-height: 40px;
+  }
+}
 .mapCard {
   position: relative;
   /* Contain Leaflet's z-indexes (controls use 800–1000) below modals / drawers. */

@@ -124,34 +124,73 @@
   }
 }
 
-/* ---------- Quote summary (result screen) ---------- */
+/* ---------- Result screen: one screen tall, so the map and the rate cards share the slack ---------- */
+.resultScreen {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+/* Only where the map sits beside Route Details and the cards stay in one row — narrower screens scroll. */
+@media (min-width: 1200px) {
+  .resultScreen {
+    min-height: calc(100vh / var(--ui-zoom) - var(--topbar-height) - var(--page-gutter-y) - 24px);
+  }
+}
+
+/* ---------- Quote summary (result screen): icon + label over value, like the lane chips ---------- */
 .summary {
-  padding: 12px 20px;
+  padding: 10px 18px;
 }
 .summary dl {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 32px;
   margin: 0;
 }
 .summary dl > div {
   display: flex;
-  align-items: baseline;
-  gap: 8px;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 2px 22px;
+  border-left: 1px solid var(--border-soft);
+}
+.summary dl > div:first-child {
+  padding-left: 4px;
+  border-left: 0;
+}
+.summaryIcon {
+  display: inline-flex;
+  flex: none;
+  color: var(--brand-primary);
+}
+.summaryText {
   min-width: 0;
 }
 .summary dt {
   font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-weight: 500;
   color: var(--text-muted);
 }
 .summary dd {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 500;
+  margin: 1px 0 0;
+  font-size: 14.5px;
+  font-weight: 600;
   color: var(--text-primary);
+}
+@media (max-width: 1199px) {
+  .summary dl > div {
+    padding: 2px 14px;
+  }
+}
+@media (max-width: 767px) {
+  .summary dl {
+    gap: 6px 0;
+  }
+  .summary dl > div {
+    border-left: 0;
+    padding: 2px 0;
+    flex: 1 0 46%;
+  }
 }
 @media print {
   .summary {

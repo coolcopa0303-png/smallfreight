@@ -6,7 +6,11 @@ export type SortKey = 'price' | 'transit' | 'carrier'
 export interface SummaryRow {
   label: string
   value: string
+  /** Picks the icon shown in the result-screen summary bar; text-only places ignore it. */
+  icon?: SummaryIcon
 }
+
+export type SummaryIcon = 'origin' | 'destination' | 'date' | 'weight' | 'pieces' | 'dims' | 'class' | 'note'
 
 export type QuoteStatus = 'idle' | 'loading' | 'done' | 'error'
 
