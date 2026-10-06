@@ -42,7 +42,7 @@
     "resultLabel": "Drayage quote result",
     "contactUs": "Contact Us",
     "print": "Print",
-    "copy": "Copy Information",
+    "copy": "Copy Quote Details",
     "copied": "Copied",
     "copyFailed": "Couldn't copy — select the text and copy it manually.",
     "mailSubject": "Drayage quote {{number}}",
