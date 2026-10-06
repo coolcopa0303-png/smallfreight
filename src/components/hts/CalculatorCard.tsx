@@ -1,13 +1,12 @@
 'use client'
 
-import { Bookmark, CalendarDays, Info, MessageSquarePlus, Plane, Ship, TrainFront, Truck } from 'lucide-react'
+import { Bookmark, CalendarDays, Info, MessageSquarePlus } from 'lucide-react'
 import { useId, useMemo, type MouseEvent } from 'react'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { Field, Input, Select } from '@/components/ui/Field'
 import { Flag } from '@/components/ui/misc'
 import { useI18n } from '@/i18n/I18nProvider'
-import type { TransportMode } from '@/services/dutyCalculator'
 import { AdditionalDuties } from './AdditionalDuties'
 import { ExclusionCodes } from './ExclusionCodes'
 import { HtsSearchInput } from './HtsSearchInput'
@@ -16,12 +15,6 @@ import s from './calculator.module.css'
 
 // Common origins for this customer base (old portal: mainly China / Asia imports).
 const ORIGINS = ['CN', 'VN', 'IN', 'MX', 'KR', 'TW', 'JP', 'TH', 'MY', 'ID', 'BD', 'KH', 'TR', 'DE', 'IT', 'CA', 'US']
-const MODES: { id: TransportMode; icon: typeof Ship }[] = [
-  { id: 'ocean', icon: Ship },
-  { id: 'air', icon: Plane },
-  { id: 'truck', icon: Truck },
-  { id: 'rail', icon: TrainFront },
-]
 
 const openPicker = (e: MouseEvent<HTMLInputElement>) => {
   try {
@@ -39,9 +32,8 @@ export function CalculatorCard({ api, initialQuery, onSave, onAsk, onCalculate }
   onCalculate: () => void
 }) {
   const { t, lang } = useI18n()
-  const ids = { product: useId(), value: useId(), origin: useId(), mode: useId(), entry: useId(), lading: useId(), dates: useId() }
+  const ids = { product: useId(), value: useId(), origin: useId(), entry: useId(), lading: useId(), dates: useId() }
   const { form, set, errors } = api
-  const ModeIcon = MODES.find((m) => m.id === form.mode)?.icon ?? Ship
 
   const originOptions = useMemo(() => {
     let dn: Intl.DisplayNames | undefined
@@ -88,15 +80,6 @@ export function CalculatorCard({ api, initialQuery, onSave, onAsk, onCalculate }
         </Field>
         <Field label={t('hts.calc.origin')} htmlFor={ids.origin}>
           <Select id={ids.origin} leading={<Flag code={form.origin} width={24} />} options={originOptions} value={form.origin} onChange={(e) => set('origin', e.target.value)} className={s.flagSelect} />
-        </Field>
-        <Field label={t('hts.calc.mode')} htmlFor={ids.mode}>
-          <Select
-            id={ids.mode}
-            leading={<ModeIcon size={18} className={s.modeIcon} />}
-            options={MODES.map((m) => ({ value: m.id, label: t(`common.mode.${m.id}`) }))}
-            value={form.mode}
-            onChange={(e) => set('mode', e.target.value as TransportMode)}
-          />
         </Field>
         <Field label={t('hts.calc.entryDate')} htmlFor={ids.entry}>
           <Input id={ids.entry} type="date" className={s.date} leading={<CalendarDays size={17} />} value={form.entryDate} onChange={(e) => set('entryDate', e.target.value)} onClick={openPicker} aria-describedby={ids.dates} />

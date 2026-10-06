@@ -72,9 +72,6 @@
 .flagSelect select {
   padding-left: 12px;
 }
-.modeIcon {
-  color: var(--brand-primary);
-}
 .date input {
   font-variant-numeric: tabular-nums;
   cursor: pointer;
