@@ -5,7 +5,7 @@ import { Card, CardHeader } from '@/components/ui/Card'
 import { useI18n } from '@/i18n/I18nProvider'
 import { FaqAccordion } from './FaqAccordion'
 import { useFaqItems } from './faqItems'
-import { AnnouncementsCard, ContactCard } from './SideCards'
+import { ContactCard } from './SideCards'
 import s from './help.module.css'
 
 export function HelpPage() {
@@ -24,7 +24,6 @@ export function HelpPage() {
         </Card>
         <div className={s.side}>
           <ContactCard />
-          <AnnouncementsCard />
         </div>
       </div>
     </div>
