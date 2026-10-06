@@ -53,7 +53,8 @@ export function DrayagePriceSheet({ quote: q, flat }: { quote: DrayageQuote; fla
           </dl>
         )}
       </Box>
-      {q.otherFees.length > 0 && (
+      {/* No published rate for the lane: the accessorials are meaningless on their own, so the desk quotes everything. */}
+      {q.baseRate !== undefined && q.otherFees.length > 0 && (
         <Box className={s.block}>
           <h3 className={s.feesTitle}>{t('quotes.dray.otherTitle')}</h3>
           <table className={s.feesTable}>
@@ -120,14 +121,16 @@ function Loaded({ quote: q }: { quote: DrayageQuote }) {
   }, [q])
 
   const copyText = () => {
+    const noRate = q.baseRate === undefined
     const rows = [
       lane,
-      q.baseRate === undefined ? t('quotes.dray.noRate') : `${t('quotes.dray.baseRate')}: ${money(q.baseRate)}`,
-      q.baseRate === undefined ? '' : `${chassisLabel}: ${money(q.chassisPerDay)}`,
+      noRate ? t('quotes.dray.noRate') : `${t('quotes.dray.baseRate')}: ${money(q.baseRate!)}`,
+      noRate ? '' : `${chassisLabel}: ${money(q.chassisPerDay)}`,
       q.estimatedTotal === undefined ? '' : `${t('quotes.dray.total')}: ${money(q.estimatedTotal)}`,
-      '',
-      t('quotes.dray.otherTitle'),
-      ...q.otherFees.map((f) => `${t(`quotes.dray.fee.${f.label}`)}: ${money(f.amount)} ${t(`quotes.dray.unit.${f.unit}`)}`),
+      // Matches the page: without a published rate the accessorial sheet is left out.
+      ...(noRate || q.otherFees.length === 0
+        ? []
+        : ['', t('quotes.dray.otherTitle'), ...q.otherFees.map((f) => `${t(`quotes.dray.fee.${f.label}`)}: ${money(f.amount)} ${t(`quotes.dray.unit.${f.unit}`)}`)]),
     ]
     return rows.filter((r, i) => r || rows[i - 1]).join('\n')
   }
